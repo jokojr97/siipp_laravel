@@ -6,7 +6,7 @@
         <meta name="author" content="Dashboard">
         <meta content="@yield('metadeskription')" name="description">
         <meta content="@yield('metakeywords')" name="keywords">
-        <link rel="shortcut icon" sizes="196x196" href="/proyek/images/logo.png">
+        <link rel="shortcut icon" sizes="196x196" href="/Assets/proyek/images/logo.png">
         <link href="@yield('thumbnail')" rel="apple-touch-icon">
         <title>@yield('title')Open Data Kontak Bojonegoro</title>
             
@@ -18,19 +18,19 @@
 
         <!-- <link rel="stylesheet" href="plugins/bootstrap/bootstrap.min.css"> -->
         <!-- Ionicons Fonts Css -->
-        <link rel="stylesheet" href="/plugins/ionicons/ionicons.min.css">
+        <link rel="stylesheet" href="/Assets/plugins/ionicons/ionicons.min.css">
         <!-- animate css -->
-        <link rel="stylesheet" href="/plugins/animate-css/animate.css">
+        <link rel="stylesheet" href="/Assets/plugins/animate-css/animate.css">
         <!-- Hero area slider css-->
-        <link rel="stylesheet" href="/plugins/slider/slider.css">
+        <link rel="stylesheet" href="/Assets/plugins/slider/slider.css">
         <!-- owl craousel css -->
-        <link rel="stylesheet" href="/plugins/owl-carousel/owl.carousel.css">
-        <link rel="stylesheet" href="/plugins/owl-carousel/owl.theme.css">
+        <link rel="stylesheet" href="/Assets/plugins/owl-carousel/owl.carousel.css">
+        <link rel="stylesheet" href="/Assets/plugins/owl-carousel/owl.theme.css">
         <!-- Fancybox -->
-        <link rel="stylesheet" href="/plugins/facncybox/jquery.fancybox.css">
+        <link rel="stylesheet" href="/Assets/plugins/facncybox/jquery.fancybox.css">
         <!-- template main css file -->
-        <link rel="stylesheet" href="/css/style.css">
-        <link rel="stylesheet" href="/libs/bower/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/Assets/css/style.css">
+        <link rel="stylesheet" href="/Assets/libs/bower/font-awesome/css/font-awesome.min.css">
         <style>
            
         @media screen and (min-width: 601px) {
@@ -134,16 +134,16 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 col-md-3" style="padding: 15px 0">
-                            <center><img class="img-responsive" src="/images/lkpp.png" alt="oroduct image"></center>
+                            <center><img class="img-responsive" src="/Assets/images/lkpp.png" alt="oroduct image"></center>
                         </div><!-- END column -->
                         <div class="col-sm-6 col-md-3" style="padding: 15px 0">
-                            <center><img class="img-responsive" src="/images/bjn.jpg" alt="oroduct image"></center>
+                            <center><img class="img-responsive" src="/Assets/images/bjn.jpg" alt="oroduct image"></center>
                         </div><!-- END column -->
                         <div class="col-sm-6 col-md-3" style="padding: 15px 0">
-                            <center><img class="img-responsive" src="/images/bi.png" alt="oroduct image"></center>
+                            <center><img class="img-responsive" src="/Assets/images/bi.png" alt="oroduct image"></center>
                         </div><!-- END column -->
                         <div class="col-sm-6 col-md-3" style="padding: 15px 0">
-                            <center><img class="img-responsive" src="/images/fordfoundation.png" alt="oroduct image"></center>
+                            <center><img class="img-responsive" src="/Assets/images/fordfoundation.png" alt="oroduct image"></center>
                         </div><!-- END column -->
                     </div>
                 </div><!-- .row -->
@@ -174,7 +174,7 @@
 		                </div><!-- .modal-body -->
 		                <div class="modal-footer">
 		                    <center style="margin-top: 15px"><a href="#" style="color: #59af4b">Lupa Password?</a></center>
-		                    <center><a href="/auth/daftar" style="color: #59af4b">Belum Punya Akun ? Daftar akun</a></center>
+		                    <center><a href="/Assets/auth/daftar" style="color: #59af4b">Belum Punya Akun ? Daftar akun</a></center>
 		                </div><!-- .modal-footer -->
 		            </form>
 		        </div><!-- /.modal-content -->
@@ -203,22 +203,22 @@
 	    <!-- Template Javascript Files
 	    ================================================== -->
 	    <!-- jquery -->
-	    <script src="/plugins/jQurey/jquery.min.js"></script>
+	    <script src="/Assets/plugins/jQurey/jquery.min.js"></script>
 	    <!-- Form Validation -->
-	    <script src="/plugins/form-validation/jquery.form.js"></script> 
-	    <script src="/plugins/form-validation/jquery.validate.min.js"></script>
+	    <script src="/Assets/plugins/form-validation/jquery.form.js"></script> 
+	    <script src="/Assets/plugins/form-validation/jquery.validate.min.js"></script>
 	    <!-- owl carouserl js -->
-	    <script src="/plugins/owl-carousel/owl.carousel.min.js"></script>
+	    <script src="/Assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 	    <!-- bootstrap js -->
-	    <script src="/plugins/bootstrap/bootstrap.min.js"></script>
+	    <script src="/Assets/plugins/bootstrap/bootstrap.min.js"></script>
 	    <!-- wow js -->
-	    <script src="/plugins/wow-js/wow.min.js"></script>
+	    <script src="/Assets/plugins/wow-js/wow.min.js"></script>
 	    <!-- slider js -->
-	    <script src="/plugins/slider/slider.js"></script>
+	    <script src="/Assets/plugins/slider/slider.js"></script>
 	    <!-- Fancybox -->
-	    <script src="/plugins/facncybox/jquery.fancybox.js"></script>
+	    <script src="/Assets/plugins/facncybox/jquery.fancybox.js"></script>
 	    <!-- template main js -->
-	    <script src="/js/main.js"></script>
+	    <script src="/Assets/js/main.js"></script>
         @yield('script_tambahan')
     </body>
 </html>

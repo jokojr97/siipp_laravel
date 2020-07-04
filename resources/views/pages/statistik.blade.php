@@ -54,8 +54,8 @@
             <!--    <div id="grafik2"></div>-->
             <!--</div>-->
             <!--<br>-->
-            <a href="/images/panduanbos.pdf" target="_blank">
-                <img src="/images/posterbos.png" class="img-thumbnail img-responsive">
+            <a href="/Assets/images/panduanbos.pdf" target="_blank">
+                <img src="/Assets/images/posterbos.png" class="img-thumbnail img-responsive">
             </a>
             <div class="well" style="background-color:white;margin-bottom:-10px"> <a href="images/panduanbos.pdf" target="_blank">Download Panduan Penggunaan Aplikasi</a></div>
             <br>

@@ -21,7 +21,7 @@
                     <div class="wow example fadeInUp animated" data-wow-delay=".6s" style=";color:black">Aplikasi Keterbukaan Data dan Informasi Seluruh Proses Pengadaan Barang dan Jasa di Lingkungan Pemerintah Kabupaten Bojonegoro. Melalui Aplikasi ini, Warga Dapat Mengakses Data ataupun Dokumen Pengadaan, Serta Bisa Menyampaikan Aspirasi dan Pengaduan Pada Setiap Tahapan Kegiatan/Proyek Pengadaan  di Daerah.
                     Aplikasi Bojonegoro Open System (BOS) Bisa Diakses Melaui Smartphone atau Komputer yang Terkoneksi Dengan Internet.
                     </div><br>
-                    <a href="/proyek/" class="btn btn-default">Data Proyek</a>
+                    <a href="/Assets/proyek/" class="btn btn-default">Data Proyek</a>
                 </div>
             </div>
         </div>
@@ -40,10 +40,10 @@
             <div class="col-sm-4 col-xs-6">
                 <figure class="wow fadeInLeft animated portfolio-item" data-wow-duration="500ms" data-wow-delay="0ms">
                     <div class="img-wrapper">
-                        <img src="/images/portfolio/01.png" class="img-responsive" alt="this is a title" >
+                        <img src="/Assets/images/portfolio/01.png" class="img-responsive" alt="this is a title" >
                         <div class="overlay">
                             <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="/images/portfolio/1.png">Demo</a>
+                                <a rel="gallery" class="fancybox" href="/Assets/images/portfolio/1.png">Demo</a>
                             </div>
                         </div>
                     </div>
@@ -62,10 +62,10 @@
             <div class="col-sm-4 col-xs-6">
                 <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="img-wrapper">
-                        <img src="/images/portfolio/02.png" class="img-responsive" alt="this is a title" >
+                        <img src="/Assets/images/portfolio/02.png" class="img-responsive" alt="this is a title" >
                         <div class="overlay">
                             <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="/images/portfolio/2.png">Demo</a>
+                                <a rel="gallery" class="fancybox" href="/Assets/images/portfolio/2.png">Demo</a>
                             </div>
                         </div>
                     </div>
@@ -84,10 +84,10 @@
             <div class="col-sm-4 col-xs-6">
                 <figure class="wow fadeInLeft animated" data-wow-duration="500ms" data-wow-delay="300ms">
                     <div class="img-wrapper">
-                        <img src="/images/portfolio/03.png" class="img-responsive" alt="" >
+                        <img src="/Assets/images/portfolio/03.png" class="img-responsive" alt="" >
                         <div class="overlay">
                             <div class="buttons">
-                                <a rel="gallery" class="fancybox" href="/images/portfolio/3.png">Demo</a>
+                                <a rel="gallery" class="fancybox" href="/Assets/images/portfolio/3.png">Demo</a>
                             </div>
                         </div>
                     </div>

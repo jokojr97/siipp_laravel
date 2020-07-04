@@ -32,21 +32,87 @@
             <h5 style="margin-top: -10px;text-align: justify;line-height: 1.5em">Pengaduan/Aspirasi Publik dari aplikasi Bojonegoro Open System (BOS) atau SIIPP.NET :</h5> <br>
             <div class="col-sm-8" >
                 <br>
-                <div style="padding:10px">
-                    <div id="grafik3"></div>
+                @foreach($aspirasi as $result)
+                <div class="well" style="background-color: white;margin-bottom: -10px">
+                    {{ $result->satkers->nama }}
                 </div>
-                <br>
-                <div style="padding:10px">
-                    <div id="grafik4"></div>
+
+                <div class="well">                               
+                    <div class="media" >
+                        <div class="media-left media-top">
+                            @if($result->jenis_kelamin == "Perempuan")
+                            <img src="/Assets/images/img_avatar4.png" class="media-object " style="width:80px;border-radius: 50%;">
+                            @else
+                            <img src="/Assets/images/img_avatar2.png" class="media-object " style="width:80px;border-radius: 50%;">
+                            @endif
+                        </div>
+                        <div class="media-body">
+                            <div class="row">
+                                <div class="col-xs-8 media-heading" style="text-transform: capitalize;">
+                                    <h4>
+                                        @if($result->anonim == 1)
+                                        Anonim
+                                        @else
+                                        {{ $result->pengirim }}
+                                        @endif
+                                        <small>
+                                            &nbsp;&nbsp;(<?= substr($result->no_hp, 0, -6) . 'XXXXXX'; ?>)&nbsp;&nbsp;
+                                            @if($result->status == 0)
+                                            <span class=" label label-success" >Warga</span>
+                                            @else
+                                            <span class=" label label-danger" >Admin</span>
+                                            @endif
+                                        </small>
+                                    </h4>
+                                </div>
+                                <div class="col-xs-4 media-heading" >
+                                    <h5 style="text-transform: bold" class="pull-right">{{$result->tanggal}}</h5>
+                                </div>
+                                <div class="col-xs-12 media-heading ">
+                                    @if($result->pakets)
+                                        <a href="/Assets/proyek/detail?name=Kontrak&op=KontrakDetail&tahun={{ $result->tahun_anggaran }}&kode={{$result->ocid}}" class="" style="margin-top: -5px" target="_blank"><?= substr($result->pakets->nama_paket, 0, 80)."..." ?></a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 10px">
+                            <div class="col-xs-12">
+                                <p style="text-align: justify;">{{ $result->isi }}</p>
+                                @if($result->foto)
+                                
+                                <div class="col-sm-3">
+                                    <a href="/Assets/proyek/images/komentar/{{$result->foto}}" target="_blank"><img src="/Assets/proyek/images/komentar/{{$result->foto}}" class="img-thumbnail img-responsive"></a>
+                                </div>
+                                @endif
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                            @php
+                            if($result->likes){
+                                $likes = count($result->likes);
+                            }else {
+                                $likes = 0;
+                            }
+                            @endphp
+
+                            @php
+                            if($result->jumlah_komen($result->id)){
+                                $coment = count($result->jumlah_komen($result->id));
+                            }else {
+                                $coment = 0;
+                            }
+                            @endphp
+
+                            <a href="#" class="btn btn-primary btn-sm" disabled><span class="glyphicon glyphicon-thumbs-up"></span>&nbsp;&nbsp;Like(<?= $likes ?>)</a>
+
+                            <a href="/Assets/proyek/detail/detailKomen?id={{$result->id}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-comment "></span>&nbsp;Balasan({{ $coment }})</a>
+                        </div>
+                    </div>
                 </div>
-                <br>
-                <div style="padding:10px">
-                    <div id="grafik1"></div>
-                </div>
-                <br>
-                <div style="padding:10px">
-                    <div id="grafik2"></div>
-                </div>
+                @endforeach
+
+                {{ $aspirasi->links() }}     
                 <br>
             </div>
         <div class="col-sm-4">
@@ -54,8 +120,8 @@
             <!--    <div id="grafik2"></div>-->
             <!--</div>-->
             <!--<br>-->
-            <a href="/images/panduanbos.pdf" target="_blank">
-                <img src="/images/posterbos.png" class="img-thumbnail img-responsive">
+            <a href="/Assets/images/panduanbos.pdf" target="_blank">
+                <img src="/Assets/images/posterbos.png" class="img-thumbnail img-responsive">
             </a>
             <div class="well" style="background-color:white;margin-bottom:-10px"> <a href="images/panduanbos.pdf" target="_blank">Download Panduan Penggunaan Aplikasi</a></div>
             <br>
@@ -78,6 +144,5 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://code.highcharts.com/highcharts.js"></script>
 <script type="text/javascript" src="https://code.highcharts.com/modules/exporting.js"></script>
-
 
 @endsection
