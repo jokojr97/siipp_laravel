@@ -3,7 +3,7 @@
 @section('title', 'Statistic - ')
 @section('metadeskription', 'Aplikasi Keterbukaan Data dan Informasi Seluruh Proses Pengadaan Barang dan Jasa di Lingkungan Pemerintah Kabupaten Bojonegoro.')
 @section('metakeywords', 'siipp, open data kontrak, bojonegoro, bos, bojonegoro open system')
-@section('thumbnail', 'thubnail.png')
+@section('thumbnail', 'thumbnail.png')
 
 @section('container')
 

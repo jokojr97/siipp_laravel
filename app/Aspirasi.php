@@ -22,7 +22,6 @@ class Aspirasi extends Model
     }
 
     public function jumlah_komen($id){
-        $aspirasi = DB::table('aspirasis')->where('id_sub', $id)->get();
-        return $aspirasi;
+        return DB::table('aspirasis')->where('id_sub', $id)->get();
     }
 }
