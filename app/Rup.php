@@ -10,5 +10,9 @@ class Rup extends Model
     {
         return $this->hasOne('App\Satker', 'kd_satker_sirup', 'id_satker');
     }
+    public function isi()
+    {
+        return $this->hasOne('App\RupIsi', 'ocid', 'id_rup');
+    }
 
 }

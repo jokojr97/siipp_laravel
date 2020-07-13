@@ -64,7 +64,7 @@
         <div class="row">                
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
-                	<h3>Data Kontrak Terbuka Tahun 2020</h3>
+                	<h3><i class="fas fa-chart-bar"></i> Data Kontrak Terbuka Tahun 2020</h3>
                 	<hr>
 					<div class="table table-responsive">
                     	<table class="table table-striped table-bordered" id="bosdttable" >
@@ -81,6 +81,12 @@
                           	<tbody>
                           	</tbody>
                       	</table>
+                        <div class="preloader">
+                          <div class="loading">
+                            <img src="/poi2.gif" width="80">
+                            <p>Harap Tunggu</p>
+                          </div>
+                        </div>
                   	</div>
               	</div>
           	</div>
@@ -98,7 +104,7 @@
                         <h2>Rp. <span class="counter">0</span></h2>
 	                    <p>Total Pagu</p>
                     </div>
-                    <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
+                    <div class="sparkline-bar-stats2"><i class="fas fa-chart-bar"></i> </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -107,7 +113,7 @@
                         <h2><span class="counter"></span> Paket Pekerjaan</h2>
                         <p>Jumlah Paket Pekerjaan</p>
                     </div>
-                    <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+                    <div class="sparkline-bar-stats3"><i class="fas fa-chart-bar"></i> </div>
                 </div>
             </div>
         </div>
@@ -121,6 +127,16 @@
 <script src="/Assets/datatables/jquery.min.js"></script>  
 <link rel="stylesheet" type="text/css" href="/Assets/datatables/datatables.min.css"/>  
 <script type="text/javascript" src="/Assets/datatables/datatables.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>  
+
 @php
 $sample_data = json_encode($datatable);
 @endphp
@@ -130,36 +146,56 @@ $sample_data = json_encode($datatable);
 	$(function() {
 	    var jsonData = <?= $sample_data ?>;
 	    $('#bosdttable').dataTable({
+      "order": [[ 3, "desc" ]],
+      "processing" : true,
+      dom: 'Bfrtip',
+      buttons: ['copy', 'excel', 'pdf', 'csv'],
+      "pageLength": 25,
 	    "processing" : true,
 		data: jsonData,
 	        columns: [
-	            { data: 'id_rup' },
+	            { data: 'proses' },
 	            { data: 'nama_paket' },
 	            { data: 'nama_satker' },
-	            { data: 'total_pagu' },
-	            { data: 'sumber_dana_str' },
-	            { data: 'metode_str' }
+	            { data: 'pagu_rup' },
+	            { data: 'sumber_dana' },
+	            { data: 'metode_pemilihan' }
 	        ], 
-	    	columnDefs : [
-	      	{
-	        	targets : [0],
-	        	render : function (data, type, row) {
-		          	var btn = "<a href=\"/proyek/detail?tahun=2020&kode="+data+"\" class=\"btn btn-success btn-round btn-xs\" target=\"_blank\"><span class=\"glyphicon glyphicon-plus\"></span></a>";
-		          	return btn;
-	        	}
-	      	},
-	      	{
-		        targets : [3],
-		        render : function (data, type, row) {
-		        	var btn = numberWithCommas(data);
-		        	return btn;
-	        	}
-	      	}]
-	      });
+              columnDefs : [
+              {
+
+                "aTargets":[0],
+                "fnCreatedCell": function(nTd, sData, oData, iRow, iCol) {
+                  if(sData != 0) {
+                    $(nTd).css('background-color', '#ff4141')
+                  } else {
+                    $(nTd).css('background-color', '#faffc6')
+                  }
+                }
+              },
+              {
+                targets : [0],
+                render : function (data, type, full, meta) {
+                  var btn = "<a href=\"/proyek/perencanaan/"+jsonData[meta.row]['tahun']+"/"+jsonData[meta.row]['id_rup']+"\" class=\"btn btn-success btn-round btn-xs\" target=\"_blank\"><span class=\"glyphicon glyphicon-plus\"></a></span><span style=\"visibility: hidden;\">"+data+"</span>";
+                  return btn;
+    
+                }
+              },
+              {
+                targets : [3],
+                render : function (data, type, row) {
+                  var btn = numberWithCommas(data);
+                  return btn;
+                }
+              }]
+      });
 	});
 
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+  $(document).ready(function(){
+      $(".preloader").fadeOut();
+    })
 </script>
 @endsection

@@ -17,3 +17,4 @@ Route::get('/', 'PagesController@index');
 Route::get('/pengaduan', 'PagesController@pengaduan');
 Route::get('/statistik', 'PagesController@statistik');
 Route::get('/proyek', 'PagesController@proyek');
+Route::get('/proyek/perencanaan/{Tahun}/{Ocid}', 'PagesController@perencanaan');

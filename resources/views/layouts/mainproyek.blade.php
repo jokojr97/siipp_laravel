@@ -55,6 +55,24 @@
 	<link rel="stylesheet" href="/Assets/proyek/css/responsive.css">
 	<!-- modernizr JS
 	============================================ -->
+	<style type="text/css">
+		.preloader {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  z-index: 9999;
+		  background-color: #fff;
+		}
+		.preloader .loading {
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  transform: translate(-50%,-50%);
+		  font: 14px arial;
+		}
+	</style>
 </head>
 <body id="page-top" style="background-color: #f0f0f0">
 	<div class="header-top-area" style="background-color: #0f6926;">
@@ -115,7 +133,7 @@
                         </li>
                         <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/proyek"><i class="notika-icon notika-form"></i> Data Proyek</a>
                         </li>
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="pengaduan"><i class="notika-icon notika-support"></i> Pengaduan</a>
+                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/pengaduan"><i class="notika-icon notika-support"></i> Pengaduan</a>
                         </li>
                         <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/statistik"><i class="glyphicon glyphicon-stats"></i> Statistik</a>
                         </li>
@@ -187,6 +205,7 @@
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->  
+
 	<script src="/Assets/proyek/js/wow.min.js"></script>
 	<!-- price-slider JS
 	============================================ -->

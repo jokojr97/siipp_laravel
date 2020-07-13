@@ -69,8 +69,8 @@
                                     <h5 style="text-transform: bold" class="pull-right">{{$result->tanggal}}</h5>
                                 </div>
                                 <div class="col-xs-12 media-heading ">
-                                    @if($result->pakets)
-                                        <a href="/Assets/proyek/detail?name=Kontrak&op=KontrakDetail&tahun={{ $result->tahun_anggaran }}&kode={{$result->ocid}}" class="" style="margin-top: -5px" target="_blank"><?= substr($result->pakets->nama_paket, 0, 80)."..." ?></a>
+                                    @if($result->rups)
+                                        <a href="/Assets/proyek/detail?name=Kontrak&op=KontrakDetail&tahun={{ $result->tahun_anggaran }}&kode={{$result->ocid}}" class="" style="margin-top: -5px" target="_blank"><?= substr($result->rups->nama_paket, 0, 80)."..." ?></a>
                                     @endif
                                 </div>
                             </div>

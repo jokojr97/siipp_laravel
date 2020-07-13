@@ -14,7 +14,12 @@ class Aspirasi extends Model
 
     public function pakets()
     {
-        return $this->hasOne('App\Rup', 'id_rup', 'ocid');
+        return $this->hasOne('App\RupPenyedia', 'kode_rup', 'ocid');
+    }
+
+    public function rups()
+    {
+        return $this->hasOne('App\RupPenyedia', 'kode_rup', 'ocid');
     }
 
     public function likes(){
@@ -22,6 +27,10 @@ class Aspirasi extends Model
     }
 
     public function jumlah_komen($id){
+        return DB::table('aspirasis')->where('id_sub', $id)->get();
+    }
+
+    public function sub_komens($id){
         return DB::table('aspirasis')->where('id_sub', $id)->get();
     }
 }
