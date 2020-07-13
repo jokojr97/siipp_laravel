@@ -1,6 +1,6 @@
 @extends ('layouts/mainproyek')
 
-@section('title'){{$paket->nama_paket}} - Perencananaan - @endsection
+@section('title'){{$paket->nama_paket}}- Implementasi - @endsection
 @section('metadeskription'){{$paket->nama_paket}}, {{$paket->deskripsi}} @endsection
 @section('metakeywords', 'siipp, open data kontrak, bojonegoro, bos, bojonegoro open system')
 @section('thumbnail', 'thumbnail.png')
@@ -10,12 +10,12 @@
   <div class="container">
     <div class="panel panel-default" style="padding: 20px;margin-top: 10px">        
       <ul class="nav nav-tabs h5">
-        <li class="active"><a href="/proyek/perencanaan/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-calendar-check-o"></i> Perencanaan</a></li>
+        <li><a href="/proyek/perencanaan/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-calendar-check-o"></i> Perencanaan</a></li>
         @if($paket->tenders)
         <li><a href="/proyek/pengumuman/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-users"></i> Pemilihan Penyedia</a></li>  
         <li><a href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="glyphicon glyphicon-briefcase"></i> Pemenang & Kontrak</a></li> 
         @endif
-        <li><a href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-check-square"></i> Implementasi</a></li>
+        <li class="active"><a href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-check-square"></i> Implementasi</a></li>
       </ul>
         <div class="tab-content">
           <div id="perencanaan" class="tab-pane fade in active"><br>
@@ -145,6 +145,7 @@
 
   </section>
 </section> 
+
 
 @include('pages._partials.modal')
 

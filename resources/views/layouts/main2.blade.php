@@ -5,61 +5,59 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
 
-    <meta content="@yield('metadeskription')" name="description">
-    <meta content="@yield('metakeywords')" name="keywords">
-    <link rel="shortcut icon" sizes="196x196" href="/Assets/proyek/images/logo.png">
-    <link href="@yield('thumbnail')" rel="apple-touch-icon">
-    <title>@yield('title')Open Data Kontak Bojonegoro</title>
+	<meta content="@yield('metadeskription')" name="description">
+	<meta content="@yield('metakeywords')" name="keywords">
+	<link rel="shortcut icon" sizes="196x196" href="/Assets/proyek/images/logo.png">
+	<link href="@yield('thumbnail')" rel="apple-touch-icon">
+	<title>@yield('title')Open Data Kontak Bojonegoro</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
 	<!-- Bootstrap CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/bootstrap.min.css">
 	<!-- Bootstrap CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/font-awesome.min.css">
 	<!-- owl.carousel CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.carousel.css">
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.theme.css">
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.transitions.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/owl.carousel.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/owl.theme.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/owl.transitions.css">
 	<!-- meanmenu CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/meanmenu/meanmenu.min.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/meanmenu/meanmenu.min.css">
 	<!-- animate CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/animate.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/animate.css">
 	<!-- normalize CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/normalize.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/normalize.css">
 	<!-- mCustomScrollbar CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/scrollbar/jquery.mCustomScrollbar.min.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/scrollbar/jquery.mCustomScrollbar.min.css">
 	<!-- jvectormap CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/jvectormap/jquery-jvectormap-2.0.3.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/jvectormap/jquery-jvectormap-2.0.3.css">
 	<!-- notika icon CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/notika-custom-icon.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/notika-custom-icon.css">
 	<!-- wave CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/wave/waves.min.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/wave/waves.min.css">
 	<!-- main CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/main.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/main.css">
 	<!-- style CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/style.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/style.css">
 	<!-- responsive CSS
 	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/responsive.css">
+	<link rel="stylesheet" href="https://siipp.net/assets/proyek/css/responsive.css">
 	<!-- modernizr JS
 	============================================ -->
-	<script type="text/javascript" src="/Assets/datatables/bootstrap.min.js"></script>  
-	<script src="/Assets/datatables/jquery.min.js"></script>  
-	<link rel="stylesheet" type="text/css" href="/Assets/datatables/datatables.min.css"/>  
-	<script type="text/javascript" src="/Assets/datatables/datatables.min.js"></script>
-  
+	<script type="text/javascript" src="https://siipp.net/assets/datatables/bootstrap.min.js"></script>  
+	<script src="https://siipp.net/assets/datatables/jquery.min.js"></script> 
+
 	<style type="text/css">
 		.preloader {
 		  position: absolute;
@@ -79,6 +77,7 @@
 		}
 	</style>
 </head>
+
 <body id="page-top" style="background-color: #f0f0f0">
 	<div class="header-top-area" style="background-color: #0f6926;">
         <div class="container">
@@ -210,65 +209,67 @@
 	        </div><!-- /.modal-content -->
 	    </div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->  
-
-	<script src="/Assets/proyek/js/wow.min.js"></script>
-	<!-- price-slider JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jquery-price-slider.js"></script>
-	<!-- owl.carousel JS
-	============================================ -->
-	<script src="/Assets/proyek/js/owl.carousel.min.js"></script>
-	<!-- scrollUp JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jquery.scrollUp.min.js"></script>
-	<!-- meanmenu JS
-	============================================ -->
-	<script src="/Assets/proyek/js/meanmenu/jquery.meanmenu.js"></script>
-	<!-- counterup JS
-	============================================ -->
-	<script src="/Assets/proyek/js/counterup/jquery.counterup.min.js"></script>
-	<script src="/Assets/proyek/js/counterup/waypoints.min.js"></script>
-	<script src="/Assets/proyek/js/counterup/counterup-active.js"></script>
-	<!-- mCustomScrollbar JS
-	============================================ -->
-	<script src="/Assets/proyek/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<!-- jvectormap JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-	<script src="/Assets/proyek/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="/Assets/proyek/js/jvectormap/jvectormap-active.js"></script>
-	<!-- sparkline JS
-	============================================ -->
-	<script src="/Assets/proyek/js/sparkline/jquery.sparkline.min.js"></script>
-	<script src="/Assets/proyek/js/sparkline/sparkline-active.js"></script>
-	<!-- sparkline JS
-	============================================ -->
-	<script src="/Assets/proyek/js/flot/jquery.flot.js"></script>
-	<script src="/Assets/proyek/js/flot/jquery.flot.resize.js"></script>
-	<script src="/Assets/proyek/js/flot/curvedLines.js"></script>
-	<script src="/Assets/proyek/js/flot/flot-active.js"></script>
-	<!-- knob JS
-	============================================ -->
-	<script src="/Assets/proyek/js/knob/jquery.knob.js"></script>
-	<script src="/Assets/proyek/js/knob/jquery.appear.js"></script>
-	<script src="/Assets/proyek/js/knob/knob-active.js"></script>
-	<!--  wave JS
-	============================================ -->
-	<script src="/Assets/proyek/js/wave/waves.min.js"></script>
-	<script src="/Assets/proyek/js/wave/wave-active.js"></script>
-	<!--  todo JS
-	============================================ -->
-	<script src="/Assets/proyek/js/todo/jquery.todo.js"></script>
-	<!-- plugins JS
-	============================================ -->
-	<script src="/Assets/proyek/js/plugins.js"></script>
-	<!--  Chat JS
-	============================================ -->
-	<script src="/Assets/proyek/js/chat/moment.min.js"></script>
-	<script src="/Assets/proyek/js/chat/jquery.chat.js"></script>
-	<!-- main JS
-	============================================ -->
-	<script src="/Assets/proyek/js/main.js"></script>
-    @yield('script_tambahan')
+<script src="https://siipp.net/assets/proyek/js/wow.min.js"></script>
+<!-- price-slider JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/jquery-price-slider.js"></script>
+<!-- owl.carousel JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/owl.carousel.min.js"></script>
+<!-- scrollUp JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/jquery.scrollUp.min.js"></script>
+<!-- meanmenu JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/meanmenu/jquery.meanmenu.js"></script>
+<!-- counterup JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/counterup/jquery.counterup.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/counterup/waypoints.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/counterup/counterup-active.js"></script>
+<!-- mCustomScrollbar JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+<!-- jvectormap JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="https://siipp.net/assets/proyek/js/jvectormap/jvectormap-active.js"></script>
+<!-- sparkline JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/sparkline/jquery.sparkline.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/sparkline/sparkline-active.js"></script>
+<!-- sparkline JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/flot/jquery.flot.js"></script>
+<script src="https://siipp.net/assets/proyek/js/flot/jquery.flot.resize.js"></script>
+<script src="https://siipp.net/assets/proyek/js/flot/curvedLines.js"></script>
+<script src="https://siipp.net/assets/proyek/js/flot/flot-active.js"></script>
+<!-- knob JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/knob/jquery.knob.js"></script>
+<script src="https://siipp.net/assets/proyek/js/knob/jquery.appear.js"></script>
+<script src="https://siipp.net/assets/proyek/js/knob/knob-active.js"></script>
+<!--  wave JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/wave/waves.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/wave/wave-active.js"></script>
+<!--  todo JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/todo/jquery.todo.js"></script>
+<!-- plugins JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/plugins.js"></script>
+<!--  Chat JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/chat/moment.min.js"></script>
+<script src="https://siipp.net/assets/proyek/js/chat/jquery.chat.js"></script>
+<!-- main JS
+============================================ -->
+<script src="https://siipp.net/assets/proyek/js/main.js"></script><script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+@yield('script_tambahan')
 </body>
 </html>

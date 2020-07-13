@@ -123,11 +123,6 @@
 @endsection
 
 @section('script_tambahan')
-<script type="text/javascript" src="/Assets/datatables/bootstrap.min.js"></script>  
-<script src="/Assets/datatables/jquery.min.js"></script>  
-<link rel="stylesheet" type="text/css" href="/Assets/datatables/datatables.min.css"/>  
-<script type="text/javascript" src="/Assets/datatables/datatables.min.js"></script>
-
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>  
 <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap.min.js"></script>  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>  

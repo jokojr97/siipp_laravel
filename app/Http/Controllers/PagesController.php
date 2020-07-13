@@ -65,14 +65,46 @@ class PagesController extends Controller
     public function perencanaan(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
+        $tahap = 1;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 1)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
-        // $rup = "";
 
-        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi]);
-        // dd($rup);
+        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+    }
+
+    public function pengumuman(Request $request){
+        $tahun = $request->segment(3);
+        $ocid = $request->segment(4);
+        $tahap = 2;
+        $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 2)->where('id_sub', 0)->orderBy('id', 'desc')->get();
+        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+
+        return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+    }
+
+    public function kontrak(Request $request){
+        $tahun = $request->segment(3);
+        $ocid = $request->segment(4);
+        $tahap = 3;
+        $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 3)->where('id_sub', 0)->orderBy('id', 'desc')->get();
+        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+
+        return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
                
     }
+
+    public function implementasi(Request $request){
+        $tahun = $request->segment(3);
+        $ocid = $request->segment(4);
+        $tahap = 4;
+        $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 4)->where('id_sub', 0)->orderBy('id', 'desc')->get();
+        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+
+        return view('pages.implementasi', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+               
+    }
+
+
 
     private function get_url(){        
         if (isset($_GET['tahun'])) {
