@@ -62,6 +62,43 @@ class PagesController extends Controller
         // dd($data);
     }
 
+    public function tender(){
+        $dt = $this->get_url();
+        $tahun = $dt['tahun'];
+        $satker = $dt['satker'];
+        if ($satker) {
+            $st = Satker::where('kd_satker_sirup', $satker)->first();
+            $satker = $st;
+        }
+        $sumber = $dt['sumber'];
+        $jenis = $dt['jenis'];
+        if ($jenis) {
+            $st = JenisPekerjaan::where('slug', $jenis)->first();
+            $jenis = $st;
+        }
+        $rup = LpseScrap::where('tahun_ang', $tahun)->paginate(300);
+        $satkers = Satker::all();
+        $tahun_angs = TahunAnggaran::all();
+        // $tahap_tender = Satker::all();
+        $sumber_danas = SumberDana::all();
+        $jenis_pekerjaans = JenisPekerjaan::all();
+        $data = array();
+        $no = 0;
+        foreach ($rup as $result) {
+            $data[$no]['id_rup'] = $result->id_rup;
+            $data[$no]['nama_paket'] = $result->nama_paket;
+            $data[$no]['nama_satker'] = $result->satker;
+            $data[$no]['pagu'] = $result->pagu;
+            $data[$no]['sumber_dana'] = $result->sumber_dana;
+            $data[$no]['tahap_tender'] = $result->tahap_tender;
+            $data[$no]['tahun'] = $result->tahun;
+            $no++;
+        }
+        // dd($satker);
+        return view('pages.tender', ['rup' => $rup, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis]); 
+        // dd($data);
+    }
+
     public function perencanaan(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
@@ -119,6 +156,35 @@ class PagesController extends Controller
             $dt['id'] = 0;
         }
 
+        if (isset($_GET['satker'])) {
+            $dt['satker'] = $_GET['satker'];
+        }else {
+            $dt['satker'] = '';
+        }
+
+        if (isset($_GET['tahap'])) {
+            $dt['tahap'] = $_GET['tahap'];
+        }else {
+            $dt['tahap'] = '';
+        }
+
+        if (isset($_GET['sumber'])) {
+            $dt['sumber'] = $_GET['sumber'];
+        }else {
+            $dt['sumber'] = '';
+        }
+
+        if (isset($_GET['jenis'])) {
+            $dt['jenis'] = $_GET['jenis'];
+        }else {
+            $dt['jenis'] = '';
+        }
+
+        if (isset($_GET['metode'])) {
+            $dt['metode'] = $_GET['metode'];
+        }else {
+            $dt['metode'] = '';
+        }
         return $dt;
     }
 }
