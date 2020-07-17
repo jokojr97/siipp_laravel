@@ -17,31 +17,68 @@
 	                            <div class="form-group col-sm-6">
 	                                <label for="Tahun">Tahun Anggaran:</label>
 	                                <select class="form-control" id="sel1" name="tahun">
+                                    @if($tahun)
+                                    <option>{{$tahun}}</option>
+                                    @endif
+                                    @foreach($tahun_angs as $hasil)
+                                    <option>{{$hasil->tahun}}</option>
+                                    @endforeach
 	                                </select>
 	                            </div>
 	                              
 	                            <div class="form-group col-sm-6">
-									<label for="opd">Nama OPD</label>
-									<select class="form-control" id="sel2" name="opd">
-
-									</select>
+              									<label for="opd">Nama OPD</label>
+              									<select class="form-control" id="sel2" name="opd" style="text-transform: capitalize;">
+                                  @if($satker)
+                                  <option style="text-transform: capitalize;" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
+                                  @else
+                                  <option value="">-- Pilih salah satu --</option>
+                                  @endif
+                                  @foreach($satkers as $hasil)
+                                  <option style="text-transform: capitalize;" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
+                                  @endforeach
+              									</select>
 	                            </div>
 
 	                            <div class="form-group col-sm-6">
 	                                <label for="Kategori">Sumber Dana:</label>
-	                                <select class="form-control" id="sel3" name="sumber">
+	                                <select class="form-control" id="sel3" name="sumber" style="text-transform: capitalize;">
+                                    @if($sumber)
+                                    <option style="text-transform: capitalize;" value="{{$sumber}}">{{$sumber}}</option>
+                                    @else
+                                    <option value="">-- Pilih salah satu --</option>
+                                    @endif
+                                    @foreach($sumber_danas as $hasil)
+                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+                                    @endforeach
 	                                </select>
 	                            </div>
 
 	                            <div class="form-group col-sm-6">
 	                                <label for="Kategori">Metode Pengadaan:</label>
-	                                <select class="form-control" id="sel4" name="metode">
+	                                <select class="form-control" id="sel4" name="metode" style="text-transform: capitalize;">
+                                    @if($metode)
+                                    <option style="text-transform: capitalize;" value="{{$metode}}">{{$metode}}</option>
+                                    @else
+                                    <option value="">-- Pilih salah satu --</option>
+                                    @endif
+                                    @foreach($metode_lelangs as $hasil)
+                                    <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
+                                    @endforeach
 	                                </select>
 	                            </div>
 	                              
 	                            <div class="form-group col-sm-6">
 		                            <label for="jenisPengadaan">Jenis Pekerjaan:</label>
-		                            <select class="form-control" id="sel5" name="jenisPengadaan">
+		                            <select class="form-control" id="sel5" name="jenisPengadaan" style="text-transform: capitalize;">
+                                    @if($jenis)
+                                    <option style="text-transform: capitalize;" value="{{$jenis->slug}}">{{$jenis->nama}}</option>
+                                    @else
+                                    <option value="">-- Pilih salah satu --</option>
+                                    @endif
+                                    @foreach($jenis_pekerjaans as $hasil)
+                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+                                    @endforeach
 		                            </select>
 	                            </div>
 

@@ -28,8 +28,15 @@
 
                               <div class="form-group col-sm-6">
                                   <label for="Kategori">Tahap Tender:</label>
-                                  <select class="form-control" id="sel2" name="sumber">
-
+                                  <select class="form-control" id="sel2" name="sumber" style="text-transform: capitalize;">
+                                    @if($tahap)
+                                    <option style="text-transform: capitalize;" value="{{$tahap}}">{{$tahap}}</option>
+                                    @else
+                                    <option value="">-- Pilih salah satu --</option>
+                                    @endif
+                                    @foreach($tahap_tenders as $hasil)
+                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+                                    @endforeach
                                   </select>
                               </div>
 

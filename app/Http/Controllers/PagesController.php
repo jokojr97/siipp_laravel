@@ -13,6 +13,7 @@ use App\PesertaLelang;
 use App\Progress;
 use App\Rup;
 use App\RupPenyedia;
+use App\TahapTender;
 use App\Satker;
 use App\TahunAnggaran;
 use App\MetodeLelang;
@@ -39,8 +40,28 @@ class PagesController extends Controller
     public function proyek(){
         $dt = $this->get_url();
         $tahun = $dt['tahun'];
-        $rup = RupPenyedia::where('tahun', $tahun)->get();
-        $satker = Satker::all();
+        $satker = $dt['satker'];
+        if ($satker) {
+            $st = Satker::where('kd_satker_sirup', $satker)->first();
+            $satker = $st;
+        }
+        $sumber = $dt['sumber'];
+        $jenis = $dt['jenis'];
+        if ($jenis) {
+            $st = JenisPekerjaan::where('slug', $jenis)->first();
+            $jenis = $st;
+        }
+        $metode = $dt['metode'];
+        if ($metode) {
+            $st = MetodeLelang::where('slug', $metode)->first();
+            $tahap = $st;
+        }
+        $satkers = Satker::all();
+        $tahun_angs = TahunAnggaran::all();
+        $metode_lelangs = MetodeLelang::all();
+        $sumber_danas = SumberDana::all();
+        $jenis_pekerjaans = JenisPekerjaan::all();
+        $rup = RupPenyedia::where('tahun', $tahun)->limit(30)->get();
         $data = array();
         $no = 0;
         foreach ($rup as $result) {
@@ -58,7 +79,7 @@ class PagesController extends Controller
             $data[$no]['tahun'] = $result->tahun;
             $no++;
         }
-        return view('pages.proyek', ['rup' => $rup, 'datatable' => $data]); 
+        return view('pages.proyek', ['rup' => $rup, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode]); 
         // dd($data);
     }
 
@@ -76,10 +97,15 @@ class PagesController extends Controller
             $st = JenisPekerjaan::where('slug', $jenis)->first();
             $jenis = $st;
         }
+        $tahap = $dt['tahap'];
+        if ($tahap) {
+            $st = TahapTender::where('slug', $tahap)->first();
+            $tahap = $st;
+        }
         $rup = LpseScrap::where('tahun_ang', $tahun)->paginate(300);
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
-        // $tahap_tender = Satker::all();
+        $tahap_tenders = TahapTender::all();
         $sumber_danas = SumberDana::all();
         $jenis_pekerjaans = JenisPekerjaan::all();
         $data = array();
@@ -95,7 +121,7 @@ class PagesController extends Controller
             $no++;
         }
         // dd($satker);
-        return view('pages.tender', ['rup' => $rup, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis]); 
+        return view('pages.tender', ['rup' => $rup, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap]); 
         // dd($data);
     }
 
