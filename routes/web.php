@@ -33,6 +33,10 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', 'can:role-admin')->group(function(){
 	Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
+	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit']]);
+	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
+	Route::get('/rup/{tahun}/{id}', 'RupController@show')->name('rup.show');
+	Route::get('/rup/{tahun}/{id}/edit', 'RupController@edit')->name('rup.edit');
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){

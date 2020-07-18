@@ -8,7 +8,7 @@
   <meta content="@yield('metakeywords')" name="keywords">
 
   <!-- Favicons -->
-  <link href="/img/home/icon-kecil.png" rel="icon">
+  <link href="/Assets/proyek/images/logo.png" rel="icon">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->

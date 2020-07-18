@@ -1,12 +1,6 @@
-@php
-function limit_words($string, $word_limit){
-    $words = explode(" ",$string);
-    return implode(" ",array_splice($words,0,$word_limit));
-}
-@endphp
 @extends ('layouts/mainadmin')
 
-@section('title', 'Home - Sistem Informasi Pemantauan Pengadaan Publik')
+@section('title', 'Dashboard - Sistem Informasi Pemantauan Pengadaan Publik')
 @section('metadeskription', '')
 @section('metakeywords', '')
 

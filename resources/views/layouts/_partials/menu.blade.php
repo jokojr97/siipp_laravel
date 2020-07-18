@@ -20,19 +20,19 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/kader/kadersaya" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/rup" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class="nav-icon"></i>
             <p>Lihat RUP</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/rup/import" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/rup/export" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Eksprot</p>
           </a>
@@ -49,19 +49,19 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/kader/kadersaya" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/tender" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class=" nav-icon"></i>
             <p>Lihat Tender</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/tender/import" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/tender/eksport" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Eksprot</p>
           </a>
@@ -78,19 +78,19 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/kader/kadersaya" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/nontender" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class=" nav-icon"></i>
             <p>Lihat Non Tender</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/nontender/import" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/nontender/eksport" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Eksprot</p>
           </a>
@@ -107,19 +107,19 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/kader/kadersaya" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/peserta" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class=" nav-icon"></i>
             <p>Lihat Peserta</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/peserta/import" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/kader/kadersaya/tertangguhkan" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/peserta/eksport" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Eksprot</p>
           </a>
@@ -127,7 +127,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="/kader/kadersaya/verifikasi" class="nav-link">
+      <a href="/admin/progress" class="nav-link">
         <i class="nav-icon fas fa-cogs"></i>
         <p>
           Progress Pekerjaan
@@ -135,7 +135,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/kader/kadersaya/verifikasi" class="nav-link">
+      <a href="/admin/rup/proses" class="nav-link">
         <i class="nav-icon fas fa-sync"></i>
         <p>
           Rup Proses
@@ -143,7 +143,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/kader/kadersaya/create" class="nav-link">
+      <a href="/admin/pra" class="nav-link">
         <i class="nav-icon fas fa-calculator"></i>
         <p>
           Hitung PRA
@@ -151,7 +151,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/kader/kadersaya/verifikasi" class="nav-link">
+      <a href="/admin/aspirasi" class="nav-link">
         <i class="nav-icon fas fa-comment"></i>
         <p>
           Aspirasi
@@ -159,7 +159,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/kader/password" class="nav-link">
+      <a href="/admin/password" class="nav-link">
         <i class="nav-icon fas fa-key"></i>
         <p>
           Ubah Sandi
