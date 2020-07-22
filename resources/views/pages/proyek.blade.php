@@ -14,6 +14,7 @@
                     <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
                        	<div class="row">
                         	<form action="/proyek" method="POST">
+                              @csrf
 	                            <div class="form-group col-sm-6">
 	                                <label for="Tahun">Tahun Anggaran:</label>
 	                                <select class="form-control" id="sel1" name="tahun">
@@ -37,6 +38,7 @@
                                   @foreach($satkers as $hasil)
                                   <option style="text-transform: capitalize;" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
                                   @endforeach
+                                  <option value="">-- Semua --</option>
               									</select>
 	                            </div>
 
@@ -51,6 +53,7 @@
                                     @foreach($sumber_danas as $hasil)
                                     <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
                                     @endforeach
+                                    <option value="">-- Semua --</option>
 	                                </select>
 	                            </div>
 
@@ -58,27 +61,29 @@
 	                                <label for="Kategori">Metode Pengadaan:</label>
 	                                <select class="form-control" id="sel4" name="metode" style="text-transform: capitalize;">
                                     @if($metode)
-                                    <option style="text-transform: capitalize;" value="{{$metode}}">{{$metode}}</option>
+                                    <option style="text-transform: capitalize;" value="{{$metode->slug}}">{{$metode->nama}}</option>
                                     @else
                                     <option value="">-- Pilih salah satu --</option>
                                     @endif
                                     @foreach($metode_lelangs as $hasil)
                                     <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
                                     @endforeach
+                                    <option value="">-- Semua --</option>
 	                                </select>
 	                            </div>
 	                              
 	                            <div class="form-group col-sm-6">
 		                            <label for="jenisPengadaan">Jenis Pekerjaan:</label>
-		                            <select class="form-control" id="sel5" name="jenisPengadaan" style="text-transform: capitalize;">
+		                            <select class="form-control" id="sel5" name="jenispengadaan" style="text-transform: capitalize;">
                                     @if($jenis)
                                     <option style="text-transform: capitalize;" value="{{$jenis->slug}}">{{$jenis->nama}}</option>
                                     @else
                                     <option value="">-- Pilih salah satu --</option>
                                     @endif
                                     @foreach($jenis_pekerjaans as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+                                    <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
                                     @endforeach
+                                    <option value="">-- Semua --</option>
 		                            </select>
 	                            </div>
 
@@ -135,26 +140,26 @@
 <div class="notika-status-area">
 	<div class="container">
 		<div class="row">
-	        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
-                    <div class="website-traffic-ctn">
-                        <h2>Rp. <span class="counter">0</span></h2>
-	                    <p>Total Pagu</p>
-                    </div>
-                    <div class="sparkline-bar-stats2"><i class="fas fa-chart-bar"></i> </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
-                    <div class="website-traffic-ctn">
-                        <h2><span class="counter"></span> Paket Pekerjaan</h2>
-                        <p>Jumlah Paket Pekerjaan</p>
-                    </div>
-                    <div class="sparkline-bar-stats3"><i class="fas fa-chart-bar"></i> </div>
-                </div>
-            </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+          <div class="website-traffic-ctn">
+            <h2>Rp. <span class="counter">{{number_format((float)"$rupsum",0,",",",")}}</span></h2>
+            <p>Total Pagu</p>
+          </div>
+          <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+          <div class="website-traffic-ctn">
+            <h2><span class="counter">{{number_format((float)"$rupcount",0,",",",")}}</span> Paket Pekerjaan</h2>
+            <p>Jumlah Paket Pekerjaan</p>
+          </div>
+          <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
 
 @endsection

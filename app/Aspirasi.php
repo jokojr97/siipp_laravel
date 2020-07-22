@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\DB;
 
 class Aspirasi extends Model
 {
+    protected $fillable = ['id_sub', 'tahap', 'ocid', 'kd_satker', 'pengirim', 'alamat', 'isi', 'foto', 'jenis_kelamin', 'tanggal', 'tahun_anggaran', 'status', 'keterangan', 'aktif', 'anonim'];
+
     public function satkers()
     {
         return $this->hasOne('App\Satker', 'kd_satker_sirup', 'kd_satker');

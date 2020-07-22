@@ -48,7 +48,17 @@
                 <tr>
                     <th class="bg-warning" style="text-align: right">Lokasi</th>
                     <td colspan="3" >
-                        {{$paket->detail_lokasi}}
+                      @php
+                      $lok = $paket->detail_lokasi;
+                      $lok = explode(";", $lok);
+                      $jml_lok = count($lok) - 1;
+                      $loka = $lok[$jml_lok];
+                      @endphp
+                      <ol style="margin-left: 10px">
+                      @foreach($lok as $hsl)
+                        <li>{{$hsl}}</li>
+                      @endforeach
+                      </ol>
                     </td>
                 </tr>                
                 @php
@@ -84,7 +94,15 @@
                 </tr>
                 <tr>
                     <th class="bg-warning" style="text-align: right">Kategori Pengadaan</th>
-                    <td colspan="3" >{{$paket->jenis_pekerjaan}}</td>
+                    <td colspan="3" >
+                      @php
+                      $jenis = $paket->jenis_pengadaan;
+                      $jenis = explode(";", $jenis);
+                      $jml_jenis = count($jenis) - 1;
+                      $jenis = $jenis[$jml_jenis];
+                      echo $jenis;
+                      @endphp
+                    </td>
                 </tr>
                 <tr>
                     <th class="bg-warning" style="text-align: right">Metode Pengadaan</th>
@@ -107,7 +125,16 @@
                 </tr>
                 <tr>
                     <th class="bg-warning" style="text-align: right">Tahun Anggaran</th>
-                    <td colspan="3"> {{$paket->sumber_dana}} {{$paket->tahun}}</td>
+                    <td colspan="3"> 
+
+                      @php
+                      $sumb = $paket->sumber_dana;
+                      $sumb = explode(",", $sumb);
+                      $jml_sumb = count($sumb) - 1;
+                      $sumb = $sumb[$jml_sumb];
+                      echo $sumb;
+                      @endphp
+                    {{$paket->tahun}}</td>
                 </tr>
                 <tr>
                     <th class="bg-warning" style="text-align: right">Pagu Anggaran</th>

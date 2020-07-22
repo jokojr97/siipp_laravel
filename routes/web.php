@@ -17,7 +17,10 @@ Route::get('/', 'PagesController@index');
 Route::get('/pengaduan', 'PagesController@pengaduan');
 Route::get('/statistik', 'PagesController@statistik');
 Route::get('/proyek', 'PagesController@proyek');
+Route::post('/proyek', 'PagesController@cari');
 Route::get('/proyek/tender', 'PagesController@tender');
+Route::post('/proyek/tender', 'PagesController@caritender');
+Route::post('/proyek/aspirasi', 'PagesController@aspirasi');
 // Route::get('/penyedia', 'PagesController@penyedia');
 
 Route::get('/proyek/perencanaan/{tahun}/{ocid}', 'PagesController@perencanaan');
@@ -30,11 +33,13 @@ Route::get('/logout', 'HomeController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
-
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', 'can:role-admin')->group(function(){
 	Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
-	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit']]);
+	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
+	Route::get('/rup/import/{tahun}', 'RupController@import')->name('rup.import');
+	Route::get('/rup/export/{tahun}', 'RupController@export')->name('rup.export');
+	Route::get('/rup/{tahun}/create', 'RupController@create')->name('rup.create');
 	Route::get('/rup/{tahun}/{id}', 'RupController@show')->name('rup.show');
 	Route::get('/rup/{tahun}/{id}/edit', 'RupController@edit')->name('rup.edit');
 });

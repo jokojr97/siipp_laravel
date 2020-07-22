@@ -159,7 +159,7 @@
 		                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		                <h4 class="modal-title">Sign In With Your ODCBJN Account</h4>
 		            </div>
-		            <form action="/login" method="post">
+		            <form action="{{route('login')}}" method="post">
                         @csrf
 		                <div class="modal-body">
 		                    <div class="form-group">

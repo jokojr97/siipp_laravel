@@ -85,7 +85,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <div class="logo-area">
-                        <a href="/Home" class="logo h4" style="color: white"><b> BOJONEGORO<span style="color: red"> OPEN </span>SYSTEM </b>
+                        <a href="/" class="logo h4" style="color: white"><b> BOJONEGORO<span style="color: red"> OPEN </span>SYSTEM </b>
                         </a>
                     </div>
                 </div>
@@ -94,7 +94,8 @@
                         <ul class="nav navbar-nav notika-top-nav">
                             <a href="/proyek" class="btn btn-default" style="color: black;margin: 0px 10px 10px 5px">Data Proyek</a>
                             <a href="/proyek/tender" class="btn btn-default" style="color: black;margin: 0px 15px 10px 5px">Tahap Tender</a>
-                            <a href="" style="color: white;" class="h3 dropdown-toggle" role="button"  data-toggle="modal" data-target="#loginModal"><i class="fa fa-user" style="margin-top: 15px"></i></a>
+                            <!-- <a href="" style="color: white;" class="h3 dropdown-toggle" role="button"  data-toggle="modal" data-target="#loginModal"><i class="fa fa-user" style="margin-top: 15px"></i></a> -->
+                            <a href="/login" style="color: white;" class="h3 dropdown-toggle"><i class="fa fa-user" style="margin-top: 15px"></i></a>
                         </ul>
                     </div>
                 </div>

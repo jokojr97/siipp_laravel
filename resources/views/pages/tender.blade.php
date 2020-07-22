@@ -13,82 +13,87 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
                        	<div class="row">
-                        	<form action="/proyek" method="POST">
-	                            <div class="form-group col-sm-6">
-	                                <label for="Tahun">Tahun Anggaran:</label>
-	                                <select class="form-control" id="sel1" name="tahun">
-                                    @if($tahun)
-                                    <option>{{$tahun}}</option>
-                                    @endif
-                                    @foreach($tahun_angs as $hasil)
-                                    <option>{{$hasil->tahun}}</option>
-                                    @endforeach
-	                                </select>
-	                            </div>
+                        	<form action="/proyek/tender" method="POST">
+                            @csrf
+                            <div class="form-group col-sm-6">
+                              <label for="Tahun">Tahun Anggaran:</label>
+                              <select class="form-control" id="sel1" name="tahun">
+                                @if($tahun)
+                                <option>{{$tahun}}</option>
+                                @endif
+                                @foreach($tahun_angs as $hasil)
+                                <option>{{$hasil->tahun}}</option>
+                                @endforeach
+                              </select>
+                            </div>
 
-                              <div class="form-group col-sm-6">
-                                  <label for="Kategori">Tahap Tender:</label>
-                                  <select class="form-control" id="sel2" name="sumber" style="text-transform: capitalize;">
-                                    @if($tahap)
-                                    <option style="text-transform: capitalize;" value="{{$tahap}}">{{$tahap}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($tahap_tenders as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
-                                    @endforeach
-                                  </select>
-                              </div>
+                            <div class="form-group col-sm-6">
+                              <label for="Kategori">Tahap Tender:</label>
+                              <select class="form-control" id="sel2" name="tahap" style="text-transform: capitalize;">
+                                @if($tahap)
+                                <option style="text-transform: capitalize;" value="{{$tahap->slug}}">{{$tahap->nama}}</option>
+                                @else
+                                <option value="">-- Pilih salah satu --</option>
+                                @endif
+                                @foreach($tahap_tenders as $hasil)
+                                <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
+                                @endforeach
+                                <option value="">-- Semua --</option>
+                              </select>
+                            </div>
 
-	                            <div class="form-group col-sm-6">
-              									<label for="opd">Nama OPD</label>
-              									<select class="form-control" id="sel3" name="opd" style="text-transform: capitalize;">
-                                  @if($satker)
-                                  <option style="text-transform: capitalize;" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
-                                  @else
-                                  <option value="">-- Pilih salah satu --</option>
-                                  @endif
-                                  @foreach($satkers as $hasil)
-                                  <option style="text-transform: capitalize;" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
-                                  @endforeach
-              									</select>
-	                            </div>
+                            <div class="form-group col-sm-6">
+            									<label for="opd">Nama OPD</label>
+            									<select class="form-control" id="sel3" name="opd" style="text-transform: capitalize;">
+                                @if($satker)
+                                <option style="text-transform: capitalize;" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
+                                @else
+                                <option value="">-- Pilih salah satu --</option>
+                                @endif
+                                @foreach($satkers as $hasil)
+                                <option style="text-transform: capitalize;" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
+                                @endforeach
+                                <option value="">-- Semua --</option>
+            									</select>
+                            </div>
 
 
-                              <div class="form-group col-sm-6">
-                                  <label for="Kategori">Sumber Dana:</label>
-                                  <select class="form-control" id="sel4" name="sumber" style="text-transform: capitalize;">
-                                    @if($sumber)
-                                    <option style="text-transform: capitalize;" value="{{$sumber}}">{{$sumber}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($sumber_danas as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
-                                    @endforeach
-                                  </select>
-                              </div>
+                            <div class="form-group col-sm-6">
+                              <label for="Kategori">Sumber Dana:</label>
+                              <select class="form-control" id="sel4" name="sumber" style="text-transform: capitalize;">
+                                @if($sumber)
+                                <option style="text-transform: capitalize;" value="{{$sumber}}">{{$sumber}}</option>
+                                @else
+                                <option value="">-- Pilih salah satu --</option>
+                                @endif
+                                @foreach($sumber_danas as $hasil)
+                                <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+                                @endforeach
+                                <option value="">-- Semua --</option>
+                              </select>
+                            </div>
 
-	                            <div class="form-group col-sm-6">
-		                            <label for="jenisPengadaan">Jenis Pekerjaan:</label>
-		                            <select class="form-control" id="sel5" name="jenisPengadaan">
-                                    @if($jenis)
-                                    <option style="text-transform: capitalize;" value="{{$jenis->slug}}">{{$jenis->nama}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($jenis_pekerjaans as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
-                                    @endforeach
-		                            </select>
-	                            </div>
+                            <div class="form-group col-sm-6">
+	                            <label for="jenispengadaan">Jenis Pekerjaan:</label>
+	                            <select class="form-control" id="sel5" name="jenispengadaan">
+                                @if($jenis)
+                                <option style="text-transform: capitalize;" value=" {{$jenis->slug}}">{{$jenis->nama}}</option>
+                                @else 
+                                <option value="">-- Pilih salah satu --</option>
+                                @endif
+                                @foreach($jenis_pekerjaans as $hasil)
+                                <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
+                                @endforeach
+                                <option value="">-- Semua --</option>
+	                            </select>
+                            </div>
 
-	                            <div class="form-group pull-right" style="margin-right: 20px;margin-top: 30px">        
-	                                <a href="/proyek" class="btn btn-default" style="background-color: #f0f0f0"><span class="glyphicon glyphicon-refresh"></span> Reset</a>&nbsp;
-	                                <button type="submit" class="btn btn-success"><span class="fa fa-filter"></span> Filter</button>
-	                            </div>
+                            <div class="form-group pull-right" style="margin-right: 20px;margin-top: 30px">        
+                              <a href="/proyek/tender" class="btn btn-default" style="background-color: #f0f0f0"><span class="glyphicon glyphicon-refresh"></span> Reset</a>&nbsp;
+                              <button type="submit" class="btn btn-success"><span class="fa fa-filter"></span> Filter</button>
+                            </div>
                     		</form>
-                        </div>
+                      </div>
                 	</div> 
                 </div>
             </div>
@@ -104,28 +109,32 @@
                 <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
                 	<h3><i class="fas fa-chart-bar"></i> Data Kontrak Terbuka Tahun 2020</h3>
                 	<hr>
-					<div class="table table-responsive">
-                    	<table class="table table-striped table-bordered" id="bosdttable" >
-                    		<thead class="bg-primary" style="background-color:#59af4b">
-                            	<tr>
-                              		<th></th>
-                          			<th scope="col" style="color: white"><center>Paket</center></th>
-                              		<th scope="col" style="color: white"><center>OPD</center></th>
-                              		<th scope="col" style="color: white;"><center>Nilai Pagu <br>(Rp)</center></th>
-                              		<th scope="col" style="color: white"><center>Sumber Dana</center></th>
-                              		<th scope="col" style="color: white"><center>Metode</center></th>
-                            	</tr>
-                          	</thead>
-                          	<tbody>
-                          	</tbody>
-                      	</table>
-                        <div class="preloader">
-                          <div class="loading">
-                            <img src="/poi2.gif" width="80">
-                            <p>Harap Tunggu</p>
-                          </div>
-                        </div>
-                  	</div>
+                  <div class="table table-responsive">
+                  	<table class="table table-striped table-bordered" id="bosdttable" >
+                  		<thead class="bg-primary" style="background-color:#59af4b">
+                      	<tr>
+                      		<th></th>
+                    			<th scope="col" style="color: white"><center>Paket</center></th>
+                      		<th scope="col" style="color: white"><center>OPD</center></th>
+                      		<th scope="col" style="color: white;"><center>Nilai Pagu <br>(Rp)</center></th>
+                      		<th scope="col" style="color: white"><center>Sumber Dana</center></th>
+                      		<th scope="col" style="color: white"><center>Metode</center></th>
+                      	</tr>
+                    	</thead>
+                    	<tbody>
+                    	</tbody>
+                  	</table>
+                    <div class="preloader">
+                      <div class="loading">
+                        <img src="/poi2.gif" width="80">
+                        <p>Harap Tunggu</p>
+                      </div>
+                    </div>
+                	</div>
+                  <ul style="list-style-type: circle;margin-left: 20px">
+                    <li style="color: red;font-size: 11px">Data/informasi tahapan tender ini bersumber dan diolah dari data pengadaan metode "Tender", "Tender Cepat", dan "Seleksi" (tidak termasuk metode non-tender, seperti e-katalog, penunjukan langsung dan Lainnya)</li>
+                    <li style="color: red;font-size: 11px">Data bersumber dan diolah dari LPSE Bojonegoro melalui metode data scraping, yang diperbarui seminggu sekali.</li>
+                  </ul>
               	</div>
           	</div>
       	</div>
@@ -134,30 +143,29 @@
 
 <br>
 <div class="notika-status-area">
-	<div class="container">
-		<div class="row">
-	        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
-                    <div class="website-traffic-ctn">
-                        <h2>Rp. <span class="counter">0</span></h2>
-	                    <p>Total Pagu</p>
-                    </div>
-                    <div class="sparkline-bar-stats2"><i class="fas fa-chart-bar"></i> </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
-                    <div class="website-traffic-ctn">
-                        <h2><span class="counter"></span> Paket Pekerjaan</h2>
-                        <p>Jumlah Paket Pekerjaan</p>
-                    </div>
-                    <div class="sparkline-bar-stats3"><i class="fas fa-chart-bar"></i> </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+          <div class="website-traffic-ctn">
+            <h2>Rp. <span class="counter">{{number_format((float)"$scrapsum",0,",",",")}}</span></h2>
+            <p>Total Pagu</p>
+          </div>
+          <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
         </div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
+          <div class="website-traffic-ctn">
+            <h2><span class="counter">{{number_format((float)"$scrapcount",0,",",",")}}</span> Paket Pekerjaan</h2>
+            <p>Jumlah Paket Pekerjaan</p>
+          </div>
+          <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
 @endsection
 
 @section('script_tambahan')
@@ -185,8 +193,9 @@ $sample_data = json_encode($datatable);
       buttons: ['copy', 'excel', 'pdf', 'csv'],
       "pageLength": 25,
 	    "processing" : true,
-		data: jsonData,
-	        columns: [
+		  data: jsonData,
+	        columns: 
+          [
 	            { data: 'id_rup' },
 	            { data: 'nama_paket' },
 	            { data: 'nama_satker' },
@@ -194,24 +203,27 @@ $sample_data = json_encode($datatable);
 	            { data: 'sumber_dana' },
 	            { data: 'tahap_tender' }
 	        ], 
-              columnDefs : [
-              {
-                targets : [0],
-                render : function (data, type, full, meta) {
-                  var btn = "<a href=\"/proyek/perencanaan/"+jsonData[meta.row]['tahun']+"/"+jsonData[meta.row]['id_rup']+"\" class=\"btn btn-success btn-round btn-xs\" target=\"_blank\"><span class=\"glyphicon glyphicon-plus\"></a></span><span style=\"visibility: hidden;\">"+data+"</span>";
-                  return btn;
-    
-                }
-              },
-              {
-                targets : [3],
-                render : function (data, type, row) {
-                  var btn = numberWithCommas(data);
-                  return btn;
-                }
-              }]
-      });
-	});
+          columnDefs : 
+          [
+            {
+              targets : [0],
+              render : function (data, type, full, meta) {
+                var btn = "<a href=\"/proyek/perencanaan/"+jsonData[meta.row]['tahun']+"/"+jsonData[meta.row]['id_rup']+"\" class=\"btn btn-success btn-round btn-xs\" target=\"_blank\"><span class=\"glyphicon glyphicon-plus\"></a></span><span style=\"visibility: hidden;\">"+data+"</span>";
+                return btn;
+              }
+            },
+            {
+              targets : [3],
+              render : function (data, type, row) {
+                var btn = numberWithCommas(data);
+                return btn;
+              }
+            }
+          ]
+        }
+      );
+    }
+  );
 
 	function numberWithCommas(x) {
 		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

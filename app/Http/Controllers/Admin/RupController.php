@@ -6,7 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\TahapTender;
+use App\Satker;
 use App\TahunAnggaran;
+use App\MetodeLelang;
+use App\SumberDana;
+use App\JenisPekerjaan;
 use App\RupPenyedia;
 
 class RupController extends Controller
@@ -43,9 +48,22 @@ class RupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $tahun = $request->segment(3);
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+
+        $satkers = Satker::all();
+        $tahun_angs = TahunAnggaran::all();
+        $metode_lelangs = MetodeLelang::all();
+        $sumber_danas = SumberDana::all();
+        $jenis_pekerjaans = JenisPekerjaan::all();
+
+        // $rup = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+
+        return view('admin.rup.create', ['user' => $user, 'tahun' => $tahun, 'satkers' => $satkers, 'tahun_angs' => $tahun_angs, 'jenis_pekerjaans' => $jenis_pekerjaans, 'sumber_danas' => $sumber_danas]);
+        // dd($tahun);
     }
 
     /**
@@ -56,7 +74,7 @@ class RupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

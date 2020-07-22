@@ -32,16 +32,16 @@
           <div class="col">
             <div class="form-inline">
               <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Rencana Umum Pengadaan Tahun &nbsp;</b>
-                <select class="form-control" style="width: 100px;display: inline;">
+                <select class="form-control" style="width: 100px;display: inline;" onchange="changefucntion(this)">
                   <option>{{$tahun}}</option>
                   @foreach($tahuns as $hasil)
                   <option>{{$hasil->tahun}}</option>
                   @endforeach
                 </select>
               </h4>
-              <a href="#" class="btn btn-success mr-2 mt-2"><i class="fas fa-plus"></i> &nbsp;Tambahkan</a>
-              <a href="#" class="btn btn-primary mr-2 mt-2"><i class="fas fa-file-import"></i> &nbsp;Import</a>
-              <a href="#" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>              
+              <a href="{{route('admin.rup.create', $tahun)}}" class="btn btn-success mr-2 mt-2"><i class="fas fa-plus"></i> &nbsp;Tambahkan</a>
+              <a href="{{route('admin.rup.import', $tahun)}}" class="btn btn-primary mr-2 mt-2"><i class="fas fa-file-import"></i> &nbsp;Import</a>
+              <a href="{{route('admin.rup.export', $tahun)}}" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>              
             </div>
             <br>  
 
@@ -126,5 +126,10 @@
   </div>
 @endsection
 @section('script_tambahan')
-
+<script type="text/javascript">
+  function changefunction(id) {
+    var idss = id.value;
+    window.location.replace("/admin/rup/"+idss+"");  
+  }
+</script>
 @endsection
