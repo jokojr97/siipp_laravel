@@ -32,6 +32,11 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style type="text/css">
+    .jdl{
+      background-color:#e8e8e8;
+      border:2px solid white;
+      width: 30%;
+    }
     hr {
       margin-top:0px;
     }

@@ -16,7 +16,7 @@
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item"><a href="/admin">Home</a></li>
               <li class="breadcrumb-item active">Rup</li>
             </ol>
           </div><!-- /.col -->
@@ -94,7 +94,7 @@
                     <td class="text-center">{{$loop->iteration}}</td>
                     <td>{{$result->nama_paket}}</td>
                     <td>{{$result->nama_satker}}</td>
-                    <td>{{$result->sumber_Dana}}</td>
+                    <td>{{$result->sumber_dana}}</td>
                     <td>{{$result->metode_pemilihan}}</td>
                     <td>
                       @php
