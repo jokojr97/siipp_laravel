@@ -30,6 +30,16 @@
       <div class="container-fluid">
         <div class="row mt-3">
           <div class="col">
+            @if(session('success'))
+            <div class="alert alert-success" role="alert">
+              {{ session('success') }}
+            </div>
+            @endif
+            @if(session('failed'))
+            <div class="alert alert-danger" role="alert">
+              {{ session('failed') }}
+            </div>
+            @endif
             <div class="form-inline">
               <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Rencana Umum Pengadaan Tahun &nbsp;</b>
                 <select class="form-control" style="width: 100px;display: inline;" onchange="changefucntion(this)">

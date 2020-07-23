@@ -181,7 +181,7 @@ class RupController extends Controller
             'tahun' => $request->tahun
         ]);
 
-        return redirect('/admin/rup')->with('success', 'Successfull Edit category!');
+        return redirect('/admin/rup/'.$request->tahun)->with('success', 'Successfull Edit category!');        
     }
 
     /**
