@@ -1,6 +1,6 @@
 @extends ('layouts/mainadmin')
 
-@section('title', 'Rup - Sistem Informasi Pemantauan Pengadaan Publik')
+@section('title', 'Import Rup - Sistem Informasi Pemantauan Pengadaan Publik')
 @section('metadeskription', '')
 @section('metakeywords', '')
 
@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Rup</h1>
+            <h1 class="m-0 text-dark">Import Rup</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-              <li class="breadcrumb-item active">Rup</li>
+              <li class="breadcrumb-item active">Import Rup</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -43,51 +43,27 @@
           </div><!-- col -->
         </div><!-- row -->
         <div class="row mt-3">
-          <div class="col">
-            <div class="form-inline">
-              <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Rencana Umum Pengadaan Tahun &nbsp;</b>
-                <select class="form-control" style="width: 100px;display: inline;" onchange="changefunction(this)">
-                  <option>{{$tahun}}</option>
-                  @foreach($tahuns as $hasil)
-                  <option>{{$hasil->tahun}}</option>
-                  @endforeach
-                </select>
-              </h4>
-              <a href="{{route('admin.rup.create', $tahun)}}" class="btn btn-success mr-2 mt-2"><i class="fas fa-plus"></i> &nbsp;Tambahkan</a>
-              <a href="{{route('admin.rup.import', $tahun)}}" class="btn btn-primary mr-2 mt-2"><i class="fas fa-file-import"></i> &nbsp;Import</a>
-              <a href="{{route('admin.rup.export', $tahun)}}" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>              
-            </div>
-            <br>  
-
-              <form action="#" method="POST">
+          <div class="col-sm-7">
+            <form method="post" action="{{route('admin.rup.importdata')}}" enctype="multipart/form-data">
+              <div class="form-inline">
                 @csrf
-                <div class="form-group form-row">
-                  <label for="inputPassword" class="col-sm-1 col-form-label">Sort By</label>
-                  <div class="col-sm-2">
-                    <select class="form-control">
-                      <option>Nama</option>
-                      <option>Satuan kerja</option>
-                      <option>Sumber dana</option>
-                      <option>Metode</option>
-                      <option>Jenis Pengadaan</option>
-                    </select>
-                  </div><!-- col -->
-                  <div class="col-sm-3">&nbsp;</div>
-                  <label for="inputPassword" class="col-sm-1 col-form-label">Search</label>
-                  <div class="col-sm-4 col-9">
-                    <select class="form-control">
-                      <option>Nama</option>
-                      <option>Satuan kerja</option>
-                      <option>Sumber dana</option>
-                      <option>Metode</option>
-                      <option>Jenis Pengadaan</option>
-                    </select>
-                  </div><!-- col -->
-                  <div class="col-sm-1 col-2">
-                    <button type="submit" class="btn btn-secondary">Search</button>
-                  </div><!-- col -->
+                <label>Pilih file excel</label>
+                <div class="form-group ml-3">
+                  <input type="hidden" name="tahun" value="{{$tahun}}">
+                  <input type="file" name="file" required="required" class="form-control">
                 </div><!-- form group -->
-              </form><!-- form -->
+                <div class="float-right ml-2">
+                  <button type="submit" class="btn btn-primary"><i class="fas fa-file-import"></i> &nbsp;Import</button>
+                </div>
+              </div><!-- form inline -->
+            </form><!-- form -->
+          </div><!-- col -->
+        </div><!-- row -->
+        <div class="row">
+          <div class="col">
+            <br>
+            <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Rencana Umum   Pengadaan Tahun {{$tahun}}</b></h4>
+            <hr class="mt-2">
             <div class="table-responsive border">
               <table class="table table-striped">
                 <thead class="bg-white">

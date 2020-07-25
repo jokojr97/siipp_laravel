@@ -38,6 +38,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
 	Route::get('/rup/import/{tahun}', 'RupController@import')->name('rup.import');
+	Route::post('/rup/import', 'RupController@importdata')->name('rup.importdata');
 	Route::get('/rup/export/{tahun}', 'RupController@export')->name('rup.export');
 	Route::get('/rup/{tahun}/create', 'RupController@create')->name('rup.create');
 	Route::get('/rup/{tahun}/{id}', 'RupController@show')->name('rup.show');

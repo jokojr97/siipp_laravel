@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Imports\RupsImport;
+use App\Exports\RupsExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\User;
 use App\TahapTender;
 use App\Satker;
@@ -22,6 +25,54 @@ class RupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function import(Request $request) 
+    {
+        $tahun = $request->segment(4);
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+
+        $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->paginate(20);
+
+        return view('admin.rup.import', ['user' => $user, 'rups' => $rups, 'tahun' => $tahun]);
+    }
+
+    public function importdata(Request $request) 
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|mimes:csv,xls,xlsx'
+        ]);
+
+        $tahun = $request->tahun;
+
+        // menangkap file excel
+        $file = $request->file('file');
+ 
+        // membuat nama file unik
+        $nama_file = rand().$file->getClientOriginalName();
+ 
+        // upload ke folder file_siswa di dalam folder public
+        $file->move('import/rup/', $nama_file);
+        
+        // import data
+        Excel::import(new RupsImport, public_path('/import/rup/'.$nama_file));
+
+
+        // alihkan halaman kembali
+        return redirect('/admin/rup/import/'.$tahun)->with('success', 'Successfull Import RUP!');;
+
+        // return $tahun;
+    }    
+
+    public function export(Request $request) 
+    {
+        $tahun = $request->segment(4);   
+        $nama = 'Rup '.$tahun.' '.date("d-m-Y").'.xlsx';
+        return Excel::download(new RupsExport($tahun), $nama);
+        // return $tahun;
+    }
+
     public function index(Request $request)
     {
         $tahun = $request->segment(3);
@@ -181,7 +232,7 @@ class RupController extends Controller
             'tahun' => $request->tahun
         ]);
 
-        return redirect('/admin/rup/'.$request->tahun)->with('success', 'Successfull Edit category!');        
+        return redirect('/admin/rup/'.$request->tahun)->with('success', 'Successfull Edit RUP!');        
     }
 
     /**
