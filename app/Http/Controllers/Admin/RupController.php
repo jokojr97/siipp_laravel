@@ -50,7 +50,7 @@ class RupController extends Controller
         $file = $request->file('file');
  
         // membuat nama file unik
-        $nama_file = rand().$file->getClientOriginalName();
+        $nama_file = 'rup '.$tahun;
  
         // upload ke folder file_siswa di dalam folder public
         $file->move('import/rup/', $nama_file);

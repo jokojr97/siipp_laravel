@@ -43,6 +43,14 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/rup/{tahun}/create', 'RupController@create')->name('rup.create');
 	Route::get('/rup/{tahun}/{id}', 'RupController@show')->name('rup.show');
 	Route::get('/rup/{tahun}/{id}/edit', 'RupController@edit')->name('rup.edit');
+	Route::resource('/tender', 'TenderController', ['except' => ['show', 'edit', 'create']]);
+	Route::get('/tender/{tahun}', 'TenderController@tahun')->name('tender.tahun');
+	Route::get('/tender/import/{tahun}', 'TenderController@import')->name('tender.import');
+	Route::post('/tender/import', 'TenderController@importdata')->name('tender.importdata');
+	Route::get('/tender/export/{tahun}', 'TenderController@export')->name('tender.export');
+	Route::get('/tender/{tahun}/create', 'TenderController@create')->name('tender.create');
+	Route::get('/tender/{tahun}/{id}', 'TenderController@show')->name('tender.show');
+	Route::get('/tender/{tahun}/{id}/edit', 'TenderController@edit')->name('tender.edit');
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){

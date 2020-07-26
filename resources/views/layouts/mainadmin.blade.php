@@ -163,7 +163,7 @@
 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 <a href="">Partai Nasdem</a>.</strong>
+    <strong>Copyright &copy; 2020 <a href="">Bojonegoro Open System</a>.</strong>
     All rights reserved.
   </footer>
 
