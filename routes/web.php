@@ -35,6 +35,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', 'can:role-admin')->group(function(){
 	Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
+	Route::get('/progress', 'ProgressController@index')->name('progress');
 	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
 	Route::get('/rup/import/{tahun}', 'RupController@import')->name('rup.import');
