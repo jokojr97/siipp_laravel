@@ -17,6 +17,8 @@ use App\SumberDana;
 use App\JenisPekerjaan;
 use App\RupPenyedia;
 use App\LpseScrap;
+use App\LpseMetode;
+use App\MetodeLpse;
 
 class TenderController extends Controller
 {
@@ -24,12 +26,13 @@ class TenderController extends Controller
     public function import(Request $request) 
     {
         $tahun = $request->segment(4);
+        $tahuns = TahunAnggaran::all();
         $id = Auth::id();
         $user = User::where('id', $id)->first();
 
-        $tenders = LpseScrap::where('tahun_ang', $tahun)->paginate(25);
+        $tenders = LpseScrap::latest()->paginate(25);
 
-        return view('admin.tender.index', ['user' => $user, 'tenders' => $tenders, 'tahun' => $tahun]);
+        return view('admin.tender.import', ['user' => $user, 'tenders' => $tenders, 'tahun' => $tahun, 'tahuns' => $tahuns]);
     }
 
     public function importdata(Request $request) 
@@ -45,7 +48,7 @@ class TenderController extends Controller
         $file = $request->file('file');
  
         // membuat nama file unik
-        $nama_file = 'tender '.$tahun;
+        $nama_file = 'tender '.$tahun.'.xlsx';
  
         // upload ke folder file_siswa di dalam folder public
         $file->move('import/tender/', $nama_file);
@@ -53,12 +56,52 @@ class TenderController extends Controller
         // import data
         Excel::import(new TendersImport, public_path('/import/tender/'.$nama_file));
 
+        $metode = MetodeLpse::all();
+        foreach ($metode as $result) {
+            $lpse = LpseScrap::where('tahun_ang', $tahun)->where('sistem_pengadaan', 'like', $result->nama.' -%')->get();
+            foreach ($lpse as $hasil) {
+                $metodelpse = LpseMetode::where('kd_lpse', $hasil->kode_lelang)->first();
+                if ($metodelpse) {
+                    $nama_file = 'joko';
+                }else {
+                    LpseMetode::create([
+                        'kd_lpse' => $hasil->kode_lelang, 
+                        'ocid' => $hasil->id_rup, 
+                        'id_metode' => $result->id
+                    ]);
+                }
+            }
+        }
 
         // alihkan halaman kembali
-        return redirect('/admin/tender/import/'.$tahun)->with('success', 'Successfull Import RUP!');;
+        return redirect('/admin/tender/import/'.$tahun)->with('success', 'Successfull Import Data Tender!');;
 
         // return $tahun;
     }    
+
+    public function synctender(Request $request){        
+        $tahun = $request->segment(4);
+        $metode = MetodeLpse::all();
+        foreach ($metode as $result) {
+            $lpse = LpseScrap::where('tahun_ang', $tahun)->where('sistem_pengadaan', 'like', $result->nama.' -%')->get();
+            foreach ($lpse as $hasil) {
+                $metodelpse = LpseMetode::where('kd_lpse', $hasil->kode_lelang)->first();
+                if ($metodelpse) {
+                    $nama_file = 'joko';
+                }else {
+                    LpseMetode::create([
+                        'kd_lpse' => $hasil->kode_lelang, 
+                        'ocid' => $hasil->id_rup, 
+                        'id_metode' => $result->id
+                    ]);
+                }
+            }
+        }
+
+        return redirect('/admin/tender/'.$tahun)->with('success', 'Successfull Sync Data!');
+        // dd($tahun);
+
+    }
 
     public function export(Request $request) 
     {

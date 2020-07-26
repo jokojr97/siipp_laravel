@@ -48,6 +48,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/tender/import/{tahun}', 'TenderController@import')->name('tender.import');
 	Route::post('/tender/import', 'TenderController@importdata')->name('tender.importdata');
 	Route::get('/tender/export/{tahun}', 'TenderController@export')->name('tender.export');
+	Route::get('/tender/sync/{tahun}', 'TenderController@synctender')->name('tender.sync');
 	Route::get('/tender/{tahun}/create', 'TenderController@create')->name('tender.create');
 	Route::get('/tender/{tahun}/{id}', 'TenderController@show')->name('tender.show');
 	Route::get('/tender/{tahun}/{id}/edit', 'TenderController@edit')->name('tender.edit');

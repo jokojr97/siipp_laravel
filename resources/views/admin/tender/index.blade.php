@@ -1,6 +1,6 @@
 @extends ('layouts/mainadmin')
 
-@section('title', 'Tender - Sistem Informasi Pemantauan Pengadaan Publik')
+@section('title')Tender {{$tahun}} - Sistem Informasi Pemantauan Pengadaan Publik @endsection
 @section('metadeskription', '')
 @section('metakeywords', '')
 
@@ -42,10 +42,10 @@
             @endif
           </div><!-- col -->
         </div><!-- row -->
-        <div class="row mt-3">
+        <div class="row">
           <div class="col">
             <div class="form-inline">
-              <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Rencana Umum Pengadaan Tahun &nbsp;</b>
+              <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Tender Tahun &nbsp;</b>
                 <select class="form-control" style="width: 100px;display: inline;" onchange="changefunction(this)">
                   <option>{{$tahun}}</option>
                   @foreach($tahuns as $hasil)
@@ -53,7 +53,7 @@
                   @endforeach
                 </select>
               </h4>
-              <a href="{{route('admin.tender.create', $tahun)}}" class="btn btn-success mr-2 mt-2"><i class="fas fa-plus"></i> &nbsp;Tambahkan</a>
+              <a href="{{route('admin.tender.sync', $tahun)}}" class="btn btn-info mr-2 mt-2"><i class="fas fa-sync"></i> &nbsp;Sinkronisasi</a>
               <a href="{{route('admin.tender.import', $tahun)}}" class="btn btn-primary mr-2 mt-2"><i class="fas fa-file-import"></i> &nbsp;Import</a>
               <a href="{{route('admin.tender.export', $tahun)}}" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>              
             </div>

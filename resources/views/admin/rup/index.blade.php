@@ -1,6 +1,6 @@
 @extends ('layouts/mainadmin')
 
-@section('title', 'Rup - Sistem Informasi Pemantauan Pengadaan Publik')
+@section('title')RUP {{$tahun}} - Sistem Informasi Pemantauan Pengadaan Publik @endsection
 @section('metadeskription', '')
 @section('metakeywords', '')
 
