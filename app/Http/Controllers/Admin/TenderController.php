@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Imports\TendersImport;
 use App\Exports\TendersExport;
 use Maatwebsite\Excel\Facades\Excel;
+use DataTables;
 use App\User;
 use App\TahapTender;
 use App\Satker;
@@ -133,10 +134,13 @@ class TenderController extends Controller
         $id = Auth::id();
         $user = User::where('id', $id)->first();
 
-        $tenders = LpseScrap::where('tahun_ang', $tahun)->paginate(25);
+        $tenders = LpseScrap::where('tahun_ang', $tahun)->get();
+        if ($request->ajax()) {
+            return DataTables::of($tenders)->toJson();
+        }
 
         return view('admin.tender.index', ['user' => $user, 'tenders' => $tenders, 'tahun' => $tahun, 'tahuns' => $tahuns]);
-        // dd($tahun);
+        // dd($tenders);
     }
 
 

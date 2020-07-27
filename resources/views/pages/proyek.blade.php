@@ -185,11 +185,12 @@ $sample_data = json_encode($datatable);
 	    $('#bosdttable').dataTable({
       "order": [[ 3, "desc" ]],
       "processing" : true,
+      "serverside" : true,
       dom: 'Bfrtip',
       buttons: ['copy', 'excel', 'pdf', 'csv'],
       "pageLength": 25,
-	    "processing" : true,
-		data: jsonData,
+      ajax: jsonData;
+		  data: jsonData,
 	        columns: [
 	            { data: 'proses' },
 	            { data: 'nama_paket' },

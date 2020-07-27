@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index');
 Route::get('/pengaduan', 'PagesController@pengaduan');
 Route::get('/statistik', 'PagesController@statistik');
-Route::get('/proyek', 'PagesController@proyek');
+Route::get('/proyek', 'PagesController@proyek')->name('proyek');
 Route::post('/proyek', 'PagesController@cari');
 Route::get('/proyek/tender', 'PagesController@tender');
 Route::post('/proyek/tender', 'PagesController@caritender');
@@ -35,7 +35,6 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', 'can:role-admin')->group(function(){
 	Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
-	Route::get('/progress', 'ProgressController@index')->name('progress');
 	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
 	Route::get('/rup/import/{tahun}', 'RupController@import')->name('rup.import');
@@ -53,6 +52,8 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/tender/{tahun}/create', 'TenderController@create')->name('tender.create');
 	Route::get('/tender/{tahun}/{id}', 'TenderController@show')->name('tender.show');
 	Route::get('/tender/{tahun}/{id}/edit', 'TenderController@edit')->name('tender.edit');
+
+	
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){
