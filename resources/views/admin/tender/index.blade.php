@@ -59,19 +59,24 @@
             </div>
             <br>  
 
-            <div class="table-responsive border">
+            <div class="table-responsive border p-3">
               <table class="table table-striped" id="datatender">
-                <thead class="bg-white">
+                <thead class="bg-secondary">
                   <tr>
                     <!-- <th class="text-center">No</th> -->
                     <th class="text-center">Nama Paket</th>
+                    <th class="text-center">Pagu</th>
                     <th class="text-center">Satuan Kerja</th>
-                    <th class="text-center">Sumber Dana</th>
                     <th class="text-center">Jenis Pekerjaan</th>
+                    <th class="text-center" style="width: 10%">Action</th>
                   </tr>
                 </thead>
+                <tbody class="bg-white">
+                  
+                </tbody>
               </table>
             </div><!-- table responsive -->
+            <br>
           </div><!-- col -->
         </div><!-- row -->
       </div><!-- /.container-fluid -->
@@ -103,11 +108,34 @@
       },
       columns: [
         {data:'nama_paket',name:'nama_paket'},
+        {data:'pagu',name:'pagu'},
         {data:'satker',name:'satker'},
-        {data:'sumber_dana',name:'sumber_dana'},
         {data:'kategori',name:'kategori'},
+        {data:'id_rup',name:'id_rup'},
+      ],
+      columnDefs : [
+      {
+        targets : [1],
+        render : function (data, type, row) {
+          var btn = numberWithCommas(data);
+          return btn;
+        }
+      },
+      {
+        targets : [4],
+        render : function (data, type, row) {
+          var btn = "<a href=\"/admin/tender/<?= $tahun ?>/"+data+"\" class=\"btn btn-info btn-sm\"><i class=\"fas fa-eye\"> Detail</i></a>";
+          return btn;
+        }
+      }
+
       ],
     });
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
 } );
 </script>
 @endsection

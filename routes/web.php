@@ -13,20 +13,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/pengaduan', 'PagesController@pengaduan');
-Route::get('/statistik', 'PagesController@statistik');
-Route::get('/proyek', 'PagesController@proyek')->name('proyek');
-Route::post('/proyek', 'PagesController@cari');
-Route::get('/proyek/tender', 'PagesController@tender');
-Route::post('/proyek/tender', 'PagesController@caritender');
-Route::post('/proyek/aspirasi', 'PagesController@aspirasi');
+Route::get('/', 'PagesController@index')->name('home');
+Route::get('/coba', 'PagesController@coba');
+Route::get('/pengaduan', 'PagesController@pengaduan')->name('pengaduan');
+Route::get('/statistik', 'PagesController@statistik')->name('statistik');
+Route::get('/proyek', 'PagesController@proyek')->name('proyek.rup');
+Route::post('/proyek', 'PagesController@cari')->name('proyek.rup.cari');
+Route::get('/proyek/tender', 'PagesController@tender')->name('proyek.tender');
+Route::post('/proyek/tender', 'PagesController@caritender')->name('proyek.tender.cari');
+Route::post('/proyek/aspirasi', 'PagesController@aspirasi')->name('aspirasi');
 // Route::get('/penyedia', 'PagesController@penyedia');
 
-Route::get('/proyek/perencanaan/{tahun}/{ocid}', 'PagesController@perencanaan');
-Route::get('/proyek/pengumuman/{tahun}/{ocid}', 'PagesController@pengumuman');
-Route::get('/proyek/kontrak/{tahun}/{ocid}', 'PagesController@kontrak');
-Route::get('/proyek/implementasi/{tahun}/{ocid}', 'PagesController@implementasi');
+Route::get('/proyek/perencanaan/{tahun}/{ocid}', 'PagesController@perencanaan')->name('proyek.perencanaan');
+Route::get('/proyek/pengumuman/{tahun}/{ocid}', 'PagesController@pengumuman')->name('proyek.pengumuman');
+Route::get('/proyek/kontrak/{tahun}/{ocid}', 'PagesController@kontrak')->name('proyek.kontrak');
+Route::get('/proyek/implementasi/{tahun}/{ocid}', 'PagesController@implementasi')->name('proyek.implementasi');
 
 Auth::routes(['verify' => true]);
 Route::get('/logout', 'HomeController@logout');

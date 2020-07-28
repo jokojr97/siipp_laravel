@@ -6,234 +6,216 @@
 @section('thumbnail', 'thumbnail.png')
 
 @section('container')
-	
-<div class="notika-status-area">
-        <div class="container">
-            <div class="row">                
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
-                       	<div class="row">
-                        	<form action="/proyek" method="POST">
-                              @csrf
-	                            <div class="form-group col-sm-6">
-	                                <label for="Tahun">Tahun Anggaran:</label>
-	                                <select class="form-control" id="sel1" name="tahun">
-                                    @if($tahun)
-                                    <option>{{$tahun}}</option>
-                                    @endif
-                                    @foreach($tahun_angs as $hasil)
-                                    <option>{{$hasil->tahun}}</option>
-                                    @endforeach
-	                                </select>
-	                            </div>
-	                              
-	                            <div class="form-group col-sm-6">
-              									<label for="opd">Nama OPD</label>
-              									<select class="form-control" id="sel2" name="opd" style="text-transform: capitalize;">
-                                  @if($satker)
-                                  <option style="text-transform: capitalize;" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
-                                  @else
-                                  <option value="">-- Pilih salah satu --</option>
-                                  @endif
-                                  @foreach($satkers as $hasil)
-                                  <option style="text-transform: capitalize;" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
-                                  @endforeach
-                                  <option value="">-- Semua --</option>
-              									</select>
-	                            </div>
-
-	                            <div class="form-group col-sm-6">
-	                                <label for="Kategori">Sumber Dana:</label>
-	                                <select class="form-control" id="sel3" name="sumber" style="text-transform: capitalize;">
-                                    @if($sumber)
-                                    <option style="text-transform: capitalize;" value="{{$sumber}}">{{$sumber}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($sumber_danas as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
-                                    @endforeach
-                                    <option value="">-- Semua --</option>
-	                                </select>
-	                            </div>
-
-	                            <div class="form-group col-sm-6">
-	                                <label for="Kategori">Metode Pengadaan:</label>
-	                                <select class="form-control" id="sel4" name="metode" style="text-transform: capitalize;">
-                                    @if($metode)
-                                    <option style="text-transform: capitalize;" value="{{$metode->slug}}">{{$metode->nama}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($metode_lelangs as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
-                                    @endforeach
-                                    <option value="">-- Semua --</option>
-	                                </select>
-	                            </div>
-	                              
-	                            <div class="form-group col-sm-6">
-		                            <label for="jenisPengadaan">Jenis Pekerjaan:</label>
-		                            <select class="form-control" id="sel5" name="jenispengadaan" style="text-transform: capitalize;">
-                                    @if($jenis)
-                                    <option style="text-transform: capitalize;" value="{{$jenis->slug}}">{{$jenis->nama}}</option>
-                                    @else
-                                    <option value="">-- Pilih salah satu --</option>
-                                    @endif
-                                    @foreach($jenis_pekerjaans as $hasil)
-                                    <option style="text-transform: capitalize;" value="{{$hasil->slug}}">{{$hasil->nama}}</option>
-                                    @endforeach
-                                    <option value="">-- Semua --</option>
-		                            </select>
-	                            </div>
-
-	                            <div class="form-group pull-right" style="margin-right: 20px;margin-top: 30px">        
-	                                <a href="/proyek" class="btn btn-default" style="background-color: #f0f0f0"><span class="glyphicon glyphicon-refresh"></span> Reset</a>&nbsp;
-	                                <button type="submit" class="btn btn-success"><span class="fa fa-filter"></span> Filter</button>
-	                            </div>
-                    		</form>
-                        </div>
-                	</div> 
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<br>
-<div class="notika-status-area">
-    <div class="container">
-        <div class="row">                
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="notika-shadow sm-res-mg-t-30 tb-res-mg-t-30" style="background-color: white;padding: 25px">
-                	<h3><i class="fas fa-chart-bar"></i> Data Kontrak Terbuka Tahun 2020</h3>
-                	<hr>
-					<div class="table table-responsive">
-                    	<table class="table table-striped table-bordered" id="bosdttable" >
-                    		<thead class="bg-primary" style="background-color:#59af4b">
-                            	<tr>
-                              		<th></th>
-                          			<th scope="col" style="color: white"><center>Paket</center></th>
-                              		<th scope="col" style="color: white"><center>OPD</center></th>
-                              		<th scope="col" style="color: white;"><center>Nilai Pagu <br>(Rp)</center></th>
-                              		<th scope="col" style="color: white"><center>Sumber Dana</center></th>
-                              		<th scope="col" style="color: white"><center>Metode</center></th>
-                            	</tr>
-                          	</thead>
-                          	<tbody>
-                          	</tbody>
-                      	</table>
-                        <div class="preloader">
-                          <div class="loading">
-                            <img src="/poi2.gif" width="80">
-                            <p>Harap Tunggu</p>
-                          </div>
-                        </div>
-                  	</div>
-              	</div>
-          	</div>
-      	</div>
-  	</div>
-</div>
-
-<br>
-<div class="notika-status-area">
+<section class="ftco-section ftco-no-pt bg-light">
+	<br>
 	<div class="container">
-		<div class="row">
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
-          <div class="website-traffic-ctn">
-            <h2>Rp. <span class="counter">{{number_format((float)"$rupsum",0,",",",")}}</span></h2>
-            <p>Total Pagu</p>
-          </div>
-          <div class="sparkline-bar-stats2">1,4,8,3,5,6,4,8,3,3,9,5</div>
-        </div>
-      </div>
-      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-        <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30 dk-res-mg-t-30">
-          <div class="website-traffic-ctn">
-            <h2><span class="counter">{{number_format((float)"$rupcount",0,",",",")}}</span> Paket Pekerjaan</h2>
-            <p>Jumlah Paket Pekerjaan</p>
-          </div>
-          <div class="sparkline-bar-stats3">4,2,8,2,5,6,3,8,3,5,9,5</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="row bg-white p-3">
+			<div class="col">
+				<h5 class="text-hijau"><b><i class="fas fa-filter"></i> Filter</b></h5>
+				<hr>
+				<form action="/proyek" method="POST">
+					@csrf
+					<div class="row">
+						<div class="col-md-6">
+						    <div class="form-group">
+						        <label for="Tahun">Tahun Anggaran:</label>
+						        <select class="form-control" id="sel1" name="tahun">
+						          @if($tahun)
+						          <option>{{$tahun}}</option>
+						          @endif
+						          @foreach($tahun_angs as $hasil)
+						          <option>{{$hasil->tahun}}</option>
+						          @endforeach
+						        </select>
+						    </div>
+						</div>		
+
+						<div class="col-md-6">
+	                        <div class="form-group">
+								<label for="opd">Nama OPD</label>
+								<select class="form-control text-capitalize" id="sel2" name="opd">
+									@if($satker)
+									<option  class="text-capitalize" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
+									@else
+									<option  class="text-capitalize" value="">-- Pilih salah satu --</option>
+									@endif
+									@foreach($satkers as $hasil)
+									<option  class="text-capitalize" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
+									@endforeach
+									<option  class="text-capitalize" value="">-- Semua --</option>
+								</select>
+	                        </div>
+						</div>
+
+						<div class="col-md-6">						
+	                        <div class="form-group">
+	                            <label for="Kategori">Sumber Dana:</label>
+	                            <select class="form-control text-capitalize" id="sel3" name="sumber">
+	                            @if($sumber)
+	                            <option class="text-capitalize" value="{{$sumber}}">{{$sumber}}</option>
+	                            @else
+	                            <option class="text-capitalize" value="">-- Pilih salah satu --</option>
+	                            @endif
+	                            @foreach($sumber_danas as $hasil)
+	                            <option class="text-capitalize" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
+	                            @endforeach
+	                            <option class="text-capitalize" value="">-- Semua --</option>
+	                            </select>
+	                        </div>
+						</div>
+
+						<div class="col-md-6">	
+						    <div class="form-group">
+						        <label for="Kategori">Metode Pengadaan:</label>
+						        <select class="form-control text-capitalize" id="sel4" name="metode">
+						          @if($metode)
+						          <option value="{{$metode->slug}}">{{$metode->nama}}</option>
+						          @else
+						          <option value="">-- Pilih salah satu --</option>
+						          @endif
+						          @foreach($metode_lelangs as $hasil)
+						          <option value="{{$hasil->slug}}">{{$hasil->nama}}</option>
+						          @endforeach
+						          <option value="">-- Semua --</option>
+						        </select>
+						    </div>
+						</div>
+
+						<div class="col-md-6">
+						    <div class="form-group">
+						      <label for="jenisPengadaan">Jenis Pekerjaan:</label>
+						      <select class="form-control text-capitalize" id="sel5" name="jenispengadaan">
+						          @if($jenis)
+						          <option value="{{$jenis->slug}}">{{$jenis->nama}}</option>
+						          @else
+						          <option value="">-- Pilih salah satu --</option>
+						          @endif
+						          @foreach($jenis_pekerjaans as $hasil)
+						          <option value="{{$hasil->slug}}">{{$hasil->nama}}</option>
+						          @endforeach
+						          <option value="">-- Semua --</option>
+						      </select>
+						    </div>
+						</div>
+						<div class="col-md-6">
+							<br>
+							<div class="pt-3 float-right">
+					        	<a href="/proyek" class="btn btns btn-default btn-lg " style="border: 1px solid gray"><span class="fas fa-refresh"></span> Reset</a>&nbsp;
+					        	<button type="submit" class="btn btn-success ml-1"><span class="fas fa-filter"></span> Filter</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>		
+		</div>
+		<br>
+
+		<div class="row bg-white p-3">
+			<div class="col">
+				<h5 class="text-hijau"><b><i class="fas fa-briefcase"></i> Data Kontrak Tahun {{$tahun}}</b></h5>
+				<hr>
+				<div class="table table-responsive">
+	              <table class="table table-striped" id="datarup">
+	                <thead class="bg-success">
+	                  <tr>
+	                    <th class="text-center text-white border" style="width: 8%"></th>
+	                    <th class="text-center text-white border" style="width: 30%">Nama Paket</th>
+	                    <th class="text-center text-white border" style="width: 15%">Pagu (Rp)</th>
+	                    <th class="text-center text-white border" style="width: 30%">Satuan Kerja</th>
+	                    <th class="text-center text-white border" style="width: 12%">Jenis Pekerjaan</th>
+	                    <th class="text-center text-white border" style="width: 5%">Proses</th>
+	                  </tr>
+	                </thead>
+	                <tbody class="bg-white">
+	                </tbody>
+	              </table>
+				</div>
+			</div>		
+		</div>
+	</div>
+</section>
 
 @endsection
 
 @section('script_tambahan')
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>  
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.bootstrap.min.js"></script>  
+<script type="text/javascript">
+  function changefunction(id) {
+    var idss = id.value;
+    window.location.replace("/admin/rup/"+idss+"");  
+  }
+</script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> 
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>  
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>  
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>  
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>  
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>  
 
-@php
-$sample_data = json_encode($datatable);
-@endphp
 
-<script>
+<script type="text/javascript">
 
-	$(function() {
-	    var jsonData = <?= $sample_data ?>;
-	    $('#bosdttable').dataTable({
-      "order": [[ 3, "desc" ]],
-      "processing" : true,
-      "serverside" : true,
+  $(document).ready(function() {
+    $('#datarup').DataTable({
+      processing : true,
+      serverSide : true,
       dom: 'Bfrtip',
-      buttons: ['copy', 'excel', 'pdf', 'csv'],
-      "pageLength": 25,
-      ajax: jsonData;
-		  data: jsonData,
-	        columns: [
-	            { data: 'proses' },
-	            { data: 'nama_paket' },
-	            { data: 'nama_satker' },
-	            { data: 'pagu_rup' },
-	            { data: 'sumber_dana' },
-	            { data: 'metode_pemilihan' }
-	        ], 
-              columnDefs : [
-              {
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+      pageLength: 25,
+      order: [[5	, 'desc']],
+      ajax : {
+        url : "{{route('proyek.rup')}}",
+        type : 'GET'
+      },
+      columns: [
+        {data:'kode_rup',name:'kode_rup'},
+        {data:'nama_paket',name:'nama_paket'},
+        {data:'pagu_rup',name:'pagu_rup'},
+        {data:'nama_satker',name:'nama_satker'},
+        {data:'jenis_pengadaan',name:'jenis_pengadaan'},
+        {data:'kdli',name:'kdli'},
+      ],
+      columnDefs : [
+      {
+        targets : [5],
+        render : function (data, type, row) {
+          if (data == 1) {
+            var btn = "<center><i class=\"badge badge-success\"><i class=\"fas fa-check ml-2 pt-1 pb-1\"></i></i> <span style=\"visibility: hidden;\">"+data+"</span></center>";
+          }else {
+            var btn = "<center><i class=\"badge badge-danger\"><i class=\"fas fa-times ml-2 pt-1 pb-1\"></i><span style=\"visibility: hidden;\">"+data+"</span></i></center>";
+          }
+          return btn;
+        }
+      },
+      {
+        targets : [2],
+        render : function (data, type, row) {
+          var btn = numberWithCommas(data);
+          return btn;
+        }
+      },
+      {
+        targets : [0],
+        render : function (data, type, row) {
+          var btn = "<center><i class=\"badge badge-success p-2\"><a href=\"/proyek/perencanaan/<?= $tahun ?>/"+data+"\" class=\"text-white\" target=\"_blank\"><i class=\"fas fa-arrow-right\"></i> Detail</i></a></center>";
+          return btn;
+        }
+      }
 
-                "aTargets":[0],
-                "fnCreatedCell": function(nTd, sData, oData, iRow, iCol) {
-                  if(sData != 0) {
-                    $(nTd).css('background-color', '#ff4141')
-                  } else {
-                    $(nTd).css('background-color', '#faffc6')
-                  }
-                }
-              },
-              {
-                targets : [0],
-                render : function (data, type, full, meta) {
-                  var btn = "<a href=\"/proyek/perencanaan/"+jsonData[meta.row]['tahun']+"/"+jsonData[meta.row]['id_rup']+"\" class=\"btn btn-success btn-round btn-xs\" target=\"_blank\"><span class=\"glyphicon glyphicon-plus\"></a></span><span style=\"visibility: hidden;\">"+data+"</span>";
-                  return btn;
-    
-                }
-              },
-              {
-                targets : [3],
-                render : function (data, type, row) {
-                  var btn = numberWithCommas(data);
-                  return btn;
-                }
-              }]
-      });
-	});
+      ],
+    });
 
-	function numberWithCommas(x) {
-		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-	}
-  $(document).ready(function(){
-      $(".preloader").fadeOut();
-    })
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+} );
 </script>
 @endsection

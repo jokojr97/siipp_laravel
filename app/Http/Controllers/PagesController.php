@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DataTables;
 use App\Aspirasi;
 use App\AspirasiLike;
 use App\LpseMetode;
@@ -24,7 +25,11 @@ class PagesController extends Controller
 {
 
     public function index(){
-    	return view('pages.home');
+        return view('pages.home');
+    }
+
+    public function coba(){
+        return view('layouts.mainproyek');
     }
 
     public function pengaduan(){
@@ -37,7 +42,7 @@ class PagesController extends Controller
         return view('pages.statistik'); 
     }
 
-    public function proyek(){
+    public function proyek(Request $request){
         $dt = $this->get_url();
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
@@ -84,35 +89,22 @@ class PagesController extends Controller
         }else {
             $rup = $rup->where('jenis_pengadaan', 'like', '%'.$jenis.'%');
         }
-        $rup = $rup->limit(300)->get();
+        $rup = $rup->get();
         $rupsum = $rup->sum('pagu_rup');
         $rupcount = $rup->count();
-        $data = array();
-        $no = 0;
-        foreach ($rup as $result) {
-            $data[$no]['id_rup'] = $result->kode_rup;
-            if ($result->isi) {
-                $data[$no]['proses'] = $result->isi->ada;
-            }else {
-                $data[$no]['proses'] = 0;
-            }
-            $data[$no]['nama_paket'] = $result->nama_paket;
-            $sat = $result->satkers->nama;
-            $sat = strtolower($sat);
-            $sat = ucwords($sat);
-            $data[$no]['nama_satker'] = $sat;
-            $data[$no]['pagu_rup'] = $result->pagu_rup;
-            $sumb = $result->sumber_dana;
-            $sumb = explode(";", $sumb);
-            $jml_sumb = count($sumb) - 1;
-            $sumb = $sumb[$jml_sumb];
 
-            $data[$no]['sumber_dana'] = $sumb;
-            $data[$no]['metode_pemilihan'] = $result->metode_pemilihan;
-            $data[$no]['tahun'] = $result->tahun;
-            $no++;
+        if ($request->ajax()) {
+            $rupp = RupPenyedia::with('tenders');
+
+            return DataTables::of($rup)->editColumn('kdli', function($rupp){
+                if ($rupp->isi) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            })->toJson();
         }
-        return view('pages.proyek', ['rup' => $rup, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount]); 
+        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount]); 
         // dd($rup);
     }
 

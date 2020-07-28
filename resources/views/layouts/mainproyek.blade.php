@@ -1,275 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+	<meta charset="utf-8">
 
     <meta content="@yield('metadeskription')" name="description">
     <meta content="@yield('metakeywords')" name="keywords">
     <link rel="shortcut icon" sizes="196x196" href="/Assets/proyek/images/logo.png">
     <link href="@yield('thumbnail')" rel="apple-touch-icon">
-    <title>@yield('title')Open Data Kontak Bojonegoro</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900" rel="stylesheet">
-	<!-- Bootstrap CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/bootstrap.min.css">
-	<!-- Bootstrap CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/font-awesome.min.css">
-	<!-- owl.carousel CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.carousel.css">
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.theme.css">
-	<link rel="stylesheet" href="/Assets/proyek/css/owl.transitions.css">
-	<!-- meanmenu CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/meanmenu/meanmenu.min.css">
-	<!-- animate CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/animate.css">
-	<!-- normalize CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/normalize.css">
-	<!-- mCustomScrollbar CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/scrollbar/jquery.mCustomScrollbar.min.css">
-	<!-- jvectormap CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/jvectormap/jquery-jvectormap-2.0.3.css">
-	<!-- notika icon CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/notika-custom-icon.css">
-	<!-- wave CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/wave/waves.min.css">
-	<!-- main CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/main.css">
-	<!-- style CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/style.css">
-	<!-- responsive CSS
-	============================================ -->
-	<link rel="stylesheet" href="/Assets/proyek/css/responsive.css">
-	<!-- modernizr JS
-	============================================ -->
-	<script type="text/javascript" src="/Assets/datatables/bootstrap.min.js"></script>  
-	<script src="/Assets/datatables/jquery.min.js"></script>  
-	<link rel="stylesheet" type="text/css" href="/Assets/datatables/datatables.min.css"/>  
-	<script type="text/javascript" src="/Assets/datatables/datatables.min.js"></script>
-  
-	<style type="text/css">
-		.preloader {
-		  position: absolute;
-		  top: 0;
-		  left: 0;
-		  width: 100%;
-		  height: 100%;
-		  z-index: 9999;
-		  background-color: #fff;
-		}
-		.preloader .loading {
-		  position: absolute;
-		  left: 50%;
-		  top: 50%;
-		  transform: translate(-50%,-50%);
-		  font: 14px arial;
-		}
-	</style>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/animate.css">
+
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/owl.carousel.min.css">
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/owl.theme.default.min.css">
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/magnific-popup.css">
+
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/flaticon.css">
+	<link rel="stylesheet" href="/Assets/proyekbaru/css/style.css">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- datatable -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+  	
 </head>
-<body id="page-top" style="background-color: #f0f0f0">
-	<div class="header-top-area" style="background-color: #0f6926;">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="logo-area">
-                        <a href="/" class="logo h4" style="color: white"><b> BOJONEGORO<span style="color: red"> OPEN </span>SYSTEM </b>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <div class="header-top-menu">
-                        <ul class="nav navbar-nav notika-top-nav">
-                            <a href="/proyek" class="btn btn-default" style="color: black;margin: 0px 10px 10px 5px">Data Proyek</a>
-                            <a href="/proyek/tender" class="btn btn-default" style="color: black;margin: 0px 15px 10px 5px">Tahap Tender</a>
-                            <!-- <a href="" style="color: white;" class="h3 dropdown-toggle" role="button"  data-toggle="modal" data-target="#loginModal"><i class="fa fa-user" style="margin-top: 15px"></i></a> -->
-                            <a href="/login" style="color: white;" class="h3 dropdown-toggle"><i class="fa fa-user" style="margin-top: 15px"></i></a>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Header Top Area -->
-    <!-- Mobile Menu start -->
-   <div class="mobile-menu-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="mobile-menu">
-                        <nav id="dropdown">
-                            <ul class="mobile-menu-nav">
-                                <li><a class="btn btn-info"  href="/"><i class="notika-icon notika-house"></i> Home</a>
-                                </li>
-                                <li><a class="btn btn-info"  href="/proyek"><i class="notika-icon notika-form"></i> Data Proyek</a>
-                                </li>
-                                <li><a class="btn btn-info"  href="/pengaduan"><i class="notika-icon notika-support"></i> Pengaduan</a>
-                                </li>
-                                <li><a class="btn btn-info"  href="/statistik"><i class="glyphicon glyphicon-stats"></i> Statistik</a>
-                                </li>
-                                <li><a class="btn btn-info"  href="/proyek/penyedia"><i class="glyphicon glyphicon-briefcase"></i>Penyedia</a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Mobile Menu end -->
-    <!-- Main Menu area start-->
-    <div class="main-menu-area mg-tb-40">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/"><i class="notika-icon notika-house"></i> Home</a>
-                        </li>
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/proyek"><i class="notika-icon notika-form"></i> Data Proyek</a>
-                        </li>
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/pengaduan"><i class="notika-icon notika-support"></i> Pengaduan</a>
-                        </li>
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/statistik"><i class="glyphicon glyphicon-stats"></i> Statistik</a>
-                        </li>
-                        <li><a class="btn btn-info" style="background-color:#59af4b;color:white" href="/proyek/penyedia"><i class="glyphicon glyphicon-briefcase"></i> Penyedia</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Main Menu area End-->
-    <!-- Start Status area -->
-	<!-- APP MAIN ==========-->
-	<main id="app-main" class="app-main">
-		<div class="wrap">
-			<section class="app-content">
-				<div id="wrapper">
-        			@yield('container')
+<body>
+	<div class="wrap">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="bg-wrap">
+						<div class="row">
+							<div class="col-md-6 align-items-center">
+								<p class="mb-0 phone pl-md-2 pt-1">
+									<a href="#" class="mr-2 text-center">Bojonegoro Open System v3</a>
+								</p>
+							</div>
+							<div class="col-md-6 justify-content-md-end">
+								<center>
+		              				<div class="social-media">
+		                    			<p class="mb-0 d-flex">
+		                      				<a href="#" class="align-items-center justify-content-center pt-1"><span class="fab fa-facebook"><i class="sr-only">Facebook</i></span></a>
+		                  					<a href="#" class="align-items-center justify-content-center pt-1"><span class="fab fa-twitter"><i class="sr-only">Twitter</i></span></a>
+											<a href="#" class="align-items-center justify-content-center pt-1"><span class="fab fa-instagram"><i class="sr-only">Instagram</i></span></a>
+											<a href="#" class="align-items-center justify-content-center pt-1"><span class="fab fa-dribbble"><i class="sr-only">Dribbble</i></span></a>
+										</p>
+		                  			</div>
+		                  		</center>
+							</div>
+						</div>
+					</div>
 				</div>
-			</section>
+			</div>
 		</div>
-		<div style="margin-top: 30px">
-		  <!--akhir-->
-		  <section id="footered"  style="background-color: black ">
-		    <div class="container">
-		      <div class="row">
-		        <div class="col-sm-12">
-		          &nbsp;
-		        </div>        
-		      </div>
-		    </div>  
-		  </section><!-- #footer -->
-		  <section id="copyright" style="background-color: black">
-		    <div class="container text-center">
-		      <p style="font-size: 13px;font-family: Dosis;color: #FFFFFF;text-transform: uppercase;letter-spacing: 0.2em;"> Published by Bojonegoro Institute<br>Alamat : Jl. Panglima Polim Gg. Mangga 1 No. 9 Bojonegoro<br>
-		  Telp : (0353) 888557 , Email : bjn.institute@gmail.com
-		  <br>Copyright &copy; 2019 Bojonegoro Institute</p>
-		    </div>
-		  </section><!-- #copyright -->
-		</div>
-	</main>
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top">
-		<i class="fas fa-angle-up"></i>
-	</a>
-	<!-- new label Modal -->
-	<div id="loginModal" class="modal fade" tabindex="-1" role="dialog">
-	    <div class="modal-dialog">
-	        <div class="modal-content">
-	            <div class="modal-header">
-	                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	                <h4 class="modal-title">Sign In With Your ODCBJN Account</h4>
-	            </div>
-	            <form action="/" method="POST">
-	                <div class="modal-body">
-				        <div class="form-group">
-				            <input type="text" name="email" class="form-control" placeholder="Email">
-				        </div>
-				        <div class="form-group">
-				            <input type="password" name="password" class="form-control" placeholder="Password">
-				        </div>
-	                    <button type="submit" class="btn btn-success">Sign In</button>
-	                </div><!-- .modal-body -->
-	                <div class="modal-footer">                    
-	                    <center style="margin-top: 15px"><a href="#" style="color: #59af4b">Lupa Password?</a></center>
-	                    <center><a href="/auth/daftar" style="color: #59af4b">Belum Punya Akun ? Daftar akun</a></center>
-	                </div><!-- .modal-footer -->
-	            </form>
-	        </div><!-- /.modal-content -->
-	    </div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->  
+	</div>
+	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	    	<a class="navbar-brand" id="joko" href="index.html"><p class="brd">Bojonegoro <span style="color: red">Open</span> System</p></a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="fa fa-bars"></span> Menu</button>
+	      	<div class="collapse navbar-collapse" id="ftco-nav">
+	        	<ul class="navbar-nav m-auto">
+		        	<li class="nav-item active"><a href="index.html" class="nav-link pr-2 pl-2"><i class="fa fa-home"></i> Home</a></li>
+		        	<li class="nav-item"><a href="about.html" class="nav-link pr-2 pl-2"><i class="fa fa-columns"></i> Data Rup</a></li>
+		        	<li class="nav-item"><a href="services.html" class="nav-link pr-2 pl-2"><i class="fa fa-briefcase"></i> Data Tender</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link pr-2 pl-2"><i class="fa fa-users"></i> Penyedia</a></li>
+					<li class="nav-item"><a href="cases.html" class="nav-link pr-2 pl-2"><i class="fa fa-comment"></i> Pengaduan</a></li>
+					<li class="nav-item"><a href="blog.html" class="nav-link pr-2 pl-2"><i class="fa fa-chart-pie"></i> Statistik</a></li>
+					<li class="nav-item"><a href="contact.html" class="nav-link pr-2 pl-2"><i class="fa fa-user"></i> Login</a></li>
 
-	<script src="/Assets/proyek/js/wow.min.js"></script>
-	<!-- price-slider JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jquery-price-slider.js"></script>
-	<!-- owl.carousel JS
-	============================================ -->
-	<script src="/Assets/proyek/js/owl.carousel.min.js"></script>
-	<!-- scrollUp JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jquery.scrollUp.min.js"></script>
-	<!-- meanmenu JS
-	============================================ -->
-	<script src="/Assets/proyek/js/meanmenu/jquery.meanmenu.js"></script>
-	<!-- counterup JS
-	============================================ -->
-	<script src="/Assets/proyek/js/counterup/jquery.counterup.min.js"></script>
-	<script src="/Assets/proyek/js/counterup/waypoints.min.js"></script>
-	<script src="/Assets/proyek/js/counterup/counterup-active.js"></script>
-	<!-- mCustomScrollbar JS
-	============================================ -->
-	<script src="/Assets/proyek/js/scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-	<!-- jvectormap JS
-	============================================ -->
-	<script src="/Assets/proyek/js/jvectormap/jquery-jvectormap-2.0.2.min.js"></script>
-	<script src="/Assets/proyek/js/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<script src="/Assets/proyek/js/jvectormap/jvectormap-active.js"></script>
-	<!-- sparkline JS
-	============================================ -->
-	<script src="/Assets/proyek/js/sparkline/jquery.sparkline.min.js"></script>
-	<script src="/Assets/proyek/js/sparkline/sparkline-active.js"></script>
-	<!-- sparkline JS
-	============================================ -->
-	<script src="/Assets/proyek/js/flot/jquery.flot.js"></script>
-	<script src="/Assets/proyek/js/flot/jquery.flot.resize.js"></script>
-	<script src="/Assets/proyek/js/flot/curvedLines.js"></script>
-	<script src="/Assets/proyek/js/flot/flot-active.js"></script>
-	<!-- knob JS
-	============================================ -->
-	<script src="/Assets/proyek/js/knob/jquery.knob.js"></script>
-	<script src="/Assets/proyek/js/knob/jquery.appear.js"></script>
-	<script src="/Assets/proyek/js/knob/knob-active.js"></script>
-	<!--  wave JS
-	============================================ -->
-	<script src="/Assets/proyek/js/wave/waves.min.js"></script>
-	<script src="/Assets/proyek/js/wave/wave-active.js"></script>
-	<!--  todo JS
-	============================================ -->
-	<script src="/Assets/proyek/js/todo/jquery.todo.js"></script>
-	<!-- plugins JS
-	============================================ -->
-	<script src="/Assets/proyek/js/plugins.js"></script>
-	<!--  Chat JS
-	============================================ -->
-	<script src="/Assets/proyek/js/chat/moment.min.js"></script>
-	<script src="/Assets/proyek/js/chat/jquery.chat.js"></script>
-	<!-- main JS
-	============================================ -->
-	<script src="/Assets/proyek/js/main.js"></script>
+	        	</ul>
+	      	</div>
+	    </div>
+	</nav>
+	<!-- END nav -->
+		
+	@yield('container')
+
+	<footer class="footer">
+		<div class="container-fluid px-lg-5 bg-black text-center">
+			<div class="row p-3">
+				<div class="col">
+	            	<p style="font-size: 13px;font-family: Dosis;color: #FFFFFF;text-transform: uppercase;letter-spacing: 0.2em;"> Published by Bojonegoro Institute<br>Alamat : Jl. Panglima Polim Gg. Mangga 1 No. 9 Bojonegoro<br> Telp : (0353) 888557 , Email : bjn.institute@gmail.com <br>Copyright &copy; 2019 Bojonegoro Institute</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+
+
+	<!-- loader -->
+	<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="/Assets/proyekbaru/js/popper.min.js"></script>
+	<script src="/Assets/proyekbaru/js/bootstrap.min.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery.easing.1.3.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery.waypoints.min.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery.stellar.min.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery.animateNumber.min.js"></script>
+	<script src="/Assets/proyekbaru/js/owl.carousel.min.js"></script>
+	<script src="/Assets/proyekbaru/js/jquery.magnific-popup.min.js"></script>
+	<script src="/Assets/proyekbaru/js/scrollax.min.js"></script>
+	<!-- <script src="/Assets/proyekbaru/https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> -->
+	<!-- <script src="/Assets/proyekbaru/js/google-map.js"></script> -->
+	<script src="/Assets/proyekbaru/js/main.js"></script>
     @yield('script_tambahan')
 </body>
 </html>

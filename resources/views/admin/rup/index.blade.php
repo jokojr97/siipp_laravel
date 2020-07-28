@@ -55,82 +55,27 @@
               </h4>
               <a href="{{route('admin.rup.create', $tahun)}}" class="btn btn-success mr-2 mt-2"><i class="fas fa-plus"></i> &nbsp;Tambahkan</a>
               <a href="{{route('admin.rup.import', $tahun)}}" class="btn btn-primary mr-2 mt-2"><i class="fas fa-file-import"></i> &nbsp;Import</a>
-              <a href="{{route('admin.rup.export', $tahun)}}" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>              
+              <a href="{{route('admin.rup.export', $tahun)}}" class="btn btn-danger mr-2 mt-2"><i class="fas fa-file-export"></i> &nbsp;Eksport</a>
             </div>
             <br>  
 
-              <form action="#" method="POST">
-                @csrf
-                <div class="form-group form-row">
-                  <label for="inputPassword" class="col-sm-1 col-form-label">Sort By</label>
-                  <div class="col-sm-2">
-                    <select class="form-control">
-                      <option>Nama</option>
-                      <option>Satuan kerja</option>
-                      <option>Sumber dana</option>
-                      <option>Metode</option>
-                      <option>Jenis Pengadaan</option>
-                    </select>
-                  </div><!-- col -->
-                  <div class="col-sm-3">&nbsp;</div>
-                  <label for="inputPassword" class="col-sm-1 col-form-label">Search</label>
-                  <div class="col-sm-4 col-9">
-                    <select class="form-control">
-                      <option>Nama</option>
-                      <option>Satuan kerja</option>
-                      <option>Sumber dana</option>
-                      <option>Metode</option>
-                      <option>Jenis Pengadaan</option>
-                    </select>
-                  </div><!-- col -->
-                  <div class="col-sm-1 col-2">
-                    <button type="submit" class="btn btn-secondary">Search</button>
-                  </div><!-- col -->
-                </div><!-- form group -->
-              </form><!-- form -->
-            <div class="table-responsive border">
-              <table class="table table-striped">
+            <div class="table-responsive border p-3">
+              <table class="table table-striped" id="datarup">
                 <thead class="bg-white">
                   <tr>
-                    <th class="text-center">No</th>
+                    <th class="text-center"></th>
                     <th class="text-center">Nama Paket</th>
+                    <th class="text-center">Pagu</th>
                     <th class="text-center">Satuan Kerja</th>
-                    <th class="text-center">Sumber Dana</th>
-                    <th class="text-center">Metode</th>
                     <th class="text-center">Jenis Pekerjaan</th>
                     <th class="text-center" style="width: 13%">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  @foreach($rups as $result)
-                  <tr>
-                    <td class="text-center">{{$loop->iteration}}</td>
-                    <td>{{$result->nama_paket}}</td>
-                    <td>{{$result->nama_satker}}</td>
-                    <td>{{$result->sumber_dana}}</td>
-                    <td>{{$result->metode_pemilihan}}</td>
-                    <td>
-                      @php
-                      $jenis = $result->jenis_pengadaan;
-                      $jenis = explode(";", $jenis);
-                      $jml_jenis = count($jenis) - 1;
-                      $jenis = $jenis[$jml_jenis];
-                      echo $jenis;
-                      @endphp
-                    </td>
-                    <td>
-                      <a href="/admin/rup/{{$result->tahun}}/{{$result->kode_rup}}" class="btn btn-info btn-sm mb-1" target="_blank"><i class="fas fa-eye"></i></a>
-                      <a href="/admin/rup/{{$result->tahun}}/{{$result->kode_rup}}/edit" class="btn btn-success btn-sm mb-1" target="_blank"><i class="fas fa-edit"></i></a>
-                      <a href="#" class="btn btn-danger btn-sm mb-1" target="_blank"><i class="fas fa-trash"></i></a>
-                    </td>
-                  </tr>
-                  @endforeach
+                <tbody class="bg-white">
                 </tbody>
               </table>
-              <div class="float-sm-right">
-                <h6>{{$rups->links()}}</h6>
-              </div>
             </div><!-- table responsive -->
+            <br>
           </div><!-- col -->
         </div><!-- row -->
       </div><!-- /.container-fluid -->
@@ -144,5 +89,63 @@
     var idss = id.value;
     window.location.replace("/admin/rup/"+idss+"");  
   }
+</script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> 
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#datarup').DataTable({
+      processing : true,
+      serverSide : true,
+      order: [[0, 'asc']],
+      ajax : {
+        url : "{{route('admin.rup.tahun', $tahun)}}",
+        type : 'GET'
+      },
+      columns: [
+        {data:'kdli',name:'kdli'},
+        {data:'nama_paket',name:'nama_paket'},
+        {data:'pagu_rup',name:'pagu_rup'},
+        {data:'nama_satker',name:'nama_satker'},
+        {data:'jenis_pengadaan',name:'jenis_pengadaan'},
+        {data:'kode_rup',name:'kode_rup'},
+      ],
+      columnDefs : [
+      {
+        targets : [0],
+        render : function (data, type, row) {
+          if (data == 1) {
+            var btn = "<i class=\"badge badge-success\"><i class=\"fas fa-check ml-1 pt-1 pb-1\"></i><span style=\"visibility: hidden;\">"+data+"</span></i>";
+          }else {
+            var btn = "<i class=\"badge badge-danger\"><i class=\"fas fa-times ml-1 pt-1 pb-1\"></i><span style=\"visibility: hidden;\">"+data+"</span></i>";
+          }
+          return btn;
+        }
+      },
+      {
+        targets : [2],
+        render : function (data, type, row) {
+          var btn = numberWithCommas(data);
+          return btn;
+        }
+      },
+      {
+        targets : [5],
+        render : function (data, type, row) {
+          var btn = "<center><a href=\"/admin/rup/<?= $tahun ?>/"+data+"\" class=\"btn btn-info btn-sm\" target=\"_blank\"><i class=\"fas fa-eye\"> Detail</i></a></center>";
+          return btn;
+        }
+      }
+
+      ],
+    });
+
+    function numberWithCommas(x) {
+      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+} );
 </script>
 @endsection

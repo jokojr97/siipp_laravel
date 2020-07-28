@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Imports\RupsImport;
 use App\Exports\RupsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use DataTables;
 use App\User;
 use App\TahapTender;
 use App\Satker;
@@ -89,7 +90,23 @@ class RupController extends Controller
         $id = Auth::id();
         $user = User::where('id', $id)->first();
 
-        $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->paginate(20);
+        $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->limit(300)->get();
+        if ($request->ajax()) {
+            $rupp = RupPenyedia::with('tenders');
+
+            return DataTables::of($rups)->editColumn('kdli', function($rupp){
+                if ($rupp->isi) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            })->editColumn('nama_satker', function($rupp){
+                $satker = $rupp->satkers->nama;
+                $satker = strtolower($satker);
+                $satker = ucfirst($satker);
+                return $satker;
+            })->toJson();
+        }        
 
         return view('admin.rup.index', ['user' => $user, 'rups' => $rups, 'tahun' => $tahun, 'tahuns' => $tahuns]);
     }
