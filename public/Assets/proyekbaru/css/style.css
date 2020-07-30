@@ -9726,3 +9726,11 @@ textarea.form-control {
   .text-hijau {
     color:green;
   }
+
+  .bg-warnings {
+    background-color: lightyellow;
+  }
+
+  .text-black {
+    color: black;
+  }

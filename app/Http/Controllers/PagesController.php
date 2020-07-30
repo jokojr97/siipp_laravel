@@ -28,6 +28,10 @@ class PagesController extends Controller
         return view('pages.home');
     }
 
+    public function proyekindex(){
+        return redirect('proyek/2020/1/1/1/1');
+    }
+
     public function coba(){
         return view('layouts.mainproyek');
     }
@@ -43,53 +47,156 @@ class PagesController extends Controller
     }
 
     public function proyek(Request $request){
-        $dt = $this->get_url();
+        $tahun = $request->segment(2);
+        $satker = $request->segment(3);
+        $sumber = $request->segment(4);
+        $jenis = $request->segment(5);
+        $metode = $request->segment(6);
+
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
         $metode_lelangs = MetodeLelang::all();
         $sumber_danas = SumberDana::all();
         $jenis_pekerjaans = JenisPekerjaan::all();
-        $tahun = $dt['tahun'];
-        $satker = $dt['satker'];
-        if ($satker) {
+
+        $rup = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc');
+
+        if ($satker != 1) {
             $st = Satker::where('kd_satker_sirup', $satker)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
             $satker = $st;
-        }
-        $sumber = $dt['sumber'];
-        $jenis = $dt['jenispengadaan'];
-        if ($jenis) {
-            $st = JenisPekerjaan::where('slug', $jenis)->first();
-            $jenis = $st;
-        }
-        $metode = $dt['metode'];
-        if ($metode) {
-            $st = MetodeLelang::where('slug', $metode)->first();
-            $metode = $st;
-        }
-
-        $rup = RupPenyedia::where('tahun', $tahun);
-
-        if ($satker) {
+            $satkerid = $satker->kd_satker_sirup;
             $rup = $rup->where('id_satker', $satker->kd_satker_sirup);
         }else {
+            $satker = '';
+            $satkerid = 1;
             $rup = $rup->where('id_satker', 'like', '%'.$satker.'%');
         }
-        if ($metode) {
-            $rup = $rup->where('metode_pemilihan', $metode->nama);
-        }else {
-            $rup = $rup->where('metode_pemilihan', 'like', '%'.$metode.'%');
-        }
-        if ($sumber) {
-            $rup = $rup->where('sumber_dana', 'like', $sumber.'%');
-        }else {
-            $rup = $rup->where('sumber_dana', 'like', '%'.$sumber.'%');
-        }
-        if ($jenis) {
+        if ($jenis != 1) {
+            $st = JenisPekerjaan::where('slug', $jenis)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $jenis = $st;
+            $jenisslug = $jenis->slug;
             $rup = $rup->where('jenis_pengadaan', 'like',  $jenis->nama.'%');
         }else {
+            $jenis = '';
+            $jenisslug = 1;
             $rup = $rup->where('jenis_pengadaan', 'like', '%'.$jenis.'%');
         }
-        $rup = $rup->get();
+        if ($metode != 1) {
+            $st = MetodeLelang::where('slug', $metode)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $metode = $st;
+            $metodeslug = $metode->slug;
+            $rup = $rup->where('metode_pemilihan', $metode->nama);
+        }else {
+            $metode = '';
+            $metodeslug = 1;
+            $rup = $rup->where('metode_pemilihan', 'like', '%'.$metode.'%');
+        }
+        if ($sumber != 1) {
+            $rup = $rup->where('sumber_dana', 'like', $sumber.'%');
+            $sumberid = $sumber;
+        }else {
+            $sumber = '';
+            $sumberid = 1;
+            $rup = $rup->where('sumber_dana', 'like', '%'.$sumber.'%');
+        }
+
+        $rup = $rup->limit(1000)->get();
+        $rupsum = $rup->sum('pagu_rup');
+        $rupcount = $rup->count();
+        $ajax = $request->ajax();
+        if ($request->ajax()) {
+            $rupp = RupPenyedia::with('tenders');
+
+            $aj = DataTables::of($rup)->editColumn('kdli', function($rupp){
+                if ($rupp->isi) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            })->toJson();
+
+            return $aj;
+        }else {
+            $aj = '';
+        }
+
+        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'metodeslug' => $metodeslug, 'sumberid' => $sumberid, 'ajax' => $ajax, 'aj' => $aj]); 
+        // dd($rupcount);
+    }
+
+    public function proyekcoba(Request $request){
+        $tahun = $request->segment(2);
+        $satker = $request->segment(3);
+        $sumber = $request->segment(4);
+        $jenis = $request->segment(5);
+        $metode = $request->segment(6);
+
+        $satkers = Satker::all();
+        $tahun_angs = TahunAnggaran::all();
+        $metode_lelangs = MetodeLelang::all();
+        $sumber_danas = SumberDana::all();
+        $jenis_pekerjaans = JenisPekerjaan::all();
+
+        $rup = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc');
+
+        if ($satker != 1) {
+            $st = Satker::where('kd_satker_sirup', $satker)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $satker = $st;
+            $satkerid = $satker->kd_satker_sirup;
+            $rup = $rup->where('id_satker', $satker->kd_satker_sirup);
+        }else {
+            $satker = '';
+            $satkerid = 1;
+            $rup = $rup->where('id_satker', 'like', '%'.$satker.'%');
+        }
+        if ($jenis != 1) {
+            $st = JenisPekerjaan::where('slug', $jenis)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $jenis = $st;
+            $jenisslug = $jenis->slug;
+            $rup = $rup->where('jenis_pengadaan', 'like',  $jenis->nama.'%');
+        }else {
+            $jenis = '';
+            $jenisslug = 1;
+            $rup = $rup->where('jenis_pengadaan', 'like', '%'.$jenis.'%');
+        }
+        if ($metode != 1) {
+            $st = MetodeLelang::where('slug', $metode)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $metode = $st;
+            $metodeslug = $metode->slug;
+            $rup = $rup->where('metode_pemilihan', $metode->nama);
+        }else {
+            $metode = '';
+            $metodeslug = 1;
+            $rup = $rup->where('metode_pemilihan', 'like', '%'.$metode.'%');
+        }
+        if ($sumber != 1) {
+            $rup = $rup->where('sumber_dana', 'like', $sumber.'%');
+            $sumberid = $sumber;
+        }else {
+            $sumber = '';
+            $sumberid = 1;
+            $rup = $rup->where('sumber_dana', 'like', '%'.$sumber.'%');
+        }
+
+        $rup = $rup->limit(300)->get();
         $rupsum = $rup->sum('pagu_rup');
         $rupcount = $rup->count();
 
@@ -104,9 +211,13 @@ class PagesController extends Controller
                 }
             })->toJson();
         }
-        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount]); 
-        // dd($rup);
+
+
+        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'metodeslug' => $metodeslug, 'sumberid' => $sumberid]); 
+        // dd($jenisslug);
+        // return response()->json($rup);
     }
+
 
     public function cari(Request $request){
         $tahun = $request->tahun;
@@ -115,7 +226,7 @@ class PagesController extends Controller
         $metode = $request->metode;
         $jenispengadaan = $request->jenispengadaan;
 
-        return redirect('/proyek?tahun='.$tahun.'&satker='.$opd.'&sumber='.$sumber.'&metode='.$metode.'&jenispengadaan='.$jenispengadaan.'');
+        return redirect('/proyek/'.$tahun.'/'.$opd.'/'.$sumber.'/'.$metode.'/'.$jenispengadaan.'');
     }
 
     public function caritender(Request $request){
@@ -357,5 +468,9 @@ class PagesController extends Controller
             $dt['metode'] = '';
         }
         return $dt;
+    }
+
+    public function notfound(){
+        return view('pages.notfound');
     }
 }

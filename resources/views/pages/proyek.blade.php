@@ -37,12 +37,12 @@
 									@if($satker)
 									<option  class="text-capitalize" value="{{$satker->kd_satker_sirup}}">{{strtolower($satker->nama)}}</option>
 									@else
-									<option  class="text-capitalize" value="">-- Pilih salah satu --</option>
+									<option  class="text-capitalize" value="1">-- Pilih salah satu --</option>
 									@endif
 									@foreach($satkers as $hasil)
 									<option  class="text-capitalize" value="{{$hasil->kd_satker_sirup}}">{{strtolower($hasil->nama)}}</option>
 									@endforeach
-									<option  class="text-capitalize" value="">-- Semua --</option>
+									<option  class="text-capitalize" value="1">-- Semua --</option>
 								</select>
 	                        </div>
 						</div>
@@ -54,12 +54,12 @@
 	                            @if($sumber)
 	                            <option class="text-capitalize" value="{{$sumber}}">{{$sumber}}</option>
 	                            @else
-	                            <option class="text-capitalize" value="">-- Pilih salah satu --</option>
+	                            <option class="text-capitalize" value="1">-- Pilih salah satu --</option>
 	                            @endif
 	                            @foreach($sumber_danas as $hasil)
 	                            <option class="text-capitalize" value="{{$hasil->nama}}">{{$hasil->nama}}</option>
 	                            @endforeach
-	                            <option class="text-capitalize" value="">-- Semua --</option>
+	                            <option class="text-capitalize" value="1">-- Semua --</option>
 	                            </select>
 	                        </div>
 						</div>
@@ -71,12 +71,12 @@
 						          @if($metode)
 						          <option value="{{$metode->slug}}">{{$metode->nama}}</option>
 						          @else
-						          <option value="">-- Pilih salah satu --</option>
+						          <option value="1">-- Pilih salah satu --</option>
 						          @endif
 						          @foreach($metode_lelangs as $hasil)
 						          <option value="{{$hasil->slug}}">{{$hasil->nama}}</option>
 						          @endforeach
-						          <option value="">-- Semua --</option>
+						          <option value="1">-- Semua --</option>
 						        </select>
 						    </div>
 						</div>
@@ -88,19 +88,19 @@
 						          @if($jenis)
 						          <option value="{{$jenis->slug}}">{{$jenis->nama}}</option>
 						          @else
-						          <option value="">-- Pilih salah satu --</option>
+						          <option value="1">-- Pilih salah satu --</option>
 						          @endif
 						          @foreach($jenis_pekerjaans as $hasil)
 						          <option value="{{$hasil->slug}}">{{$hasil->nama}}</option>
 						          @endforeach
-						          <option value="">-- Semua --</option>
+						          <option value="1">-- Semua --</option>
 						      </select>
 						    </div>
 						</div>
 						<div class="col-md-6">
 							<br>
 							<div class="pt-3 float-right">
-					        	<a href="/proyek" class="btn btns btn-default btn-lg " style="border: 1px solid gray"><span class="fas fa-refresh"></span> Reset</a>&nbsp;
+					        	<a href="/proyek" class="btn btns btn-default btn-lg " style="border: 1px solid gray"><i class="fas fa-sync-alt"></i> Reset</a>&nbsp;
 					        	<button type="submit" class="btn btn-success ml-1"><span class="fas fa-filter"></span> Filter</button>
 							</div>
 						</div>
@@ -109,7 +109,7 @@
 			</div>		
 		</div>
 		<br>
-
+		
 		<div class="row bg-white p-3">
 			<div class="col">
 				<h5 class="text-hijau"><b><i class="fas fa-briefcase"></i> Data Kontrak Tahun {{$tahun}}</b></h5>
@@ -171,7 +171,7 @@
       pageLength: 25,
       order: [[5	, 'desc']],
       ajax : {
-        url : "{{route('proyek.rup')}}",
+        url : "{{route('proyek.rup', ['tahun' => $tahun, 'satker' => $satkerid, 'jenispengadaan' => $jenisslug, 'metode' => $metodeslug, 'sumber' => $sumberid])}}",
         type : 'GET'
       },
       columns: [
@@ -179,7 +179,7 @@
         {data:'nama_paket',name:'nama_paket'},
         {data:'pagu_rup',name:'pagu_rup'},
         {data:'nama_satker',name:'nama_satker'},
-        {data:'jenis_pengadaan',name:'jenis_pengadaan'},
+        {data:'tahun',name:'tahun'},
         {data:'kdli',name:'kdli'},
       ],
       columnDefs : [
@@ -187,7 +187,7 @@
         targets : [5],
         render : function (data, type, row) {
           if (data == 1) {
-            var btn = "<center><i class=\"badge badge-success\"><i class=\"fas fa-check ml-2 pt-1 pb-1\"></i></i> <span style=\"visibility: hidden;\">"+data+"</span></center>";
+            var btn = "<center><i class=\"badge badge-success\"><i class=\"fas fa-check ml-1 pt-1 pb-1\"></i><span style=\"visibility: hidden;\">"+data+"</span></i></center>";
           }else {
             var btn = "<center><i class=\"badge badge-danger\"><i class=\"fas fa-times ml-2 pt-1 pb-1\"></i><span style=\"visibility: hidden;\">"+data+"</span></i></center>";
           }

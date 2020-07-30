@@ -7,7 +7,8 @@
     <meta content="@yield('metakeywords')" name="keywords">
     <link rel="shortcut icon" sizes="196x196" href="/Assets/proyek/images/logo.png">
     <link href="@yield('thumbnail')" rel="apple-touch-icon">
-
+    <title>@yield('title')Open Data Kontak Bojonegoro</title>
+    
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600,700,800&display=swap" rel="stylesheet">
@@ -61,18 +62,18 @@
 	</div>
 	<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" id="joko" href="index.html"><p class="brd">Bojonegoro <span style="color: red">Open</span> System</p></a>
+	    	<a class="navbar-brand" id="joko" href="/"><p class="brd">Bojonegoro <span style="color: red">Open</span> System</p></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span> Menu</button>
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        	<ul class="navbar-nav m-auto">
-		        	<li class="nav-item active"><a href="index.html" class="nav-link pr-2 pl-2"><i class="fa fa-home"></i> Home</a></li>
-		        	<li class="nav-item"><a href="about.html" class="nav-link pr-2 pl-2"><i class="fa fa-columns"></i> Data Rup</a></li>
-		        	<li class="nav-item"><a href="services.html" class="nav-link pr-2 pl-2"><i class="fa fa-briefcase"></i> Data Tender</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link pr-2 pl-2"><i class="fa fa-users"></i> Penyedia</a></li>
-					<li class="nav-item"><a href="cases.html" class="nav-link pr-2 pl-2"><i class="fa fa-comment"></i> Pengaduan</a></li>
-					<li class="nav-item"><a href="blog.html" class="nav-link pr-2 pl-2"><i class="fa fa-chart-pie"></i> Statistik</a></li>
-					<li class="nav-item"><a href="contact.html" class="nav-link pr-2 pl-2"><i class="fa fa-user"></i> Login</a></li>
+		        	<li class="nav-item active"><a href="/" class="nav-link pr-2 pl-2"><i class="fa fa-home"></i> Home</a></li>
+		        	<li class="nav-item"><a href="/proyek" class="nav-link pr-2 pl-2"><i class="fa fa-columns"></i> Data Rup</a></li>
+		        	<li class="nav-item"><a href="/proyek/tender" class="nav-link pr-2 pl-2"><i class="fa fa-briefcase"></i> Data Tender</a></li>
+					<li class="nav-item"><a href="/proyek/Penyedia" class="nav-link pr-2 pl-2"><i class="fa fa-users"></i> Penyedia</a></li>
+					<li class="nav-item"><a href="/pengaduan" class="nav-link pr-2 pl-2"><i class="fa fa-comment"></i> Pengaduan</a></li>
+					<li class="nav-item"><a href="/statistik" class="nav-link pr-2 pl-2"><i class="fa fa-chart-pie"></i> Statistik</a></li>
+					<li class="nav-item"><a href="/login" class="nav-link pr-2 pl-2"><i class="fa fa-user"></i> Login</a></li>
 
 	        	</ul>
 	      	</div>

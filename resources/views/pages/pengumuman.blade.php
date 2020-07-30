@@ -6,111 +6,126 @@
 @section('thumbnail', 'thumbnail.png')
 
 @section('container')
-	
+<section class="ftco-section ftco-no-pt bg-light">
+  <br>
   <div class="container">
-    <div class="panel panel-default" style="padding: 20px;margin-top: 10px">        
-      <ul class="nav nav-tabs h5">
-        <li><a href="/proyek/perencanaan/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-calendar-check-o"></i> Perencanaan</a></li>
-        @if($paket->tenders)
-        <li class="active"><a href="/proyek/pengumuman/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-users"></i> Pemilihan Penyedia</a></li>  
-        <li><a href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="glyphicon glyphicon-briefcase"></i> Pemenang & Kontrak</a></li> 
-        @endif
-        <li><a href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fa fa-check-square"></i> Implementasi</a></li>
-      </ul>
-        <div class="tab-content">
-          <div id="perencanaan" class="tab-pane fade in active"><br>
-
-              <table class="table table-condensed table-bordered">  
-                <tr>
-                    <th class="bg-warning" style="text-align: right" width="200">Kode LPSE</th>
-                    <td colspan="3" style="text-transform: capitalize;"><strong><a href="http://lpse.bojonegorokab.go.id/eproc4/lelang/{{$paket->tenders->kode_lelang}}/pengumumanlelang" target="_blank">{{$paket->tenders->kode_lelang}}</a></strong></td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right" width="200">Nama Proyek/ Paket Pekerjaan</th>
-                    <td colspan="3" style="text-transform: capitalize;"><strong>{{$paket->nama_paket}}</strong></td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Satuan Kerja</th>
-                    <td colspan="3" ><strong>{{$paket->satkers->nama}}</strong></td>      
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Lokasi</th>
-                    <td colspan="3" >
-                        {{$paket->tenders->lokasi}}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Kategori</th>
-                    <td colspan="3" >
-                        {{$paket->jenis_pengadaan}}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Metode Pengadaan</th>
-                    <td colspan="3" >
-                        {{$paket->metode_pemilihan}}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Peserta Lelang</th>
-                    <td colspan="3" >
-                        {{$paket->tenders->peserta}}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">Pagu Anggaran</th>
-                    <td colspan="3" >
-                        @php
-                        $duit = $paket->pagu_rup;
-                        @endphp
-                        Rp. {{number_format((float)"$duit",0,",",".")}}
-                    </td>
-                </tr>
-                <tr>
-                    <th class="bg-warning" style="text-align: right">HPS</th>
-                    <td colspan="3" >
-                        @php
-                        $duit = $paket->tenders->hps;
-                        @endphp
-                        Rp. {{number_format((float)"$duit",0,",",".")}}
-                    </td>
-                </tr>
-                </tr>
+    <div class="row bg-white p-3">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link" href="/proyek/perencanaan/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-calendar-check text-hijau"></i> <span class="text-hijau">Perencanaan</span></b></a>
+              </li>
+              @if($paket->tenders)
+              <li class="nav-item">
+                <a class="nav-link active pr-0" href="/proyek/pengumuman/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Pemilihan Penyedia</span></b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-briefcase text-hijau"></i> <span class="text-hijau">Pemenang & Kontrak</span></b></a>
+              </li>
+              @endif
+              <li class="nav-item" style="margin-left: -10px">
+                <a class="nav-link" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Implementasi</span></b></a>
+              </li>
+            </ul>
+          </div>
+          <div class="card-body">
+            <table class="table table-condensed table-bordered">  
+              <tr>
+                <th class="bg-warnings text-right" width="200">Kode LPSE</th>
+                <td colspan="3" class="text-capitalize"><strong><a href="http://lpse.bojonegorokab.go.id/eproc4/lelang/{{$paket->tenders->kode_lelang}}/pengumumanlelang" target="_blank">{{$paket->tenders->kode_lelang}}</a></strong></td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
+                <td colspan="3" class="text-capitalize"><strong>{{$paket->nama_paket}}</strong></td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Satuan Kerja</th>
+                <td colspan="3" class="text-black" ><strong>{{$paket->satkers->nama}}</strong></td>      
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Lokasi</th>
+                <td colspan="3" class="text-black" >
+                    {{$paket->tenders->lokasi}}
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Kategori</th>
+                <td colspan="3" class="text-black" >
+                    {{$paket->jenis_pengadaan}}
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Metode Pengadaan</th>
+                <td colspan="3" class="text-black" >
+                    {{$paket->metode_pemilihan}}
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Peserta Lelang</th>
+                <td colspan="3" class="text-black" >
+                    {{$paket->tenders->peserta}}
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">Pagu Anggaran</th>
+                <td colspan="3" class="text-black" >
+                    @php
+                    $duit = $paket->pagu_rup;
+                    @endphp
+                    Rp. {{number_format((float)"$duit",0,",",".")}}
+                </td>
+              </tr>
+              <tr>
+                <th class="bg-warnings text-right">HPS</th>
+                <td colspan="3" class="text-black" >
+                    @php
+                    $duit = $paket->tenders->hps;
+                    @endphp
+                    Rp. {{number_format((float)"$duit",0,",",".")}}
+                </td>
+              </tr>
+              </tr>
+            </table>
+            <div class="table table-responsive">
+              <table class="table table-bordered table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th><center>No</center></th>
+                    <th><center>Peserta</center></th>
+                    <th><center>NPWP</center></th>
+                    <th><center>Penawaran</center></th>                      
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
               </table>
-              <div class="table table-responsive">
-                <table class="table table-bordered table-striped table-condensed">
-                  <thead>
-                    <tr>
-                        <th><center>No</center></th>
-                        <th><center>Peserta</center></th>
-                        <th><center>NPWP</center></th>
-                        <th><center>Penawaran</center></th>                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                  </tbody>
-                </table>
-              </div>
-              <br>
-              <div class="row" style="margin:8px">
-                <h4>Komentar Publik</h4>
-                <hr>
-              <div class="pull-right">
-                <a href="#" class="btn btn-danger edit-record" data-toggle="modal" data-target="#komenModal" ><i class="fa fa-comment"><strong>&nbsp;&nbsp;&nbsp; Formulir Komentar</strong></i></a>
-              </div>
             </div>
-            <div class="row">
-              <div class="col-xs-12">
-                @include('pages._partials.komen')
-              </div>
-            </div>
+            <br>
+          
+            <br>
+          </div><!-- card -->
+        </div>
+      </div><!-- col -->
+    </div><!-- row -->
+    <br>
+    <div class="row bg-white p-3">
+      <div class="col">
+        <div class="float-right">
+           <a href="#" class="btn btn-danger edit-record" data-toggle="modal" data-target="#komenModal" ><i class="fa fa-comment"><strong> Formulir Komentar</strong></i></a>
+        </div>
+        <h5 class="text-hijau pb-2"><b><i class="fas fa-comment"></i> Komentar Publik</b></h5>
+        <hr>
+        <div class="row">
+          <div class="col">
+              @include('pages._partials.komen')
           </div>
         </div>
-      </div>          
-    </div>
-
-  </section>
-</section> 
+      </div><!-- col -->
+    </div><!-- row -->
+  </div><!-- container -->
+</section>
 
 @include('pages._partials.modal')
 

@@ -12,12 +12,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/notfound', 'PagesController@notfound');
 
 Route::get('/', 'PagesController@index')->name('home');
 Route::get('/coba', 'PagesController@coba');
 Route::get('/pengaduan', 'PagesController@pengaduan')->name('pengaduan');
 Route::get('/statistik', 'PagesController@statistik')->name('statistik');
-Route::get('/proyek', 'PagesController@proyek')->name('proyek.rup');
+Route::get('/proyek', 'PagesController@proyekindex')->name('proyek.index');
+Route::get('/proyek/{tahun}/{satker}/{sumber}/{jenispengadaan}/{metode}', 'PagesController@proyek')->name('proyek.rup');
+Route::get('/proyekcoba/{tahun}/{satker}/{sumber}/{jenispengadaan}/{metode}', 'PagesController@proyekcoba')->name('proyek.rup.coba');
 Route::post('/proyek', 'PagesController@cari')->name('proyek.rup.cari');
 Route::get('/proyek/tender', 'PagesController@tender')->name('proyek.tender');
 Route::post('/proyek/tender', 'PagesController@caritender')->name('proyek.tender.cari');

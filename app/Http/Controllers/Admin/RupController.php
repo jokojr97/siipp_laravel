@@ -90,7 +90,7 @@ class RupController extends Controller
         $id = Auth::id();
         $user = User::where('id', $id)->first();
 
-        $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->limit(300)->get();
+        $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->get();
         if ($request->ajax()) {
             $rupp = RupPenyedia::with('tenders');
 
