@@ -28,7 +28,7 @@
               </li>
               @endif
               <li class="nav-item" style="margin-left: -10px">
-                <a class="nav-link" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Impplementasi</span></b></a>
+                <a class="nav-link" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Implementasi</span></b></a>
               </li>
             </ul>
           </div>

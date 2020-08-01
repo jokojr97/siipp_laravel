@@ -14,6 +14,11 @@ class Aspirasi extends Model
         return $this->hasOne('App\Satker', 'kd_satker_sirup', 'kd_satker');
     }
 
+    public function tahaps()
+    {
+        return $this->hasOne('App\TahapBos', 'id', 'tahap');
+    }
+
     public function pakets()
     {
         return $this->hasOne('App\RupPenyedia', 'kode_rup', 'ocid');

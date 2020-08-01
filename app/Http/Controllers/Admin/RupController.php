@@ -17,6 +17,8 @@ use App\MetodeLelang;
 use App\SumberDana;
 use App\JenisPekerjaan;
 use App\RupPenyedia;
+use App\RupIsi;
+use App\LpseScrap;
 
 class RupController extends Controller
 {
@@ -250,6 +252,68 @@ class RupController extends Controller
         ]);
 
         return redirect('/admin/rup/'.$request->tahun)->with('success', 'Successfull Edit RUP!');        
+    }
+
+    public function proses(Request $request){
+        $tahun = $request->segment(4);
+        $tahuns = TahunAnggaran::all();
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+
+        // $rups = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc')->limit(300)->get();
+
+        $rups = RupIsi::where('tahun', $tahun)->get();
+
+        $rupp = RupIsi::with('detail');
+
+        if ($request->ajax()) {
+            return DataTables::of($rups)->addColumn('kdli', function($rupp){
+                if ($rupp->detail) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            })->addColumn('nama_paket', function($rupp){
+                return $rupp->detail->nama_paket;
+            })->addColumn('pagu_rup', function($rupp){
+                return $rupp->detail->pagu_rup;
+            })->addColumn('nama_satker', function($rupp){
+                return $rupp->detail->nama_satker;
+            })->addColumn('jenis_pengadaan', function($rupp){
+                return $rupp->detail->jenis_pengadaan;
+            })->toJson();
+        }        
+
+        // dd($rups);
+        return view('admin.rup.proses', ['user' => $user, 'rups' => $rups, 'tahun' => $tahun, 'tahuns' => $tahuns]);
+    }
+
+    public function prosesrup(Request $request){
+        $tahun = $request->tahun;
+
+        $lpse = LpseScrap::where('tahun_ang', $tahun)->get();
+        foreach ($lpse as $result) {
+            $ada = RupPenyedia::where('kode_rup', $result->id_rup)->where('tahun', $tahun)->first();
+            if ($ada) {
+                $adaisi = RupIsi::where('tahun', $tahun)->where('ocid', $ada->kode_rup)->first();
+                if ($adaisi) {
+                    if ($adaisi->isi != 1) {
+                        RupIsi::where('id', $adaisi->id)
+                        ->update([
+                            'ada' => 1,
+                        ]);
+                    }
+                }else {
+                    RupIsi::create([
+                        'ocid' => $ada->kode_rup,
+                        'tahun' => $tahun,
+                        'ada' => 1,
+                    ]);
+                }
+            }
+        }
+
+        return redirect()->route('admin.rup.proses', $tahun);
     }
 
     /**

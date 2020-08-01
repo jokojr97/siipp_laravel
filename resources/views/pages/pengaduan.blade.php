@@ -70,7 +70,7 @@
                                 </div>
                                 <div class="col-xs-12 media-heading ">
                                     @if($result->rups)
-                                        <a href="/Assets/proyek/detail?name=Kontrak&op=KontrakDetail&tahun={{ $result->tahun_anggaran }}&kode={{$result->ocid}}" class="" style="margin-top: -5px" target="_blank"><?= substr($result->rups->nama_paket, 0, 80)."..." ?></a>
+                                        <a href="/proyek/{{$result->tahaps->methodname}}/{{ $result->tahun_anggaran }}/{{$result->ocid}}" class="" style="margin-top: -5px" target="_blank"><?= substr($result->rups->nama_paket, 0, 80)."..." ?></a>
                                     @endif
                                 </div>
                             </div>

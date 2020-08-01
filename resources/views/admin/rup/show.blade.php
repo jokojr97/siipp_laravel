@@ -17,6 +17,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Home</a></li>
+              <li class="breadcrumb-item"><a href="/admin/rup">Rup</a></li>
               <li class="breadcrumb-item active">Detail</li>
             </ol>
           </div><!-- /.col -->
@@ -30,7 +31,7 @@
       <div class="container-fluid p-3">
         <div class="row">
           <div class="col">
-            <h4><b>{{$paket->nama_paket}}</b> <a href="/admin/rup/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fas fa-edit"></i>Edit</a></h4>
+            <h4 class="text-capitalize"><b>{{$paket->nama_paket}}</b> <a href="/admin/rup/{{$paket->tahun}}/{{$paket->kode_rup}}"><i class="fas fa-edit"></i>Edit</a></h4>
             <hr>
           </div>
         </div>
@@ -165,7 +166,7 @@
                     $data = $paket->detail_lokasi;
                     $datas = explode(";", $data);
                     $jml_data = count($datas) - 1;
-                    $data = $data[$jml_data];
+                    $data = $datas[$jml_data];
                     foreach($datas as $hsl){
                       echo '<p style="margin-bottom: 0px">'.$hsl.'</p>';
                     }
@@ -190,7 +191,7 @@
                     $data = $paket->jenis_pengadaan;
                     $datas = explode(";", $data);
                     $jml_data = count($datas) - 1;
-                    $data = $data[$jml_data];
+                    $data = $datas[$jml_data];
                     foreach($datas as $hsl){
                       echo '<p style="margin-bottom: 0px">'.$hsl.'</p>';
                     }
@@ -228,7 +229,7 @@
                     $data = $paket->pagu_perjenis_pengadaan;
                     $datas = explode(";", $data);
                     $jml_data = count($datas) - 1;
-                    $data = $data[$jml_data];
+                    $data = $datas[$jml_data];
                     foreach($datas as $hsl){
                       echo '<p style="margin-bottom: 0px">Rp. '.number_format((float)"$hsl",0,",",".").'</p>';
                     }
@@ -250,6 +251,9 @@
               </thead>
             </table>
           </div><!-- col -->
+          <div class="col">
+            <a href="{{URL::previous()}}" class="btn btn-success btn-sm"><i class="fas fa-arrow-left"></i> Kembali ke halaman sebelumnya</a>
+          </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>

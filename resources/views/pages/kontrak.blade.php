@@ -191,7 +191,7 @@
                             <option value="negosiasi_kontraktor">Hasil Negosiasi Kontraktor</option>
                           </select>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-right" style="margin-right: 15px">Submit</button>
+                        <button type="submit" class="btn btn-primary float-right mr-3">Submit</button>
                     </form>
                   </div>
                 </div>

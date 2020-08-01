@@ -133,91 +133,6 @@ class PagesController extends Controller
         // dd($rupcount);
     }
 
-    public function proyekcoba(Request $request){
-        $tahun = $request->segment(2);
-        $satker = $request->segment(3);
-        $sumber = $request->segment(4);
-        $jenis = $request->segment(5);
-        $metode = $request->segment(6);
-
-        $satkers = Satker::all();
-        $tahun_angs = TahunAnggaran::all();
-        $metode_lelangs = MetodeLelang::all();
-        $sumber_danas = SumberDana::all();
-        $jenis_pekerjaans = JenisPekerjaan::all();
-
-        $rup = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->orderBy('tanggal_terakhir_update', 'desc');
-
-        if ($satker != 1) {
-            $st = Satker::where('kd_satker_sirup', $satker)->first();
-            if (!$st) {
-                return redirect('/notfound');
-            }
-            $satker = $st;
-            $satkerid = $satker->kd_satker_sirup;
-            $rup = $rup->where('id_satker', $satker->kd_satker_sirup);
-        }else {
-            $satker = '';
-            $satkerid = 1;
-            $rup = $rup->where('id_satker', 'like', '%'.$satker.'%');
-        }
-        if ($jenis != 1) {
-            $st = JenisPekerjaan::where('slug', $jenis)->first();
-            if (!$st) {
-                return redirect('/notfound');
-            }
-            $jenis = $st;
-            $jenisslug = $jenis->slug;
-            $rup = $rup->where('jenis_pengadaan', 'like',  $jenis->nama.'%');
-        }else {
-            $jenis = '';
-            $jenisslug = 1;
-            $rup = $rup->where('jenis_pengadaan', 'like', '%'.$jenis.'%');
-        }
-        if ($metode != 1) {
-            $st = MetodeLelang::where('slug', $metode)->first();
-            if (!$st) {
-                return redirect('/notfound');
-            }
-            $metode = $st;
-            $metodeslug = $metode->slug;
-            $rup = $rup->where('metode_pemilihan', $metode->nama);
-        }else {
-            $metode = '';
-            $metodeslug = 1;
-            $rup = $rup->where('metode_pemilihan', 'like', '%'.$metode.'%');
-        }
-        if ($sumber != 1) {
-            $rup = $rup->where('sumber_dana', 'like', $sumber.'%');
-            $sumberid = $sumber;
-        }else {
-            $sumber = '';
-            $sumberid = 1;
-            $rup = $rup->where('sumber_dana', 'like', '%'.$sumber.'%');
-        }
-
-        $rup = $rup->limit(300)->get();
-        $rupsum = $rup->sum('pagu_rup');
-        $rupcount = $rup->count();
-
-        if ($request->ajax()) {
-            $rupp = RupPenyedia::with('tenders');
-
-            return DataTables::of($rup)->editColumn('kdli', function($rupp){
-                if ($rupp->isi) {
-                    return 1;
-                }else {
-                    return 0;
-                }
-            })->toJson();
-        }
-
-
-        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'metodeslug' => $metodeslug, 'sumberid' => $sumberid]); 
-        // dd($jenisslug);
-        // return response()->json($rup);
-    }
-
 
     public function cari(Request $request){
         $tahun = $request->tahun;
@@ -240,71 +155,77 @@ class PagesController extends Controller
         // dd($request);
     }
 
-    public function tender(){
-        $dt = $this->get_url();
-        $tahun = $dt['tahun'];
-        $satker = $dt['satker'];
-        if ($satker) {
-            $st = Satker::where('kd_satker_sirup', $satker)->first();
-            $satker = $st;
-        }
-        $sumber = $dt['sumber'];
-        $jenis = $dt['jenispengadaan'];
-        if ($jenis) {
-            $st = JenisPekerjaan::where('slug', $jenis)->first();
-            $jenis = $st;
-        }
-        $tahap = $dt['tahap'];
-        if ($tahap) {
-            $st = TahapTender::where('slug', $tahap)->first();
-            $tahap = $st;
-        }
-        $scrap = LpseScrap::where('tahun_ang', $tahun);
-        if ($satker) {
-            $scrap = $scrap->where('satker', $satker->nama);
-        }else {
-            $scrap = $scrap->where('satker', 'like', '%'.$satker.'%');
-        }
-        if ($tahap) {
-            $scrap = $scrap->where('tahap_tender', $tahap->nama);
-        }else {
-            $scrap = $scrap->where('tahap_tender', 'like', '%'.$tahap.'%');
-        }
-        if ($sumber) {
-            $scrap = $scrap->where('sumber_dana', 'like', $sumber.'%');
-        }else {
-            $scrap = $scrap->where('sumber_dana', 'like', '%'.$sumber.'%');
-        }
-        if ($jenis) {
-            $scrap = $scrap->where('kategori', $jenis->nama_lpse);
-        }else {
-            $scrap = $scrap->where('kategori', 'like', '%'.$jenis.'%');
-        }
-        $scrap = $scrap->limit(300)->get();
-        $scrapcount = $scrap->count();
-        $scrapsum = $scrap->sum('pagu');
+    public function tender(Request $request){
+        $tahun = $request->segment(3);
+        $satker = $request->segment(4);
+        $sumber = $request->segment(5);
+        $jenis = $request->segment(6);
+        $tahap = $request->segment(7);
+
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
         $tahap_tenders = TahapTender::all();
         $sumber_danas = SumberDana::all();
         $jenis_pekerjaans = JenisPekerjaan::all();
-        $data = array();
-        $no = 0;
-        foreach ($scrap as $result) {
-            $data[$no]['id_rup'] = $result->id_rup;
-            $data[$no]['nama_paket'] = $result->nama_paket;
-            $sat = $result->satker;
-            $sat = strtolower($sat);
-            $sat = ucwords($sat);
-            $data[$no]['nama_satker'] = $sat;
-            $data[$no]['pagu'] = $result->pagu;
-            $data[$no]['sumber_dana'] = $result->sumber_dana;
-            $data[$no]['tahap_tender'] = $result->tahap_tender;
-            $data[$no]['tahun'] = $result->tahun_ang;
-            $no++;
+
+        $scrap = LpseScrap::where('tahun_ang', $tahun);
+
+        if ($satker != 1) {
+            $st = Satker::where('kd_satker_sirup', $satker)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $satker = $st;
+            $satkerid = $satker->kd_satker_sirup;
+            $scrap = $scrap->where('satker', $satker->nama);
+        }else {
+            $satker = '';
+            $satkerid = 1;
+            $scrap = $scrap->where('satker', 'like', '%'.$satker.'%');
+        }if ($sumber != 1) {
+            $scrap = $scrap->where('sumber_dana', 'like', $sumber.'%');
+            $sumberid = $sumber;
+        }else {
+            $sumber = '';
+            $scrap = $scrap->where('sumber_dana', 'like', '%'.$sumber.'%');
+            $sumberid = 1;
+        }if ($jenis != 1) {
+            $st = JenisPekerjaan::where('slug', $jenis)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $jenis = $st;
+            $jenisslug = $jenis->slug;
+            $scrap = $scrap->where('kategori', $jenis->nama_lpse);
+        }else {
+            $jenis = '';
+            $jenisslug = 1;
+            $scrap = $scrap->where('kategori', 'like', '%'.$jenis.'%');
+        }if ($tahap != 1) {
+            $st = TahapTender::where('slug', $tahap)->first();
+            if (!$st) {
+                return redirect('/notfound');
+            }
+            $tahap = $st;
+            $tahapslug = $tahap->slug;
+            $scrap = $scrap->where('tahap_tender', $tahap->nama);
+        }else {
+            $tahap = '';
+            $tahapslug = 1;
+            $scrap = $scrap->where('tahap_tender', 'like', '%'.$tahap.'%');
         }
-        // dd($satker);
-        return view('pages.tender', ['scrap' => $scrap, 'datatable' => $data, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap, 'scrapsum' => $scrapsum, 'scrapcount' => $scrapcount]); 
+
+        $scrap = $scrap->get();
+        $scrapcount = $scrap->count();
+        $scrapsum = $scrap->sum('pagu');
+
+
+        // $tenders = LpseScrap::where('tahun_ang', $tahun)->get();
+        if ($request->ajax()) {
+            return DataTables::of($scrap)->toJson();
+        }
+        // dd($sumber);
+        return view('pages.tender', ['scrap' => $scrap, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap, 'scrapsum' => $scrapsum, 'scrapcount' => $scrapcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'tahapslug' => $tahapslug, 'sumberid' => $sumberid]); 
         // dd($data);
     }
 
