@@ -38,6 +38,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 
 Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', 'can:role-admin')->group(function(){
 	Route::get('/dashboard', 'AdminController@index')->name('dashboard.index');
+	
 	Route::resource('/rup', 'RupController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/rup/{tahun}', 'RupController@tahun')->name('rup.tahun');
 	Route::get('/rup/proses/{tahun}', 'RupController@proses')->name('rup.proses');
@@ -48,6 +49,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/rup/{tahun}/create', 'RupController@create')->name('rup.create');
 	Route::get('/rup/{tahun}/{id}', 'RupController@show')->name('rup.show');
 	Route::get('/rup/{tahun}/{id}/edit', 'RupController@edit')->name('rup.edit');
+	
 	Route::resource('/tender', 'TenderController', ['except' => ['show', 'edit', 'create']]);
 	Route::get('/tender/{tahun}', 'TenderController@tahun')->name('tender.tahun');
 	Route::get('/tender/import/{tahun}', 'TenderController@import')->name('tender.import');
@@ -58,7 +60,24 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/tender/{tahun}/{id}', 'TenderController@show')->name('tender.show');
 	Route::get('/tender/{tahun}/{id}/edit', 'TenderController@edit')->name('tender.edit');
 
-	
+	Route::resource('/nontender', 'NonTenderController', ['except' => ['show', 'edit', 'create']]);
+	Route::get('/nontender/{tahun}', 'NonTenderController@tahun')->name('nontender.tahun');
+	Route::get('/nontender/import/{tahun}', 'NonTenderController@import')->name('nontender.import');
+	Route::post('/nontender/import', 'NonTenderController@importdata')->name('nontender.importdata');
+	Route::get('/nontender/export/{tahun}', 'NonTenderController@export')->name('nontender.export');
+	Route::get('/nontender/sync/{tahun}', 'NonTenderController@synctender')->name('nontender.sync');
+
+	Route::resource('/peserta', 'PesertaController', ['except' => ['show', 'edit', 'create']]);
+	Route::get('/peserta/{tahun}', 'PesertaController@tahun')->name('peserta.tahun');
+	Route::get('/peserta/import/{tahun}', 'PesertaController@import')->name('peserta.import');
+	Route::post('/peserta/import', 'PesertaController@importdata')->name('peserta.importdata');
+	Route::get('/peserta/export/{tahun}', 'PesertaController@export')->name('peserta.export');
+	Route::get('/peserta/sync/{tahun}', 'PesertaController@synctender')->name('peserta.sync');
+
+	Route::resource('/aspirasi', 'AspirasiController');
+
+	Route::resource('/aspirasi', 'AspirasiController');
+
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){

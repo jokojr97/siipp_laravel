@@ -26,15 +26,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/rup/import" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/rup/import/2020" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/rup/export" class="nav-link" style="padding-top: 0px;">
-            <i class=" nav-icon"></i>
-            <p>Eksprot</p>
           </a>
         </li>
       </ul>
@@ -55,15 +49,9 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/tender/import" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/tender/import/2020" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/tender/eksport" class="nav-link" style="padding-top: 0px;">
-            <i class=" nav-icon"></i>
-            <p>Eksprot</p>
           </a>
         </li>
       </ul>
@@ -78,21 +66,15 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/admin/nontender" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/nontender/2020" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class=" nav-icon"></i>
             <p>Lihat Non Tender</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/nontender/import" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/nontender/import/2020" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/nontender/eksport" class="nav-link" style="padding-top: 0px;">
-            <i class=" nav-icon"></i>
-            <p>Eksprot</p>
           </a>
         </li>
       </ul>
@@ -107,21 +89,15 @@
       </a>
       <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="/admin/peserta" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
+          <a href="/admin/peserta/2020" class="nav-link" style="padding-top: 0px;padding-bottom: 0px">
             <i class=" nav-icon"></i>
             <p>Lihat Peserta</p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/peserta/import" class="nav-link" style="padding-top: 0px;">
+          <a href="/admin/peserta/import/2020" class="nav-link" style="padding-top: 0px;">
             <i class=" nav-icon"></i>
             <p>Import</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/peserta/eksport" class="nav-link" style="padding-top: 0px;">
-            <i class=" nav-icon"></i>
-            <p>Eksprot</p>
           </a>
         </li>
       </ul>
@@ -135,7 +111,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/admin/rup/proses" class="nav-link">
+      <a href="/admin/rup/proses/2020" class="nav-link">
         <i class="nav-icon fas fa-sync"></i>
         <p>
           Rup Proses

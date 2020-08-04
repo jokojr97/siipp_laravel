@@ -34,6 +34,9 @@
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <style type="text/css">
+    .text-p {
+      font-size: 18px;
+    }
     .jdl{
       background-color:#e8e8e8;
       border:2px solid white;

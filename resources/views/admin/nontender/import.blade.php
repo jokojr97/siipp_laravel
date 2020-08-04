@@ -1,6 +1,6 @@
 @extends ('layouts/mainadmin')
 
-@section('title', 'Import Tender - Sistem Informasi Pemantauan Pengadaan Publik')
+@section('title', 'Import Non Tender - Sistem Informasi Pemantauan Pengadaan Publik')
 @section('metadeskription', '')
 @section('metakeywords', '')
 
@@ -12,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Import Tender</h1>
+            <h1 class="m-0 text-dark">Import Non Tender</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="/admin">Home</a></li>
-              <li class="breadcrumb-item active">Import Tender</li>
+              <li class="breadcrumb-item active">Import Non Tender</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -44,7 +44,7 @@
         </div><!-- row -->
         <div class="row mt-3">
           <div class="col-sm-8">
-            <form method="post" action="{{route('admin.tender.importdata')}}" enctype="multipart/form-data">
+            <form method="post" action="{{route('admin.nontender.importdata')}}" enctype="multipart/form-data">
               <div class="form-inline">
                 @csrf
                 <label>Pilih file excel</label>
@@ -66,17 +66,17 @@
         <div class="row">
           <div class="col">
             <br>
-            <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Lelang LPSE</b></h4>
+            <h4 class="text-uppercase mt-3 mr-2" style="display: inline;"><b>Non Tender LPSE</b></h4>
             <hr class="mt-2">
             <div class="table-responsive border p-3">
-              <table class="table table-striped" id="datatender">
+              <table class="table table-striped" id="datanontender">
                 <thead class="bg-white">
                   <tr>
                     <th class="text-center">No</th>
                     <th class="text-center">Nama Paket</th>
                     <th class="text-center">Satuan Kerja</th>
                     <th class="text-center">Sumber Dana</th>
-                    <th class="text-center">Jenis Pekerjaan</th>
+                    <th class="text-center">Tahap Tender</th>
                     <th class="text-center" style="width: 13%">Action</th>
                   </tr>
                 </thead>
@@ -87,7 +87,7 @@
                     <td>{{$result->nama_paket}}</td>
                     <td>{{$result->satker}}</td>
                     <td>{{$result->sumber_dana}}</td>
-                    <td>{{$result->kategori}}</td>
+                    <td>{{$result->tahap_tender}}</td>
                     <td>
                       <a href="/admin/tender/{{$result->tahun}}/{{$result->kode_tender}}" class="btn btn-info btn-sm mb-1" target="_blank"><i class="fas fa-eye"></i></a>
                       <a href="/admin/tender/{{$result->tahun}}/{{$result->kode_tender}}/edit" class="btn btn-success btn-sm mb-1" target="_blank"><i class="fas fa-edit"></i></a>
@@ -118,7 +118,7 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('#datatender').DataTable();
+    $('#datanontender').DataTable();
   });
 </script>
 @endsection
