@@ -74,10 +74,12 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/peserta/export/{tahun}', 'PesertaController@export')->name('peserta.export');
 	Route::get('/peserta/sync/{tahun}', 'PesertaController@synctender')->name('peserta.sync');
 
-	Route::resource('/aspirasi', 'AspirasiController');
+	Route::resource('/progress', 'ProgressController', ['except' => ['store', 'create', 'show']]);
+	Route::get('/progress/{tahun}', 'ProgressController@tahun')->name('progress.tahun');
+	Route::get('/progress/{tahun}/{id}', 'ProgressController@show')->name('progress.show');
+	Route::post('/progress', 'ProgressController@store')->name('progress.store');
 
 	Route::resource('/aspirasi', 'AspirasiController');
-
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){
