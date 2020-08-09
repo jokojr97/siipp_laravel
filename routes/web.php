@@ -15,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/notfound', 'PagesController@notfound');
 
 Route::get('/', 'PagesController@index')->name('home');
-Route::get('/coba', 'PagesController@coba');
 Route::get('/pengaduan', 'PagesController@pengaduan')->name('pengaduan');
 Route::get('/statistik', 'PagesController@statistik')->name('statistik');
 Route::get('/proyek', 'PagesController@proyekindex')->name('proyek.index');
 Route::get('/proyek/{tahun}/{satker}/{sumber}/{jenispengadaan}/{metode}', 'PagesController@proyek')->name('proyek.rup');
+
+Route::get('/proyek/tender', 'PagesController@tenderindex')->name('proyek.tender.index');
 Route::get('/proyek/tender/{tahun}/{satker}/{sumber}/{jenispengadaan}/{tahap}', 'PagesController@tender')->name('proyek.tender');
 Route::post('/proyek', 'PagesController@cari')->name('proyek.rup.cari');
 Route::post('/proyek/tender', 'PagesController@caritender')->name('proyek.tender.cari');
@@ -30,6 +31,13 @@ Route::get('/proyek/perencanaan/{tahun}/{ocid}', 'PagesController@perencanaan')-
 Route::get('/proyek/pengumuman/{tahun}/{ocid}', 'PagesController@pengumuman')->name('proyek.pengumuman');
 Route::get('/proyek/kontrak/{tahun}/{ocid}', 'PagesController@kontrak')->name('proyek.kontrak');
 Route::get('/proyek/implementasi/{tahun}/{ocid}', 'PagesController@implementasi')->name('proyek.implementasi');
+
+Route::get('/proyek/penyedia', 'PagesController@penyediaindex')->name('proyek.penyedia.redirect');
+Route::get('/proyek/penyedia/{tahun}', 'PagesController@penyedia')->name('proyek.penyedia.index');
+Route::get('/proyek/penyedia/ikutlelang/{tahun}/{npwp}', 'PagesController@ikutlelang')->name('proyek.penyedia.ikutlelang');
+Route::get('/proyek/penyedia/menang/{tahun}/{npwp}', 'PagesController@menang')->name('proyek.penyedia.menang');
+Route::get('/proyek/penyedia/kontrak/{tahun}/{npwp}', 'PagesController@kontrakpenyedia')->name('proyek.penyedia.kontrak');
+
 
 Auth::routes(['verify' => true]);
 Route::get('/logout', 'HomeController@logout');
@@ -74,7 +82,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/peserta/export/{tahun}', 'PesertaController@export')->name('peserta.export');
 	Route::get('/peserta/sync/{tahun}', 'PesertaController@synctender')->name('peserta.sync');
 
-	Route::resource('/progress', 'ProgressController', ['except' => ['store', 'create', 'show']]);
+	Route::resource('/progress', 'ProgressController', ['except' => ['store', 'create', 'show', 'edit', 'update']]);
 	Route::get('/progress/{tahun}', 'ProgressController@tahun')->name('progress.tahun');
 	Route::get('/progress/{tahun}/{id}', 'ProgressController@show')->name('progress.show');
 	Route::post('/progress', 'ProgressController@store')->name('progress.store');

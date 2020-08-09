@@ -118,11 +118,12 @@
           <table class="table table-striped" id="datatender">
             <thead class="bg-success">
               <tr>
+                <th class="text-center text-white"></th>
                 <th class="text-center text-white">Nama Paket</th>
-                <th class="text-center text-white">Pagu</th>
+                <th class="text-center text-white">Pagu<br class="m-0">(Rp.)</th>
                 <th class="text-center text-white">Satuan Kerja</th>
                 <th class="text-center text-white">Jenis Pekerjaan</th>
-                <th class="text-center text-white" style="width: 10%">Action</th>
+                <th class="text-center text-white" style="width: 10%">Skor</th>
               </tr>
             </thead>
             <tbody class="bg-white">
@@ -160,30 +161,46 @@
     $('#datatender').DataTable({
       processing : true,
       serverSide : true,
-      order: [[0, 'asc']],
+      dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ],
+      pageLength: 15,
+      order: [[2, 'asc']],
       ajax : {
         url : "{{route('proyek.tender', ['tahun' => $tahun, 'satker' => $satkerid, 'jenispengadaan' => $jenisslug, 'tahap' => $tahapslug, 'sumber' => $sumberid])}}",
         type : 'GET'
       },
       columns: [
+        {data:'id_rup',name:'id_rup'},
         {data:'nama_paket',name:'nama_paket'},
         {data:'pagu',name:'pagu'},
         {data:'satker',name:'satker'},
         {data:'kategori',name:'kategori'},
-        {data:'id_rup',name:'id_rup'},
+        {data:'skor',name:'skor'},
       ],
       columnDefs : [
       {
-        targets : [1],
+        targets : [2],
         render : function (data, type, row) {
           var btn = numberWithCommas(data);
           return btn;
         }
       },
       {
-        targets : [4],
+        targets : [5],
         render : function (data, type, row) {
-          var btn = "<a href=\"/admin/tender/<?= $tahun ?>/"+data+"\" class=\"btn btn-info btn-sm\"><i class=\"fas fa-eye\"> Detail</i></a>";
+          const btn = "<center><a href=\"#\" class=\"badge badge-danger pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
+          return btn;
+        }
+      },
+      {
+        targets : [0],
+        render : function (data, type, row) {
+          var btn = "<center><i class=\"badge badge-success p-2\"><a href=\"/proyek/perencanaan/<?= $tahun ?>/"+data+"\" class=\"text-white\" target=\"_blank\"><i class=\"fas fa-arrow-right\"></i> Detail</i></a></center>";
           return btn;
         }
       }

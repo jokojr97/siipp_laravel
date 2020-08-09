@@ -32,13 +32,14 @@ class PagesController extends Controller
         return redirect('proyek/2020/1/1/1/1');
     }
 
-    public function coba(){
-        return view('layouts.mainproyek');
+    public function tenderindex(){
+        return redirect('proyek/tender/2020/1/1/1/1');
     }
 
     public function pengaduan(){
+        $menu = "pengaduan";
     	$aspirasi = Aspirasi::where('aktif', 0)->orderBy('id', 'desc')->paginate(20);
-    	return view('pages.pengaduan', ['aspirasi' => $aspirasi]);
+    	return view('pages.pengaduan', ['aspirasi' => $aspirasi, 'menu' => $menu]);
     	// dd($aspirasi[7]->jumlah_komen(11));
     }
 
@@ -53,6 +54,7 @@ class PagesController extends Controller
         $jenis = $request->segment(5);
         $metode = $request->segment(6);
 
+        $menu = "proyek";
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
         $metode_lelangs = MetodeLelang::all();
@@ -129,7 +131,7 @@ class PagesController extends Controller
             $aj = '';
         }
 
-        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'metodeslug' => $metodeslug, 'sumberid' => $sumberid, 'ajax' => $ajax, 'aj' => $aj]); 
+        return view('pages.proyek', ['rup' => $rup, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'metode_lelangs' => $metode_lelangs, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'metode' => $metode, 'rupsum' => $rupsum, 'rupcount' => $rupcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'metodeslug' => $metodeslug, 'sumberid' => $sumberid, 'ajax' => $ajax, 'aj' => $aj, 'menu' => $menu]); 
         // dd($rupcount);
     }
 
@@ -161,6 +163,8 @@ class PagesController extends Controller
         $sumber = $request->segment(5);
         $jenis = $request->segment(6);
         $tahap = $request->segment(7);
+
+        $menu = "tender";
 
         $satkers = Satker::all();
         $tahun_angs = TahunAnggaran::all();
@@ -219,55 +223,66 @@ class PagesController extends Controller
         $scrapcount = $scrap->count();
         $scrapsum = $scrap->sum('pagu');
 
-
         // $tenders = LpseScrap::where('tahun_ang', $tahun)->get();
         if ($request->ajax()) {
-            return DataTables::of($scrap)->toJson();
+            $rupp = LpseScrap::with('rups');
+
+            return DataTables::of($scrap)->addColumn('skor', function($rupp){
+                if ($rupp->rups) {
+                    return 1;
+                }else {
+                    return 0;
+                }
+            })->toJson();
         }
         // dd($sumber);
-        return view('pages.tender', ['scrap' => $scrap, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap, 'scrapsum' => $scrapsum, 'scrapcount' => $scrapcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'tahapslug' => $tahapslug, 'sumberid' => $sumberid]); 
+        return view('pages.tender', ['scrap' => $scrap, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap, 'scrapsum' => $scrapsum, 'scrapcount' => $scrapcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'tahapslug' => $tahapslug, 'sumberid' => $sumberid, 'menu' => $menu]); 
         // dd($data);
     }
 
     public function perencanaan(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
+        $menu = "proyek";
         $tahap = 1;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 1)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
 
-        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
     }
 
     public function pengumuman(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
+        $menu = "proyek";
         $tahap = 2;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 2)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
 
-        return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+        return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
     }
 
     public function kontrak(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
+        $menu = "proyek";
         $tahap = 3;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 3)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
 
-        return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+        return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
                
     }
 
     public function implementasi(Request $request){
         $tahun = $request->segment(3);
         $ocid = $request->segment(4);
+        $menu = "proyek";
         $tahap = 4;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 4)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
 
-        return view('pages.implementasi', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap]);
+        return view('pages.implementasi', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
                
     }
 
@@ -346,49 +361,101 @@ class PagesController extends Controller
         // dd($request);
     }
 
-    private function get_url(){        
-        if (isset($_GET['tahun'])) {
-            $dt['tahun'] = $_GET['tahun'];
-        }else {
-            $dt['tahun'] = 2020;
+    public function penyediaindex(Request $request){
+        return redirect('/proyek/penyedia/2019');
+    }
+
+    public function penyedia(Request $request){
+        $tahun = $request->segment(3);
+        $tahun_angs = TahunAnggaran::all();
+        $menu = "penyedia";
+
+        // $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->get();
+        $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->limit(300)->get();
+
+        if ($request->ajax()) {
+            return DataTables::of($penyedia)->addColumn('ikutlelang', function($penyedias){
+                return $jmlikut = PesertaLelang::where('npwp', $penyedias->npwp)->where('tahun', $penyedias->tahun)->count();
+            })->addColumn('menang', function($penyedias){
+                $menangtender = LpseScrap::where('npwp_pemenang', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->count();
+                $menangnontender = NonTenderScrap::where('npwp_peserta', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->count();
+
+                return $menang = $menangtender+$menangnontender;
+            })->addColumn('kontrak', function($penyedias){
+                $kontraktender = LpseScrap::where('npwp_kontraktor', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->count();
+                $kontraknontender = NonTenderScrap::where('npwp_kontraktor', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->count();
+
+                return $kontrak = $kontraktender+$kontraknontender;
+            })->addColumn('nilaikontrak', function($penyedias){
+                $kontraktender = LpseScrap::where('npwp_kontraktor', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->sum('negosiasi_kontraktor');
+                $kontraknontender = NonTenderScrap::where('npwp_kontraktor', $penyedias->npwp)->where('tahun_ang', $penyedias->tahun)->sum('negosiasi_kontraktor');
+
+                return $kontrak = $kontraktender+$kontraknontender;
+            })->addColumn('alamat', function($penyedias){
+                $alamat = LpseScrap::where('npwp_pemenang', $penyedias->npwp)->first();
+                if ($alamat) {
+                    return $alamat->alamat_pemenang;
+                }else {
+                    $alamat = NonTenderScrap::where('npwp_kontraktor', $penyedias->npwp)->first();
+                    if ($alamat) {
+                        return $alamat->alamat_kontraktor;
+                    }else {
+                        return "";
+                    }
+                }
+            })->editColumn('npwp', function($penyedias){
+                if (!$penyedias->npwp) {
+                    return '';
+                }else {
+                    return $penyedias->npwp;
+                }
+            })->editColumn('peserta', function($penyedias){
+                if (!$penyedias->peserta) {
+                    return '';
+                }else {
+                    return $penyedias->peserta;
+                }
+            })->toJson();
         }
 
-        if (isset($_GET['id'])) {
-            $dt['id'] = $_GET['id'];
-        }else {
-            $dt['id'] = 0;
-        }
+        return view('pages.penyedia', ['tahun' => $tahun, 'tahuns' => $tahun_angs, 'menu' => $menu]);
+        // dd($penyedia);
+        // dd($tahun);
+    }
 
-        if (isset($_GET['satker'])) {
-            $dt['satker'] = $_GET['satker'];
-        }else {
-            $dt['satker'] = '';
-        }
+    public function ikutlelang(Request $request){
+        $tahun = $request->segment(4);
+        $npwp = $request->segment(5);
+        $menu = "penyedia";
 
-        if (isset($_GET['tahap'])) {
-            $dt['tahap'] = $_GET['tahap'];
-        }else {
-            $dt['tahap'] = '';
-        }
+        $ikuts = PesertaLelang::where('npwp', $npwp)->where('tahun', $tahun)->get();
 
-        if (isset($_GET['sumber'])) {
-            $dt['sumber'] = $_GET['sumber'];
-        }else {
-            $dt['sumber'] = '';
-        }
+        return view('pages.ikutlelang', ['tahun' => $tahun, 'npwp' => $npwp, 'ikuts' => $ikuts, 'menu' => $menu]);
+    }
 
-        if (isset($_GET['jenispengadaan'])) {
-            $dt['jenispengadaan'] = $_GET['jenispengadaan'];
-        }else {
-            $dt['jenispengadaan'] = '';
-        }
+    public function menang(Request $request){
+        $tahun = $request->segment(4);
+        $npwp = $request->segment(5);
+        $menu = "penyedia";
 
-        if (isset($_GET['metode'])) {
-            $dt['metode'] = $_GET['metode'];
-        }else {
-            $dt['metode'] = '';
-        }
-        return $dt;
+        $peserta = PesertaLelang::where('npwp', $npwp)->where('tahun', $tahun)->first();
+        $menangtender = LpseScrap::where('npwp_pemenang', $npwp)->where('tahun_ang', $tahun)->get();
+        $menangnontender = NonTenderScrap::where('npwp_peserta', $npwp)->where('tahun_ang', $tahun)->get();
+
+        return view('pages.menang', ['tahun' => $tahun, 'npwp' => $npwp, 'menangtender' => $menangtender, 'menangnontender' => $menangnontender, 'menu' => $menu, 'peserta' => $peserta]);
+    }
+
+    public function kontrakpenyedia(Request $request){
+        $tahun = $request->segment(4);
+        $npwp = $request->segment(5);
+        $menu = "penyedia";
+
+        $peserta = PesertaLelang::where('npwp', $npwp)->where('tahun', $tahun)->first();
+        $kontraktender = LpseScrap::where('npwp_kontraktor', $npwp)->where('tahun_ang', $tahun)->get();
+        $kontraknontender = NonTenderScrap::where('npwp_kontraktor', $npwp)->where('tahun_ang', $tahun)->get();
+
+        return view('pages.kontrakpenyedia', ['tahun' => $tahun, 'npwp' => $npwp, 'kontraktender' => $kontraktender, 'kontraknontender' => $kontraknontender, 'menu' => $menu, 'peserta' => $peserta]);
+
     }
 
     public function notfound(){

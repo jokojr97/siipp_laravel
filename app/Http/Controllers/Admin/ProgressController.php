@@ -201,28 +201,6 @@ class ProgressController extends Controller
         // dd($ocid);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Progress  $progress
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Progress $progress)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Progress  $progress
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Progress $progress)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.

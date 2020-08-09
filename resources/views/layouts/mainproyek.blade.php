@@ -67,10 +67,10 @@
 	        <span class="fa fa-bars"></span> Menu</button>
 	      	<div class="collapse navbar-collapse" id="ftco-nav">
 	        	<ul class="navbar-nav m-auto">
-		        	<li class="nav-item active"><a href="/" class="nav-link pr-2 pl-2"><i class="fa fa-home"></i> Home</a></li>
-		        	<li class="nav-item"><a href="/proyek" class="nav-link pr-2 pl-2"><i class="fa fa-columns"></i> Data Rup</a></li>
-		        	<li class="nav-item"><a href="/proyek/tender" class="nav-link pr-2 pl-2"><i class="fa fa-briefcase"></i> Data Tender</a></li>
-					<li class="nav-item"><a href="/proyek/Penyedia" class="nav-link pr-2 pl-2"><i class="fa fa-users"></i> Penyedia</a></li>
+		        	<li class="nav-item"><a href="/" class="nav-link pr-2 pl-2"><i class="fa fa-home"></i> Home</a></li>
+		        	<li class="nav-item @if($menu == 'proyek') active @endif"><a href="/proyek" class="nav-link pr-2 pl-2"><i class="fa fa-columns"></i> Data Rup</a></li>
+		        	<li class="nav-item @if($menu == 'tender') active @endif"><a href="/proyek/tender" class="nav-link pr-2 pl-2"><i class="fa fa-briefcase"></i> Data Tender</a></li>
+					<li class="nav-item @if($menu == 'penyedia') active @endif"><a href="/proyek/penyedia" class="nav-link pr-2 pl-2"><i class="fa fa-users"></i> Penyedia</a></li>
 					<li class="nav-item"><a href="/pengaduan" class="nav-link pr-2 pl-2"><i class="fa fa-comment"></i> Pengaduan</a></li>
 					<li class="nav-item"><a href="/statistik" class="nav-link pr-2 pl-2"><i class="fa fa-chart-pie"></i> Statistik</a></li>
 					<li class="nav-item"><a href="/login" class="nav-link pr-2 pl-2"><i class="fa fa-user"></i> Login</a></li>
