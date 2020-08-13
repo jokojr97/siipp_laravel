@@ -49,7 +49,7 @@ class TenderController extends Controller
         $file = $request->file('file');
  
         // membuat nama file unik
-        $nama_file = 'tender '.$tahun.'.xlsx';
+        $nama_file = 'tender '.$tahun.'.csv';
  
         // upload ke folder file_siswa di dalam folder public
         $file->move('import/tender/', $nama_file);

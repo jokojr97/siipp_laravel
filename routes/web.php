@@ -88,6 +88,13 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::post('/progress', 'ProgressController@store')->name('progress.store');
 
 	Route::resource('/aspirasi', 'AspirasiController');
+
+	Route::resource('/pra', 'PotensiKorupsisController', ['except' => ['store', 'create', 'show', 'edit', 'update']]);
+	Route::get('/pra/{tahun}', 'PotensiKorupsisController@tahun')->name('pra.tahun');
+	Route::get('/pra/{tahun}/{id}', 'PotensiKorupsisController@show')->name('pra.show');
+	Route::post('/pra', 'PotensiKorupsisController@store')->name('pra.store');
+	Route::get('/pra/sync/{tahun}', 'PraController@sync')->name('peserta.sync');
+
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){

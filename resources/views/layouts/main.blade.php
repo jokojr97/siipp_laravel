@@ -170,8 +170,7 @@
 		                        <input id="password" type="password" name="password" class="form-control" placeholder="Password">
 		                    </div>
 
-		                    <button type="submit" class="btn btn-success pull-right">Sign In</button>
-                            <br><br>
+		                    <button type="submit" class="btn btn-success btn-block">Sign In</button>
 		                </div><!-- .modal-body -->
 		                <div class="modal-footer">
 		                    <center style="margin-top: 15px"><a href="#" style="color: #59af4b">Lupa Password?</a></center>

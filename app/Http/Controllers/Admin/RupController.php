@@ -17,8 +17,8 @@ use App\MetodeLelang;
 use App\SumberDana;
 use App\JenisPekerjaan;
 use App\RupPenyedia;
-use App\RupIsi;
 use App\LpseScrap;
+use App\RupIsi;
 
 class RupController extends Controller
 {

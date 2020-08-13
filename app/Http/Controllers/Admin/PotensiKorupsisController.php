@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\PotensiKorupsi;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\PotensiKorupsi;
+use App\TahunAnggaran;
+use App\User;
+use App\RupPenyedia;
+use App\LpseScrap;
+use DataTables;
 
 class PotensiKorupsisController extends Controller
 {
@@ -15,7 +21,21 @@ class PotensiKorupsisController extends Controller
      */
     public function index()
     {
-        //
+        return redirect('admin/pra/2019');
+    }
+
+    public function tahun(Request $request) {
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+        $tahun = $request->segment(3);
+        $tahuns = TahunAnggaran::all();
+
+        return view('admin.pra.index', ['tahun' => $tahun, 'tahuns' => $tahuns, 'user' => $user]);
+        // dd($tahun);
+    }
+
+    public function sync(Request $request){
+        
     }
 
     /**

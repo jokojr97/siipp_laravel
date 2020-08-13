@@ -15,6 +15,15 @@ class CreatePotensiKorupsisTable extends Migration
     {
         Schema::create('potensi_korupsis', function (Blueprint $table) {
             $table->id();
+            $table->string('id_tender');
+            $table->string('ocid')->nullable();
+            $table->string('tahun');
+            $table->string('nkt')->nullable();
+            $table->string('p')->nullable();
+            $table->string('s')->nullable();
+            $table->string('q')->nullable();
+            $table->string('w')->nullable();
+            $table->string('total')->nullable();
             $table->timestamps();
         });
     }
