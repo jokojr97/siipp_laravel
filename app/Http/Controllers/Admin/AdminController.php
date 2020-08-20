@@ -9,6 +9,8 @@ use App\User;
 use App\LpseScrap;
 use App\RupPenyedia;
 use App\RoleUsers;
+use App\NonTenderScrap;
+use App\PesertaLelang;
 
 class AdminController extends Controller
 {
@@ -23,11 +25,20 @@ class AdminController extends Controller
         // return view('home');
         $id = Auth::id();
         $user = User::where('id', $id)->first();
+        $tahun = 2019;
 
         $users = RoleUsers::where('role_id', 4)->get();
-        $rup = RupPenyedia::where('tahun', 2020)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->count();
-        $tender = LpseScrap::where('tahun_ang', 2020)->count();
-        return view('admin.dashboard', ['user' => $user, 'users' => $users, 'rup' => $rup, 'tender' => $tender]);
+        $rup = RupPenyedia::where('tahun', $tahun)->where('status_aktif', 'ya')->where('status_umumkan', 'sudah')->count();
+        $tender = LpseScrap::where('tahun_ang', $tahun)->count();
+        $nontender = NonTenderScrap::where('tahun_ang', $tahun)->count();
+        $peserta = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->get();
+        $p = 0;
+        
+        foreach ($peserta as $result) {
+          $p++;
+        }
+
+        return view('admin.dashboard', ['user' => $user, 'users' => $users, 'rup' => $rup, 'tender' => $tender, 'nontender' => $nontender, 'peserta' => $p]);
         // dd($users[1]->roles);
     }
 }

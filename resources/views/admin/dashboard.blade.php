@@ -63,7 +63,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>600</h3>
+                <h3>{{$nontender}}</h3>
 
                 <p>Non Tender</p>
               </div>
@@ -78,7 +78,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>20000</h3>
+                <h3>{{$peserta}}</h3>
 
                 <p>Peserta Lelang</p>
               </div>
@@ -162,7 +162,7 @@ Highcharts.chart('piechart1', {
             allowPointSelect: true,
             cursor: 'pointer',
             dataLabels: {
-                enabled: false
+                enabled: true
             },
             showInLegend: true
         }
@@ -177,7 +177,7 @@ Highcharts.chart('piechart1', {
             selected: true
         }, {
             name: 'Non Tender',
-            y: 600
+            y: <?= $nontender ?>
         }]
     }]
 });

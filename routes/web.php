@@ -93,7 +93,7 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::get('/pra/{tahun}', 'PotensiKorupsisController@tahun')->name('pra.tahun');
 	Route::get('/pra/{tahun}/{id}', 'PotensiKorupsisController@show')->name('pra.show');
 	Route::post('/pra', 'PotensiKorupsisController@store')->name('pra.store');
-	Route::get('/pra/sync/{tahun}', 'PraController@sync')->name('peserta.sync');
+	Route::get('/pra/sync/data/{tahun}', 'PotensiKorupsisController@sync')->name('pra.sync');
 
 });
 

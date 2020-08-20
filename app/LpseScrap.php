@@ -11,4 +11,8 @@ class LpseScrap extends Model
     public function rups(){
         return $this->hasOne('App\RupPenyedia', 'kode_rup', 'id_rup');	
     }
+
+    public function potensi(){
+    	return $this->hasOne('App\PotensiKorupsi', 'id_tender', 'kode_lelang');
+    }
 }

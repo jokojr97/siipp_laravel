@@ -63,15 +63,39 @@
                 <thead class="bg-secondary">
                   <tr>
                     <!-- <th class="text-center">No</th> -->
-                    <th class="text-center"></th>
                     <th class="text-center">Nama Paket</th>
                     <th class="text-center">Penyedia</th>
                     <th class="text-center">Nilai Kontrak</th>
-                    <th class="text-center" style="width: 10%">Action</th>
+                    <th class="text-center">NKT</th>
+                    <th class="text-center">P</th>
+                    <th class="text-center">S</th>
+                    <th class="text-center">Q</th>
+                    <th class="text-center">W</th>
+                    <th class="text-center">Total</th>
                   </tr>
                 </thead>
                 <tbody class="bg-white">
-                  
+                  @foreach($tenders as $result)
+
+                    <tr>
+                      <td><a href="#">{{$result->nama_paket}}</a></td>
+                      <td>{{$result->nama_pemenang}}</td>
+                      <td> <?=number_format((float)"$result->hasil_negosiasi",0,",","."); ?></td>
+                      <td class="text-center">{{$result->potensi->nkt}}</td>
+                      <td class="text-center">{{$result->potensi->p}}</td>
+                      <td class="text-center">{{$result->potensi->s}}</td>
+                      <td class="text-center">{{$result->potensi->q}}</td>
+                      <td class="text-center">{{$result->potensi->w}}</td>
+                      @if($result->potensi->total >= 15)                      
+                      <td class="text-center bg-red">{{$result->potensi->total}}</td>
+                      @elseif($result->potensi->total >= 10 && $result->potensi->total < 15)
+                      <td class="text-center bg-warning">{{$result->potensi->total}}</td>
+                      @else
+                      <td class="text-center bg-success">{{$result->potensi->total}}</td>                      
+                      @endif
+
+                    </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div><!-- table responsive -->
@@ -95,6 +119,12 @@
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>  
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>  
 
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>  
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>  
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('#datapra').DataTable({
@@ -105,7 +135,9 @@
             'csvHtml5',
             'pdfHtml5'
         ],
+        order: [[8, 'desc']],
     });
+
   });
 </script>
 @endsection
