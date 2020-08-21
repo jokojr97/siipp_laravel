@@ -78,7 +78,7 @@
                   @foreach($tenders as $result)
 
                     <tr>
-                      <td><a href="#">{{$result->nama_paket}}</a></td>
+                      <td><a href="{{route('admin.pra.show', ['tahun' => $tahun, 'id' => $result->kode_lelang])}}">{{$result->nama_paket}}</a></td>
                       <td>{{$result->nama_pemenang}}</td>
                       <td> <?=number_format((float)"$result->hasil_negosiasi",0,",","."); ?></td>
                       <td class="text-center">{{$result->potensi->nkt}}</td>

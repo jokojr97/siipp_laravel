@@ -115,7 +115,7 @@
         <h5 class="text-hijau"><b><i class="fas fa-briefcase"></i> Data Kontrak Tahun {{$tahun}}</b></h5>
         <hr>
         <div class="table table-responsive">
-          <table class="table table-striped" id="datatender">
+          <table class="table table-bordered" id="datatender">
             <thead class="bg-success">
               <tr>
                 <th class="text-center text-white"></th>
@@ -126,7 +126,7 @@
                 <th class="text-center text-white" style="width: 10%">Skor</th>
               </tr>
             </thead>
-            <tbody class="bg-white">
+            <tbody class="bg-white text-dark">
             </tbody>
           </table>
         </div>
@@ -159,8 +159,8 @@
 
   $(document).ready(function() {
     $('#datatender').DataTable({
-      processing : true,
-      serverSide : true,
+      processing : false,
+      serverSide : false,
       dom: 'Bfrtip',
         buttons: [
             'copyHtml5',
@@ -169,7 +169,7 @@
             'pdfHtml5'
         ],
       pageLength: 15,
-      order: [[2, 'asc']],
+      order: [[5, 'desc']],
       ajax : {
         url : "{{route('proyek.tender', ['tahun' => $tahun, 'satker' => $satkerid, 'jenispengadaan' => $jenisslug, 'tahap' => $tahapslug, 'sumber' => $sumberid])}}",
         type : 'GET'
@@ -193,7 +193,15 @@
       {
         targets : [5],
         render : function (data, type, row) {
-          const btn = "<center><a href=\"#\" class=\"badge badge-danger pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
+          if (data >= 15) {
+              var btn = "<center><a href=\"#\" class=\"badge badge-danger pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
+          }else if(data > 10 & data < 15) {
+              var btn = "<center><a href=\"#\" class=\"badge badge-warning pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
+          }else if(data < 10) {
+              var btn = "<center><a href=\"#\" class=\"badge badge-success pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
+          }else {
+              var btn = "<center><a href=\"#\" class=\"badge badge-success pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">0</a></center>";
+          }
           return btn;
         }
       },

@@ -226,18 +226,19 @@ class PagesController extends Controller
         // $tenders = LpseScrap::where('tahun_ang', $tahun)->get();
         if ($request->ajax()) {
             $rupp = LpseScrap::with('rups');
-
             return DataTables::of($scrap)->addColumn('skor', function($rupp){
-                if ($rupp->rups) {
-                    return 1;
+                if ($rupp->potensi) {
+                    return $rupp->potensi->total;
                 }else {
                     return 0;
                 }
             })->toJson();
+
         }
+        // $sc = LpseScrap::where('kode_lelang', 5301244)->first();
         // dd($sumber);
         return view('pages.tender', ['scrap' => $scrap, 'satkers' => $satkers,'satker' => $satker, 'sumber_danas' => $sumber_danas, 'jenis_pekerjaans' => $jenis_pekerjaans, 'tahun_angs' => $tahun_angs, 'tahap_tenders' => $tahap_tenders, 'tahun' => $tahun, 'sumber' => $sumber, 'jenis' => $jenis, 'tahap' => $tahap, 'scrapsum' => $scrapsum, 'scrapcount' => $scrapcount, 'satkerid' => $satkerid, 'jenisslug' => $jenisslug, 'tahapslug' => $tahapslug, 'sumberid' => $sumberid, 'menu' => $menu]); 
-        // dd($data);
+        // dd($sc->potensi->total);
     }
 
     public function perencanaan(Request $request){

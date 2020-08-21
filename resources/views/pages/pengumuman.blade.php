@@ -33,43 +33,43 @@
           <div class="card-body">
             <table class="table table-condensed table-bordered">  
               <tr>
-                <th class="bg-warnings text-right" width="200">Kode LPSE</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid" width="200">Kode LPSE</th>
                 <td colspan="3" class="text-capitalize"><strong><a href="http://lpse.bojonegorokab.go.id/eproc4/lelang/{{$paket->tenders->kode_lelang}}/pengumumanlelang" target="_blank">{{$paket->tenders->kode_lelang}}</a></strong></td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
-                <td colspan="3" class="text-capitalize"><strong>{{$paket->nama_paket}}</strong></td>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid" width="200">Nama Proyek/ Paket Pekerjaan</th>
+                <td colspan="3" class="text-capitalize text-dark"><strong>{{$paket->nama_paket}}</strong></td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Satuan Kerja</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Satuan Kerja</th>
                 <td colspan="3" class="text-black" ><strong>{{$paket->satkers->nama}}</strong></td>      
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Lokasi</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Lokasi</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->tenders->lokasi}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Kategori</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Kategori</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->jenis_pengadaan}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Metode Pengadaan</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Metode Pengadaan</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->metode_pemilihan}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Peserta Lelang</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Peserta Lelang</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->tenders->peserta}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">Pagu Anggaran</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Pagu Anggaran</th>
                 <td colspan="3" class="text-black" >
                     @php
                     $duit = $paket->pagu_rup;
@@ -78,7 +78,7 @@
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right">HPS</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">HPS</th>
                 <td colspan="3" class="text-black" >
                     @php
                     $duit = $paket->tenders->hps;
