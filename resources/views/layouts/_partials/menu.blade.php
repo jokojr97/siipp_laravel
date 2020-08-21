@@ -135,10 +135,18 @@
       </a>
     </li>
     <li class="nav-item">
-      <a href="/admin/password" class="nav-link">
-        <i class="nav-icon fas fa-key"></i>
+      <a href="/admin/users" class="nav-link">
+        <i class="nav-icon fas fa-users"></i>
         <p>
-          Ubah Sandi
+          Users
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/admin/profile/edit" class="nav-link">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          My Profile
         </p>
       </a>
     </li>

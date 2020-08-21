@@ -66,11 +66,11 @@
                     <th class="text-center">Nama Paket</th>
                     <th class="text-center">Penyedia</th>
                     <th class="text-center">Nilai Kontrak</th>
-                    <th class="text-center">NKT</th>
-                    <th class="text-center">P</th>
-                    <th class="text-center">S</th>
-                    <th class="text-center">Q</th>
-                    <th class="text-center">W</th>
+                    <th class="text-center">Nilai (NKT)</th>
+                    <th class="text-center">Partisipasi (P)</th>
+                    <th class="text-center">Kontrak:HPS (S)</th>
+                    <th class="text-center">Waktu (Q)</th>
+                    <th class="text-center">Monopoly (W)</th>
                     <th class="text-center">Total</th>
                   </tr>
                 </thead>
@@ -111,7 +111,7 @@
 <script type="text/javascript">
   function changefunction(id) {
     var idss = id.value;
-    window.location.replace("/admin/peserta/"+idss+"");  
+    window.location.replace("/admin/pra/"+idss+"");  
   }
 </script>
 

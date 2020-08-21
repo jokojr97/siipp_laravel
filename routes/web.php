@@ -95,6 +95,10 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::post('/pra', 'PotensiKorupsisController@store')->name('pra.store');
 	Route::get('/pra/sync/data/{tahun}', 'PotensiKorupsisController@sync')->name('pra.sync');
 
+	Route::get('/profile/edit', 'ProfileController@index')->name('profile.edit');
+	Route::post('/profile/update', 'ProfileController@update')->name('profile.update');
+
+	Route::resource('/users', 'UsersController');
 });
 
 Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){

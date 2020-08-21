@@ -115,8 +115,8 @@ class PotensiKorupsisController extends Controller
                 $s = 0;
             }
 
-            $winner = LpseScrap::where('npwp_kontraktor', $result->npwp_kontraktor)->where('tahun_ang', $tahun)->count();
-            if ($result->npwp_kontraktor) {
+            $winner = LpseScrap::where('npwp_pemenang', $result->npwp_pemenang)->where('tahun_ang', $tahun)->count();
+            if ($result->npwp_pemenang) {
                 if ($winner == 2) {
                     $w = 1;
                 }else if ($winner == 3) {

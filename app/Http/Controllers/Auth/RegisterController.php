@@ -71,8 +71,14 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        if (isset($data['role'])) {
+            $role = $data['role'];
+        }else {
+            $role = 4;
+        }
+
         $user = User::latest()->first();
-        RoleUsers::create(['role_id' => 4, 'user_id' => $user->id]);
+        RoleUsers::create(['role_id' => $role, 'user_id' => $user->id]);
 
         return $users;
     }
