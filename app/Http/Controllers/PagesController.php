@@ -20,6 +20,7 @@ use App\TahunAnggaran;
 use App\MetodeLelang;
 use App\SumberDana;
 use App\JenisPekerjaan;
+use App\PotensiKorupsi;
 
 class PagesController extends Controller
 {
@@ -259,8 +260,9 @@ class PagesController extends Controller
         $tahap = 2;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 2)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $pesertas = PesertaLelang::where('ocid', $ocid)->where('tahun', $tahun)->paginate(25);
 
-        return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
+        return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu, 'pesertas' => $pesertas]);
     }
 
     public function kontrak(Request $request){
@@ -271,8 +273,63 @@ class PagesController extends Controller
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 3)->where('id_sub', 0)->orderBy('id', 'desc')->get();
         $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
 
-        return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
-               
+        return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);               
+    }
+
+    public function analisis(Request $request){
+        $tahun = $request->segment(3);
+        $ocid = $request->segment(4);
+        $menu = "proyek";
+        $tahap = 5;
+        $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', $tahap)->where('id_sub', 0)->orderBy('id', 'desc')->get();
+        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $potensi = PotensiKorupsi::where('ocid', $ocid)->where('tahun', $tahun)->first();
+
+        if ($paket->tenders->npwp_pemenang) {
+            $winner = LpseScrap::where('npwp_pemenang', $paket->tenders->npwp_pemenang)->where('tahun_ang', $tahun)->count();
+        }else {
+            $winner = 0;
+        }
+
+        if ($paket->tenders->hps) {
+            $hps = $paket->tenders->hps;
+        }else {
+            $hps = 1;
+        }
+
+        if ($paket->tenders->hasil_negosiasi) {
+            $nego = $paket->tenders->hasil_negosiasi;
+        }else {
+            $nego = 1;          
+        }
+
+        $saving = $nego/$hps;
+        $saving = number_format((float)$saving, 3, '.', '');
+
+        if ($paket->tenders->npwp_pemenang) {
+            $jmlpeserta = PesertaLelang::where('kd_lelang', $paket->tenders->kode_lelang)->where('tahun', $tahun)->get();
+            $menawar = 0;
+            foreach ($jmlpeserta as $hsl) {
+                if ($hsl->penawaran) {
+                    $menawar++;
+                }                
+            }
+        }else {
+            $menawar = 0;
+        }
+        $tgl = $paket->tenders->tanggal_pembuatan;
+        if($tgl >= $tahun."-01-01" && $tgl <= $tahun."-03-31"){
+            $triwulan = 1;
+        }else if($tgl >= $tahun."-04-01" && $tgl <= $tahun."-06-31"){
+            $triwulan = 2;
+        }else if($tgl >= $tahun."-07-01" && $tgl <= $tahun."-09-31"){
+            $triwulan = 3;
+        }else if($tgl >= $tahun."-10-01" && $tgl <= $tahun."-12-31"){
+            $triwulan = 4;
+        }else {
+            $triwulan = 0;
+        }
+        return view('pages.analisis', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu, 'potensi' => $potensi, 'jmlmenang' => $winner, 'saving' => $saving, 'menawar' => $menawar, 'triwulan' => $triwulan]);
     }
 
     public function implementasi(Request $request){

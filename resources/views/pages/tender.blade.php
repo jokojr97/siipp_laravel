@@ -197,7 +197,7 @@
               var btn = "<center><a href=\"#\" class=\"badge badge-danger pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
           }else if(data > 10 & data < 15) {
               var btn = "<center><a href=\"#\" class=\"badge badge-warning pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
-          }else if(data < 10) {
+          }else if(data <= 10) {
               var btn = "<center><a href=\"#\" class=\"badge badge-success pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">"+data+"</a></center>";
           }else {
               var btn = "<center><a href=\"#\" class=\"badge badge-success pt-2 pb-2 pl-3 pr-3\" style=\"border-radius:50px\">0</a></center>";

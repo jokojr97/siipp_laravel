@@ -21,7 +21,7 @@
                     <div class="wow example fadeInUp animated" data-wow-delay=".6s" style=";color:black">Aplikasi Keterbukaan Data dan Informasi Seluruh Proses Pengadaan Barang dan Jasa di Lingkungan Pemerintah Kabupaten Bojonegoro. Melalui Aplikasi ini, Warga Dapat Mengakses Data ataupun Dokumen Pengadaan, Serta Bisa Menyampaikan Aspirasi dan Pengaduan Pada Setiap Tahapan Kegiatan/Proyek Pengadaan  di Daerah.
                     Aplikasi Bojonegoro Open System (BOS) Bisa Diakses Melaui Smartphone atau Komputer yang Terkoneksi Dengan Internet.
                     </div><br>
-                    <a href="/Assets/proyek/" class="btn btn-default">Data Proyek</a>
+                    <a href="/proyek/tender/2019/1/1/1/1" class="btn btn-default">Data Proyek</a>
                 </div>
             </div>
         </div>

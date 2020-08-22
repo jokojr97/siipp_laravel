@@ -24,6 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-briefcase text-hijau"></i> <span class="text-hijau">Pemenang & Kontrak</span></b></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/proyek/analisis/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-chart-line text-hijau"></i> <span class="text-hijau">Analisis</span></b></a>
+              </li>
               @endif
               <li class="nav-item" style="margin-left: -10px">
                 <a class="nav-link active" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Implementasi</span></b></a>
@@ -33,31 +36,31 @@
           <div class="card-body">
             <table class="table table-condensed table-bordered">  
               <tr>
-                  <th class="bg-warnings text-right" width="200">Kode RUP</th>
+                  <th class="bg-warnings text-dark text-right" width="200">Kode RUP</th>
                   <td colspan="3" class="text-black text-capitalize"><strong>{{$paket->kode_rup}}</strong></td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
+                  <th class="bg-warnings text-dark text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
                   <td colspan="3" class="text-black text-capitalize"><strong>{{$paket->nama_paket}}</strong></td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Satuan Kerja</th>
+                  <th class="bg-warnings text-dark text-right">Satuan Kerja</th>
                   <td colspan="3" class="text-black" ><strong>{{$paket->satkers->nama}}</strong></td>      
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Kegiatan</th>
+                  <th class="bg-warnings text-dark text-right">Kegiatan</th>
                   <td colspan="3" class="text-black" >
                       {{$paket->kegiatan}}
                   </td>
               </tr>                
               <tr>
-                  <th class="bg-warnings text-right">Deskripsi</th>
+                  <th class="bg-warnings text-dark text-right">Deskripsi</th>
                   <td colspan="3" class="text-black" >
                       {{$paket->deskripsi}}
                   </td>
               </tr>                
               <tr>
-                  <th class="bg-warnings text-right">Lokasi</th>
+                  <th class="bg-warnings text-dark text-right">Lokasi</th>
                   <td colspan="3" class="text-black" >
                       {{$paket->detail_lokasi}}
                   </td>
@@ -82,31 +85,31 @@
               @endphp
 
               <tr>
-                  <th class="bg-warnings text-right">Waktu Pengadaan</th>
+                  <th class="bg-warnings text-dark text-right">Waktu Pengadaan</th>
                   <td><?= $pengadaanmulai ?></td>
-                  <th class="bg-warnings text-right">s/d</th>
+                  <th class="bg-warnings text-dark text-right">s/d</th>
                   <td><?= $pengadaanselesai ?></td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Waktu Pekerjaan</th>
+                  <th class="bg-warnings text-dark text-right">Waktu Pekerjaan</th>
                   <td><?= $pekerjaanmulai ?> </td>
-                  <th class="bg-warnings text-right">s/d</th>
+                  <th class="bg-warnings text-dark text-right">s/d</th>
                   <td><?= $pekerjaanselesai ?></td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Kategori Pengadaan</th>
+                  <th class="bg-warnings text-dark text-right">Kategori Pengadaan</th>
                   <td colspan="3" class="text-black" >{{$paket->jenis_pekerjaan}}</td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Metode Pengadaan</th>
+                  <th class="bg-warnings text-dark text-right">Metode Pengadaan</th>
                   <td colspan="3" class="text-black">{{$paket->metode_pemilihan}}</td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Volume</th>
+                  <th class="bg-warnings text-dark text-right">Volume</th>
                   <td colspan="3" class="text-black"> {{$paket->volume}}</td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Tahap Tender Saat Ini</th>
+                  <th class="bg-warnings text-dark text-right">Tahap Tender Saat Ini</th>
                     <td colspan="3" class="text-black">
                     @if($paket->tenders)
                     <a href="http://lpse.bojonegorokab.go.id/eproc4/nontender/{{$paket->tenders->kode_lelang}}/jadwal" target="_blank"> {{$paket->tenders->tahap_tender}}</a>
@@ -117,16 +120,16 @@
 
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Tahun Anggaran</th>
+                  <th class="bg-warnings text-dark text-right">Tahun Anggaran</th>
                   <td colspan="3" class="text-black"> {{$paket->sumber_dana}} {{$paket->tahun}}</td>
               </tr>
               <tr>
-                  <th class="bg-warnings text-right">Pagu Anggaran</th>
+                  <th class="bg-warnings text-dark text-right">Pagu Anggaran</th>
                   <td colspan="3" class="text-black"> <?="Rp. ".number_format((float)"$paket->pagu_rup",0,",","."); ?></td>
               </tr>
               
               <tr>
-                  <th class="bg-warnings text-right">Dokumen</th>
+                  <th class="bg-warnings text-dark text-right">Dokumen</th>
                   <td colspan="3" class="text-black"><a href="proyek/kak" target="_blank"><i class="glyphicon glyphicon-file"></i> Download Kerangka Acuan Kerja (KAK)</a></td>
               </tr>  
             </table>

@@ -31,6 +31,7 @@ Route::get('/proyek/perencanaan/{tahun}/{ocid}', 'PagesController@perencanaan')-
 Route::get('/proyek/pengumuman/{tahun}/{ocid}', 'PagesController@pengumuman')->name('proyek.pengumuman');
 Route::get('/proyek/kontrak/{tahun}/{ocid}', 'PagesController@kontrak')->name('proyek.kontrak');
 Route::get('/proyek/implementasi/{tahun}/{ocid}', 'PagesController@implementasi')->name('proyek.implementasi');
+Route::get('/proyek/analisis/{tahun}/{ocid}', 'PagesController@analisis')->name('proyek.implementasi');
 
 Route::get('/proyek/penyedia', 'PagesController@penyediaindex')->name('proyek.penyedia.redirect');
 Route::get('/proyek/penyedia/{tahun}', 'PagesController@penyedia')->name('proyek.penyedia.index');

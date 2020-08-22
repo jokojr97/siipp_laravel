@@ -26,6 +26,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-briefcase text-hijau"></i> <span class="text-hijau">Pemenang & Kontrak</span></b></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/proyek/analisis/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-chart-line text-hijau"></i> <span class="text-hijau">Analisis</span></b></a>
+              </li>
               @endif
               <li class="nav-item" style="margin-left: -10px">
                 <a class="nav-link" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Implementasi</span></b></a>
@@ -36,31 +39,31 @@
 
               <table class="table table-condensed table-bordered">  
                 <tr>
-                    <th class="bg-warnings text-right" width="200">Kode RUP</th>
+                    <th class="bg-warnings text-dark text-right" width="200">Kode RUP</th>
                     <td  class="text-black text-capitalize" colspan="3" class="text-black"><strong>{{$paket->kode_rup}}</strong></td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
+                    <th class="bg-warnings text-dark text-right" width="200">Nama Proyek/ Paket Pekerjaan</th>
                     <td  class="text-black text-capitalize" colspan="3"><strong>{{$paket->nama_paket}}</strong></td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Satuan Kerja</th>
+                    <th class="bg-warnings text-dark text-right">Satuan Kerja</th>
                     <td  class="text-black" colspan="3" ><strong>{{$paket->satkers->nama}}</strong></td>      
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Kegiatan</th>
+                    <th class="bg-warnings text-dark text-right">Kegiatan</th>
                     <td  class="text-black" colspan="3" >
                         {{$paket->kegiatan}}
                     </td>
                 </tr>                
                 <tr>
-                    <th class="bg-warnings text-right">Deskripsi</th>
+                    <th class="bg-warnings text-dark text-right">Deskripsi</th>
                     <td  class="text-black" colspan="3" >
                         {{$paket->deskripsi}}
                     </td>
                 </tr>                
                 <tr>
-                    <th class="bg-warnings text-right">Lokasi</th>
+                    <th class="bg-warnings text-dark text-right">Lokasi</th>
                     <td  class="text-black" colspan="3" class="ml-0">
                       @php
                       $lok = $paket->detail_lokasi;
@@ -94,19 +97,19 @@
                 @endphp
 
                 <tr>
-                    <th class="bg-warnings text-right">Waktu Pengadaan</th>
+                    <th class="bg-warnings text-dark text-right">Waktu Pengadaan</th>
                     <td  class="text-black"><?= $pengadaanmulai ?></td>
-                    <th class="bg-warnings text-right">s/d</th>
+                    <th class="bg-warnings text-dark text-right">s/d</th>
                     <td  class="text-black"><?= $pengadaanselesai ?></td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Waktu Pekerjaan</th>
+                    <th class="bg-warnings text-dark text-right">Waktu Pekerjaan</th>
                     <td  class="text-black"><?= $pekerjaanmulai ?> </td>
-                    <th class="bg-warnings text-right">s/d</th>
+                    <th class="bg-warnings text-dark text-right">s/d</th>
                     <td  class="text-black"><?= $pekerjaanselesai ?></td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Kategori Pengadaan</th>
+                    <th class="bg-warnings text-dark text-right">Kategori Pengadaan</th>
                     <td  class="text-black" colspan="3" >
                       @php
                       $jenis = $paket->jenis_pengadaan;
@@ -118,15 +121,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Metode Pengadaan</th>
+                    <th class="bg-warnings text-dark text-right">Metode Pengadaan</th>
                     <td  class="text-black" colspan="3">{{$paket->metode_pemilihan}}</td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Volume</th>
+                    <th class="bg-warnings text-dark text-right">Volume</th>
                     <td  class="text-black" colspan="3"> {{$paket->volume}}</td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Tahap Tender Saat Ini</th>
+                    <th class="bg-warnings text-dark text-right">Tahap Tender Saat Ini</th>
                       <td  class="text-black" colspan="3">
                       @if($paket->tenders)
                       <a href="http://lpse.bojonegorokab.go.id/eproc4/nontender/{{$paket->tenders->kode_lelang}}/jadwal" target="_blank"> {{$paket->tenders->tahap_tender}}</a>
@@ -137,7 +140,7 @@
 
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Tahun Anggaran</th>
+                    <th class="bg-warnings text-dark text-right">Tahun Anggaran</th>
                     <td  class="text-black" colspan="3"> 
 
                       @php
@@ -150,12 +153,12 @@
                     {{$paket->tahun}}</td>
                 </tr>
                 <tr>
-                    <th class="bg-warnings text-right">Pagu Anggaran</th>
+                    <th class="bg-warnings text-dark text-right">Pagu Anggaran</th>
                     <td  class="text-black" colspan="3"> <?="Rp. ".number_format((float)"$paket->pagu_rup",0,",","."); ?></td>
                 </tr>
                 
                 <tr>
-                    <th class="bg-warnings text-right">Dokumen</th>
+                    <th class="bg-warnings text-dark text-right">Dokumen</th>
                     <td  class="text-black" colspan="3"><a href="proyek/kak" target="_blank"><i class="fas fa-file"></i><b> &nbsp;Download Kerangka Acuan Kerja (KAK)</b></a></td>
                 </tr>  
                 

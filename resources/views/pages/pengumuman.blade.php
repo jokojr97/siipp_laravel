@@ -24,6 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/proyek/kontrak/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-briefcase text-hijau"></i> <span class="text-hijau">Pemenang & Kontrak</span></b></a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/proyek/analisis/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-chart-line text-hijau"></i> <span class="text-hijau">Analisis</span></b></a>
+              </li>
               @endif
               <li class="nav-item" style="margin-left: -10px">
                 <a class="nav-link" href="/proyek/implementasi/{{$paket->tahun}}/{{$paket->kode_rup}}"><b><i class="fas fa-users text-hijau"></i> <span class="text-hijau">Implementasi</span></b></a>
@@ -33,43 +36,43 @@
           <div class="card-body">
             <table class="table table-condensed table-bordered">  
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid" width="200">Kode LPSE</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" width="200">Kode LPSE</th>
                 <td colspan="3" class="text-capitalize"><strong><a href="http://lpse.bojonegorokab.go.id/eproc4/lelang/{{$paket->tenders->kode_lelang}}/pengumumanlelang" target="_blank">{{$paket->tenders->kode_lelang}}</a></strong></td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid" width="200">Nama Proyek/ Paket Pekerjaan</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark" width="200">Nama Proyek/ Paket Pekerjaan</th>
                 <td colspan="3" class="text-capitalize text-dark"><strong>{{$paket->nama_paket}}</strong></td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Satuan Kerja</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Satuan Kerja</th>
                 <td colspan="3" class="text-black" ><strong>{{$paket->satkers->nama}}</strong></td>      
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Lokasi</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Lokasi</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->tenders->lokasi}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Kategori</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Kategori</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->jenis_pengadaan}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Metode Pengadaan</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Metode Pengadaan</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->metode_pemilihan}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Peserta Lelang</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Peserta Lelang</th>
                 <td colspan="3" class="text-black" >
                     {{$paket->tenders->peserta}}
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">Pagu Anggaran</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">Pagu Anggaran</th>
                 <td colspan="3" class="text-black" >
                     @php
                     $duit = $paket->pagu_rup;
@@ -78,7 +81,7 @@
                 </td>
               </tr>
               <tr>
-                <th class="bg-warnings text-right font-weight-bold text-dark" style="border:5px white solid">HPS</th>
+                <th class="bg-warnings text-right font-weight-bold text-dark">HPS</th>
                 <td colspan="3" class="text-black" >
                     @php
                     $duit = $paket->tenders->hps;
@@ -92,16 +95,31 @@
               <table class="table table-bordered table-striped table-condensed">
                 <thead>
                   <tr>
-                    <th><center>No</center></th>
-                    <th><center>Peserta</center></th>
-                    <th><center>NPWP</center></th>
-                    <th><center>Penawaran</center></th>                      
+                    <th class="text-dark"><center>No</center></th>
+                    <th class="text-dark"><center>Peserta</center></th>
+                    <th class="text-dark"><center>NPWP</center></th>
+                    <th class="text-dark"><center>Penawaran</center></th>                      
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($pesertas as $result)
+                  <tr>
+                    <td class="text-center text-dark">{{$loop->iteration}}</td>
+                    <td class="text-dark">{{$result->peserta}}</td>
+                    <td class="text-dark">{{$result->npwp}}</td>
+                    <td class="text-center text-dark">
+                      @if($result->penawaran)
+                      {{number_format((float)"$result->penawaran",0,",",",")}}
+                      @else
+                      -
+                      @endif
+                    </td>
+                  </tr>
+                  @endforeach
                 </tbody>
               </table>
             </div>
+            {{$pesertas->links()}}
             <br>
           
             <br>
