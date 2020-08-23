@@ -102,7 +102,16 @@ Route::namespace('admin')->prefix('admin')->name('admin.')->middleware('auth', '
 	Route::resource('/users', 'UsersController');
 });
 
-Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-admin_super')->group(function(){
+Route::namespace('adminsuper')->prefix('adminsuper')->name('adminsuper.')->middleware('auth', 'can:role-adminsuper')->group(function(){
 	Route::get('/dashboard', 'AdminSuperController@index')->name('dashboard.index');
 });
+
+Route::namespace('user')->prefix('user')->name('user.')->middleware('auth', 'can:role-user')->group(function(){
+	Route::get('/dashboard', 'UserController@index')->name('dashboard.index');
+});
+
+Route::namespace('relawan')->prefix('relawan')->name('relawan.')->middleware('auth', 'can:role-relawan')->group(function(){
+	Route::get('/dashboard', 'RelawanController@index')->name('dashboard.index');
+});
+
 
