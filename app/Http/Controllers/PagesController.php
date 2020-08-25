@@ -248,9 +248,16 @@ class PagesController extends Controller
         $menu = "proyek";
         $tahap = 1;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 1)->where('id_sub', 0)->orderBy('id', 'desc')->get();
-        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $paket = RupPenyedia::where('kode_rup', $ocid)->first();
+        if ($paket) {
+            $dt['nama_paket'] = $paket->nama_paket;
+            $dt['deskripsi'] = $paket->deskripsi;
+        }else {
+            $dt['nama_paket'] = "";
+            $dt['deskripsi'] = "";
+        }
 
-        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
+        return view('pages.perencanaan', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu, 'dt' => $dt]);
     }
 
     public function pengumuman(Request $request){
@@ -259,7 +266,7 @@ class PagesController extends Controller
         $menu = "proyek";
         $tahap = 2;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 2)->where('id_sub', 0)->orderBy('id', 'desc')->get();
-        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $paket = RupPenyedia::where('kode_rup', $ocid)->first();
         $pesertas = PesertaLelang::where('ocid', $ocid)->where('tahun', $tahun)->paginate(25);
 
         return view('pages.pengumuman', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu, 'pesertas' => $pesertas]);
@@ -271,7 +278,7 @@ class PagesController extends Controller
         $menu = "proyek";
         $tahap = 3;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 3)->where('id_sub', 0)->orderBy('id', 'desc')->get();
-        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $paket = RupPenyedia::where('kode_rup', $ocid)->first();
 
         return view('pages.kontrak', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);               
     }
@@ -282,8 +289,8 @@ class PagesController extends Controller
         $menu = "proyek";
         $tahap = 5;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', $tahap)->where('id_sub', 0)->orderBy('id', 'desc')->get();
-        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
-        $potensi = PotensiKorupsi::where('ocid', $ocid)->where('tahun', $tahun)->first();
+        $paket = RupPenyedia::where('kode_rup', $ocid)->first();
+        $potensi = PotensiKorupsi::where('ocid', $ocid)->first();
 
         if ($paket->tenders->npwp_pemenang) {
             $winner = LpseScrap::where('npwp_pemenang', $paket->tenders->npwp_pemenang)->where('tahun_ang', $tahun)->count();
@@ -338,7 +345,7 @@ class PagesController extends Controller
         $menu = "proyek";
         $tahap = 4;
         $aspirasi = Aspirasi::where('aktif', 0)->where('ocid', $ocid)->where('tahap', 4)->where('id_sub', 0)->orderBy('id', 'desc')->get();
-        $paket = RupPenyedia::where('tahun', $tahun)->where('kode_rup', $ocid)->first();
+        $paket = RupPenyedia::where('kode_rup', $ocid)->first();
 
         return view('pages.implementasi', ['paket' => $paket, 'aspirasi' => $aspirasi, 'tahap' => $tahap, 'menu' => $menu]);
                
