@@ -31,9 +31,16 @@ class PesertaController extends Controller
         $id = Auth::id();
         $user = User::where('id', $id)->first();
 
-        $tenders = PesertaLelang::where('tahun', $tahun)->get();
+        $tenders = PesertaLelang::where('tahun', $tahun);
         if ($request->ajax()) {
-            return DataTables::of($tenders)->toJson();
+            $rupp = PesertaLelang::with('tenders');
+            return DataTables::of($tenders)->addColumn('nama_paket', function($rupp){
+                if ($rupp->tender) {
+                    return $rupp->tender->nama_paket;
+                }else {
+                    return '';
+                }
+            })->make(true);
         }
 
         return view('admin.peserta.index', ['user' => $user, 'tenders' => $tenders, 'tahun' => $tahun, 'tahuns' => $tahuns]);

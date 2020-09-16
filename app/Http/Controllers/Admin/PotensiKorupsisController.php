@@ -199,9 +199,65 @@ class PotensiKorupsisController extends Controller
      * @param  \App\PotensiKorupsi  $potensiKorupsi
      * @return \Illuminate\Http\Response
      */
-    public function show(PotensiKorupsi $potensiKorupsi)
-    {
-        //
+    public function show(Request $request)
+    {        
+        $id = Auth::id();
+        $user = User::where('id', $id)->first();
+        $tahun = $request->segment(3);
+        $kd_lelang = $request->segment(4);
+
+        $paket = LpseScrap::where('kode_lelang', $kd_lelang)->first();
+        $ocid = $paket->id_rup;
+        $potensi = PotensiKorupsi::where('ocid', $ocid)->first();
+
+        if ($paket->npwp_pemenang) {
+            $winner = LpseScrap::where('npwp_pemenang', $paket->npwp_pemenang)->where('tahun_ang', $tahun)->count();
+        }else {
+            $winner = 0;
+        }
+
+        if ($paket->hps) {
+            $hps = $paket->hps;
+        }else {
+            $hps = 1;
+        }
+
+        if ($paket->hasil_negosiasi) {
+            $nego = $paket->hasil_negosiasi;
+        }else {
+            $nego = 1;          
+        }
+
+        $saving = $nego/$hps;
+        $saving = number_format((float)$saving, 3, '.', '');
+
+        if ($paket->npwp_pemenang) {
+            $jmlpeserta = PesertaLelang::where('kd_lelang', $paket->kode_lelang)->where('tahun', $tahun)->get();
+            $menawar = 0;
+            foreach ($jmlpeserta as $hsl) {
+                if ($hsl->penawaran) {
+                    $menawar++;
+                }                
+            }
+        }else {
+            $menawar = 0;
+        }
+        $tgl = $paket->tanggal_pembuatan;
+        if($tgl >= $tahun."-01-01" && $tgl <= $tahun."-03-31"){
+            $triwulan = 1;
+        }else if($tgl >= $tahun."-04-01" && $tgl <= $tahun."-06-31"){
+            $triwulan = 2;
+        }else if($tgl >= $tahun."-07-01" && $tgl <= $tahun."-09-31"){
+            $triwulan = 3;
+        }else if($tgl >= $tahun."-10-01" && $tgl <= $tahun."-12-31"){
+            $triwulan = 4;
+        }else {
+            $triwulan = 0;
+        }
+
+        return view('admin.pra.show', ['user' => $user, 'paket' => $paket, 'tahun' => $tahun, 'potensi' => $potensi, 'jmlmenang' => $winner, 'saving' => $saving, 'menawar' => $menawar, 'triwulan' => $triwulan]);
+        // dd($paket);
+
     }
 
     /**

@@ -15,4 +15,5 @@ class LpseScrap extends Model
     public function potensi(){
     	return $this->hasOne('App\PotensiKorupsi', 'id_tender', 'kode_lelang');
     }
+    
 }

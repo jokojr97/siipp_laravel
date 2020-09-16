@@ -168,8 +168,8 @@
             'csvHtml5',
             'pdfHtml5'
         ],
-      pageLength: 25,
-      order: [[5	, 'desc']],
+      pageLength: 15,
+      order: [[5, 'desc']],
       ajax : {
         url : "{{route('proyek.rup', ['tahun' => $tahun, 'satker' => $satkerid, 'jenispengadaan' => $jenisslug, 'metode' => $metodeslug, 'sumber' => $sumberid])}}",
         type : 'GET'

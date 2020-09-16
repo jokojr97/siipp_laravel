@@ -149,9 +149,6 @@ Highcharts.chart('piechart1', {
     title: {
         text: 'Tender & Non Tender'
     },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.0f}</b>'
-    },
     accessibility: {
         point: {
             valueSuffix: '%'

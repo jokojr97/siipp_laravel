@@ -112,7 +112,7 @@ class PagesController extends Controller
             $rup = $rup->where('sumber_dana', 'like', '%'.$sumber.'%');
         }
 
-        $rup = $rup->limit(1000)->get();
+        // $rup = $rup->limit(1000)->get();
         $rupsum = $rup->sum('pagu_rup');
         $rupcount = $rup->count();
         $ajax = $request->ajax();
@@ -125,7 +125,7 @@ class PagesController extends Controller
                 }else {
                     return 0;
                 }
-            })->toJson();
+            })->make(true);
 
             return $aj;
         }else {
@@ -220,7 +220,7 @@ class PagesController extends Controller
             $scrap = $scrap->where('tahap_tender', 'like', '%'.$tahap.'%');
         }
 
-        $scrap = $scrap->get();
+        // $scrap = $scrap->get();
         $scrapcount = $scrap->count();
         $scrapsum = $scrap->sum('pagu');
 
@@ -233,7 +233,7 @@ class PagesController extends Controller
                 }else {
                     return 0;
                 }
-            })->toJson();
+            })->make(true);
 
         }
         // $sc = LpseScrap::where('kode_lelang', 5301244)->first();
@@ -435,8 +435,8 @@ class PagesController extends Controller
         $tahun_angs = TahunAnggaran::all();
         $menu = "penyedia";
 
-        // $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->get();
-        $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->limit(300)->get();
+        $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp');
+        // $penyedia = PesertaLelang::where('tahun', $tahun)->groupBy('npwp')->limit(300);
 
         if ($request->ajax()) {
             return DataTables::of($penyedia)->addColumn('ikutlelang', function($penyedias){
@@ -480,7 +480,7 @@ class PagesController extends Controller
                 }else {
                     return $penyedias->peserta;
                 }
-            })->toJson();
+            })->make(true);
         }
 
         return view('pages.penyedia', ['tahun' => $tahun, 'tahuns' => $tahun_angs, 'menu' => $menu]);

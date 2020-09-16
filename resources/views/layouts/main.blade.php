@@ -105,7 +105,8 @@
                             <li><a href="/statistik" class="btn btn-default" style="margin: 0 5px;background-color: white;color: black;font-size: 12px;padding: 10px"><span class="glyphicon glyphicon-stats"></span>&nbsp;&nbsp;Statistik</a></li>
                             <li><a href="/proyek/penyedia" class="btn btn-default" style="margin: 0 5px;background-color: white;color: black;font-size: 12px;padding: 10px"><span class="glyphicon glyphicon-briefcase"></span> &nbsp;Penyedia</a></li>
                             <li><a href="/proyek/tender" class="btn btn-default" style="margin: 0 5px;background-color: white;color: black;font-size: 12px;padding: 10px"><span class="glyphicon glyphicon-th-list"></span> &nbsp;Tahap Tender</a></li>                            
-                            <li style="text-align: center;"><a href="" style="color: white;" role="button" data-toggle="modal" data-target="#loginModal"></i><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Login</center></a></center></li>
+                            <li style="text-align: center;"><a href="/login" style="color: white;"></i><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Login</center></a></center></li>
+                            <!-- <li style="text-align: center;"><a href="" style="color: white;" role="button" data-toggle="modal" data-target="#loginModal"></i><span class="glyphicon glyphicon-off"></span>&nbsp;&nbsp;Login</center></a></center></li> -->
 
                         </ul>
                     </div>

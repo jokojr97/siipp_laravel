@@ -101,7 +101,7 @@
     $('#datapeserta').DataTable({
       processing : true,
       serverSide : true,
-      order: [[0, 'asc']],
+      order: [[2, 'asc']],
       ajax : {
         url : "{{route('admin.peserta.tahun', $tahun)}}",
         type : 'GET'
