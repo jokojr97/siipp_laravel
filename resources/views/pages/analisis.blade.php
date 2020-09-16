@@ -35,6 +35,17 @@
           </div>
           <div class="card-body">
             <div class="row">
+              <div class="col">
+                <h5 class="m-0"><strong>Analisis Potensi Korupsi:</strong></h5>
+                <div class="row">
+                  <div class="col">
+                    <p class="m-0">Paket: {{$paket->nama_paket}}</p>
+                  </div><!-- //col -->
+                </div><!-- //row -->
+                <hr>
+              </div><!-- //col -->
+            </div><!-- // row -->
+            <div class="row">
               <div class="col-md-4">
                 <div class="form-group">
                   <label class="text-dark mb-1"><b>Nilai Kontrak</b></label>
@@ -80,11 +91,18 @@
               <div class="col">
                 <label class="text-dark mb-1"><b>Total</b></label>
                 <div class="progress" style="height: 40px;">
-                  <div class="progress-bar bg-success" role="progressbar" style="width: <?= $potensi->total*5 ?>%;font-size: 16px" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><b>{{$potensi->total}}/21</b></div>
+                  <div class="progress-bar <?php if($potensi->total > 15){echo "bg-danger";}else if($potensi->total > 10 && $potensi->total < 15){echo "bg-warning";}else {echo "bg-success";} ?>" role="progressbar" style="width: <?= $potensi->total/21*100 ?>%;font-size: 16px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><b>{{$potensi->total}}/21</b></div>
                 </div>
               </div><!-- col -->
             </div><!-- row -->
             <br>
+            <div class="row">
+              <div class="col">
+                <div class="alert alert-danger" role="alert">
+                    <?php if($potensi->total > 15){echo "Berdasarkan Analisis di atas Paket Pekerjaan ini <strong>berpotensi tinggi</strong> terjadi korupsi";}else if($potensi->total > 10 && $potensi->total < 15){echo "Berdasarkan Analisis di atas Paket Pekerjaan ini <strong>berpotensi</strong> terjadi korupsi";}else {echo "Berdasarkan Analisis di atas Paket Pekerjaan ini <strong>berpotensi Rendah</strong> terjadi korupsi";} ?>
+                </div>
+              </div><!-- //col -->
+            </div><!-- //row -->
             <div class="row">
               <div class="col">
                 <div id="accordion">
